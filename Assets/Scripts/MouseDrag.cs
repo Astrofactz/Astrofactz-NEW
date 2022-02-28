@@ -29,6 +29,7 @@ public class MouseDrag : MonoBehaviour
     {
         isInMenu = true;
 
+        //finds the artifact manager.
         apm = FindObjectOfType<ArtifactPieceManager>();
     }
 
@@ -37,15 +38,18 @@ public class MouseDrag : MonoBehaviour
     {
         if (isBeingHeld)
         {
+            //Sets a vector3 to the mouse position.
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos.z = 16;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+            //checks if every snap point is in range of another.
             foreach(GameObject obj in snapPoints)
             {
                 if (Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out hit, snapRadius, snapLayer))
                 {
+                    //Snaps the selected object to the snap point.
                     gameObject.transform.localPosition = new Vector3(
                         Mathf.Round((mousePos.x - startPosX) + (hit.transform.position.x - Mathf.Round(hit.transform.position.x))),
                         Mathf.Round((mousePos.y - startPosY) + (hit.transform.position.y - Mathf.Round(hit.transform.position.y))),
@@ -79,6 +83,7 @@ public class MouseDrag : MonoBehaviour
             mousePos.z = 16;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+            //allows the player to grab any part of the object.
             startPosX = mousePos.x - transform.localPosition.x;
             startPosY = mousePos.y - transform.localPosition.y;
 
@@ -95,6 +100,7 @@ public class MouseDrag : MonoBehaviour
         mousePos.z = 16;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
+        //checks if the piece needs to be removed from or added to the menu.
         if(Physics.Raycast(mousePos, Vector3.forward, menuLayer) && apm.piecesInSpace.Contains(gameObject))
         {
             apm.BackInMenu(gameObject);

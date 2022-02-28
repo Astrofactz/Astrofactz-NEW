@@ -13,12 +13,20 @@ public class ArtifactPieceManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// TakeFromMenu is called when an object is removed from the menu.
+    /// </summary>
+    /// <param name="obj">object to be removed</param>
     public void TakeFromMenu(GameObject obj)
     {
         piecesInMenu.Remove(obj);
         piecesInSpace.Add(obj);
     }
 
+    /// <summary>
+    /// BackInMenu is called when an object is put back in the menu.
+    /// </summary>
+    /// <param name="obj">object to be added</param>
     public void BackInMenu(GameObject obj)
     {
         piecesInSpace.Remove(obj);
