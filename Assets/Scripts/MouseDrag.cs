@@ -91,6 +91,9 @@ public class MouseDrag : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// sets the object to not being held, and changes what menu its in, if applicable.
+    /// </summary>
     private void OnMouseUp()
     {
         isBeingHeld = false;
