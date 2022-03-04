@@ -7,7 +7,7 @@ public class sceneManager : MonoBehaviour
 {
     public static sceneManager instance;
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance == null)
         {
@@ -20,7 +20,7 @@ public class sceneManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-    }
+    }*/
 
     public void LoadScene(int num)
     {
