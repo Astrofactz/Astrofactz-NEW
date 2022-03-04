@@ -18,7 +18,7 @@ public class MouseDrag : MonoBehaviour
     public LayerMask menuLayer;
 
     public GameObject[] snapPoints;
-    public GameObject ObjMenu;
+    //public GameObject ObjMenu;
     //public Transform snapTarget;
 
     private RaycastHit hit;

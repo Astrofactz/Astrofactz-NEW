@@ -96,11 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapRadius: 0
+  snapRadius: 0.5
+  objectZ: 0
   snapLayer:
     serializedVersion: 2
     m_Bits: 64
-  snapPoint: {fileID: 0}
+  menuLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  snapPoints: []
+  ObjMenu: {fileID: 0}
 --- !u!64 &-3146612711427373515
 MeshCollider:
   m_ObjectHideFlags: 0
