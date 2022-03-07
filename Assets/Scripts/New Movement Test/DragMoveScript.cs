@@ -9,11 +9,15 @@ public class DragMoveScript : MonoBehaviour
     public float objectZ;
     public float snapRadius;
 
+    public LineRenderer line;
+
     public LayerMask snapLayer;
 
     private bool isBeingHeld;
+    private bool shouldSnap;
 
     public GameObject[] snapPoints;
+    public Vector3 snapOffset;
 
     // Update is called once per frame
     void Update()
@@ -27,24 +31,32 @@ public class DragMoveScript : MonoBehaviour
             foreach(GameObject obj in snapPoints)
             {
                 RaycastHit snapHit;
-                if(Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out snapHit, snapRadius, snapLayer))
+                if (Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out snapHit, snapRadius, snapLayer))
                 {
                     targetSnap = snapHit.collider.gameObject;
+                    snapOffset = obj.transform.position - selectedObject.transform.position;
 
-                    if(selectedObject.CompareTag(targetSnap.tag))
+                    if (selectedObject.CompareTag(targetSnap.tag))
                     {
-                        return;
+                        continue;
                     }
 
-                    selectedObject.transform.position = new Vector3(
-                        targetSnap.transform.position.x - Mathf.Round(obj.transform.position.x - worldPosition.x),
-                        targetSnap.transform.position.y - Mathf.Round(obj.transform.position.y - worldPosition.y),
-                        objectZ);
+                    shouldSnap = true;
+
+                    selectedObject.transform.position = targetSnap.transform.position - obj.transform.position;
+
+                    line.SetPosition(0, targetSnap.transform.position - obj.transform.position);
+                    line.SetPosition(1, targetSnap.transform.position);
+                    
                 }
                 else
-                    selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);
+                {
+                    shouldSnap = false;
+                }
             }
+            selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);
         }
+        line.enabled = shouldSnap;
     }
 
     private RaycastHit CastRay()
@@ -84,15 +96,6 @@ public class DragMoveScript : MonoBehaviour
                 selectedObject = hit.collider.gameObject;
 
             }
-            /*else
-            {
-                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);
-
-                selectedObject = null;
-            }*/
         }
     }
 
@@ -101,15 +104,25 @@ public class DragMoveScript : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        /*Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+        Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                 Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-        selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);*/
+
+        if (shouldSnap)
+        {
+            selectedObject.transform.position = targetSnap.transform.position - snapOffset;
+
+            /*selectedObject.transform.position = new Vector3(
+                        targetSnap.transform.position.x - xDistance,
+                        targetSnap.transform.position.y - yDistance,
+                        objectZ);*/
+        }
 
         selectedObject = null;
         targetSnap = null;
 
         isBeingHeld = false;
+        shouldSnap = false;
     }
 
     public Vector3 SetCastPoint(GameObject snapPoint)
@@ -119,5 +132,10 @@ public class DragMoveScript : MonoBehaviour
             snapPoint.transform.position.y + snapRadius,
             snapPoint.transform.position.z);
         return pos;
+    }
+
+    public void DrawSnapLine(Vector3 pos1, Vector3 pos2)
+    {
+        Debug.DrawLine(pos1, pos2);
     }
 }
