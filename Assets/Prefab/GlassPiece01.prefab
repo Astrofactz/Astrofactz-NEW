@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4374963533988350839}
   - component: {fileID: 6787670426168797354}
   - component: {fileID: 8282407025577224601}
+  - component: {fileID: 4278374039032818065}
   - component: {fileID: 7717834473402427845}
   - component: {fileID: 7717834473402427840}
   m_Layer: 0
@@ -86,6 +87,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4278374039032818065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527378909744256076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 2100000, guid: 0327d0ee171610646bc667898b0ebc96, type: 2}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!64 &7717834473402427845
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -112,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.5
   objectZ: -6.273412
   snapLayer:
@@ -134,6 +150,7 @@ GameObject:
   - component: {fileID: 7539024238175452607}
   - component: {fileID: 4704738272845459789}
   - component: {fileID: 7034950435317201688}
+  - component: {fileID: 118875059813788424}
   - component: {fileID: 7717834474793135606}
   - component: {fileID: 7717834474793135601}
   m_Layer: 0
@@ -210,6 +227,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &118875059813788424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640342547909213552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3712746135741175023, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!64 &7717834474793135606
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -236,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.002671291
   objectZ: -0.1205353
   snapLayer:

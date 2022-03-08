@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 8150270154259462473}
   - component: {fileID: 8098488153973789108}
   - component: {fileID: 4326466861262698389}
+  - component: {fileID: 6874160245722670823}
   - component: {fileID: 4326466861262698384}
   m_Layer: 0
   m_Name: top
@@ -230,6 +231,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 282665186597767424, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &6874160245722670823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421850145266829590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: -876546973899608171, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &4326466861262698384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.005
   objectZ: -0.1911937
   snapLayer:
@@ -264,6 +280,7 @@ GameObject:
   - component: {fileID: 7737761784820695364}
   - component: {fileID: 7439670525555371293}
   - component: {fileID: 4326466861895691610}
+  - component: {fileID: 3712180327725918571}
   - component: {fileID: 4326466861895691609}
   m_Layer: 0
   m_Name: GlassPiece03
@@ -352,6 +369,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4797216396134021496, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &3712180327725918571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853779560711489345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 2100000, guid: 0327d0ee171610646bc667898b0ebc96, type: 2}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &4326466861895691609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.119
   objectZ: -6.864776
   snapLayer:
