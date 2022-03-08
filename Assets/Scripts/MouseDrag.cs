@@ -22,6 +22,7 @@ public class MouseDrag : MonoBehaviour
     //public Transform snapTarget;
 
     private RaycastHit hit;
+    private GameObject selectedSnapPoint;
 
     private ArtifactPieceManager apm;
 
@@ -49,15 +50,17 @@ public class MouseDrag : MonoBehaviour
             {
                 if (Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out hit, snapRadius, snapLayer))
                 {
+                    //selectedSnapPoint = hit.collider.gameObject;
+
                     //Snaps the selected object to the snap point.
-                    gameObject.transform.localPosition = new Vector3(
+                    gameObject.transform.position = new Vector3(
                         Mathf.Round((mousePos.x - startPosX) + (hit.transform.position.x - Mathf.Round(hit.transform.position.x))),
                         Mathf.Round((mousePos.y - startPosY) + (hit.transform.position.y - Mathf.Round(hit.transform.position.y))),
                         objectZ
                         );
                 }
                 else
-                    gameObject.transform.localPosition = new Vector3((mousePos.x - startPosX) /** 0.1f*/, (mousePos.y - startPosY) /** 0.1f*/, objectZ);
+                    gameObject.transform.position = new Vector3((mousePos.x - startPosX), (mousePos.y - startPosY), objectZ);
             }
 
             //Debug.Log(Physics.OverlapSphere(snapPoint.transform.position, 0.5f, snapLayer));

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - SnapPoint
+  - Drag01
+  - Drag02
+  - Drag03
+  - Drag04
+  - Drag05
   layers:
   - Default
   - TransparentFX
