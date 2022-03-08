@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectZ: -0.2
-  snapRadius: 0.2
+  snapRadius: 0.4
   line: {fileID: 3230564378863528384}
   snapLayer:
     serializedVersion: 2
     m_Bits: 64
   snapPoints:
-  - {fileID: 8267528533457207463}
-  - {fileID: 8267528532499939619}
+  - {fileID: 521575692545047558}
+  - {fileID: 521575692931923330}
   snapOffset: {x: 0, y: 0, z: 0}
 --- !u!64 &3230564378863528385
 MeshCollider:
@@ -228,6 +228,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3230564378863528389}
     m_Modifications:
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 3230564378863528384}
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 3230564378863528390}
     - target: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
       propertyPath: m_Name
       value: SnapPoint02
@@ -282,16 +290,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
---- !u!1 &8267528532499939619 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
-  m_PrefabInstance: {fileID: 3230564379023669999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8267528532499939617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6803087777701084110, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
   m_PrefabInstance: {fileID: 3230564379023669999}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &521575692931923330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+  m_PrefabInstance: {fileID: 3230564379023669999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a23c569df9824f86a2a5fc1efad0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3230564379140504427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,6 +313,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3230564378863528389}
     m_Modifications:
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 3230564378863528384}
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 3230564378863528390}
     - target: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
       propertyPath: m_Name
       value: SnapPoint01
@@ -353,13 +375,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
---- !u!1 &8267528533457207463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
-  m_PrefabInstance: {fileID: 3230564379140504427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8267528533457207461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6803087777701084110, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
   m_PrefabInstance: {fileID: 3230564379140504427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &521575692545047558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+  m_PrefabInstance: {fileID: 3230564379140504427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a23c569df9824f86a2a5fc1efad0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

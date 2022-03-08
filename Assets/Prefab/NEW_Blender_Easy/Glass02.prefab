@@ -99,14 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectZ: -0.2
-  snapRadius: 0.2
+  snapRadius: 0.4
   line: {fileID: 6026464589313062342}
   snapLayer:
     serializedVersion: 2
     m_Bits: 64
   snapPoints:
-  - {fileID: 993925350072529106}
-  - {fileID: 993925352041359664}
+  - {fileID: 8667752419728002163}
+  - {fileID: 8667752418455426449}
   snapOffset: {x: 0, y: 0, z: 0}
 --- !u!64 &6026464589313062341
 MeshCollider:
@@ -227,6 +227,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6026464589313062337}
     m_Modifications:
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 6026464589313062342}
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 6026464589313062336}
     - target: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
       propertyPath: m_Name
       value: SnapPoint01
@@ -281,16 +289,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
---- !u!1 &993925350072529106 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
-  m_PrefabInstance: {fileID: 6026464588583176990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &993925350072529104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6803087777701084110, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
   m_PrefabInstance: {fileID: 6026464588583176990}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8667752419728002163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+  m_PrefabInstance: {fileID: 6026464588583176990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a23c569df9824f86a2a5fc1efad0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6026464589825348348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +312,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6026464589313062337}
     m_Modifications:
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 6026464589313062342}
+    - target: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+      propertyPath: parentObject
+      value: 
+      objectReference: {fileID: 6026464589313062336}
     - target: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
       propertyPath: m_Name
       value: SnapPoint02
@@ -352,13 +374,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
---- !u!1 &993925352041359664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6803087777701084108, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
-  m_PrefabInstance: {fileID: 6026464589825348348}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &993925352041359666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6803087777701084110, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
   m_PrefabInstance: {fileID: 6026464589825348348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8667752418455426449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6059514700875233427, guid: f6a656b7307a88d468f4f0c36fd760ef, type: 3}
+  m_PrefabInstance: {fileID: 6026464589825348348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48a23c569df9824f86a2a5fc1efad0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
