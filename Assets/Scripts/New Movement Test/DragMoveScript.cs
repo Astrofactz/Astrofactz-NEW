@@ -16,7 +16,7 @@ public class DragMoveScript : MonoBehaviour
     private bool isBeingHeld;
     private bool shouldSnap;
 
-    public GameObject[] snapPoints;
+    public SnapPoint[] snapPoints;
     public Vector3 snapOffset;
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class DragMoveScript : MonoBehaviour
                 Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-            foreach(GameObject obj in snapPoints)
+            /*foreach(GameObject obj in snapPoints)
             {
                 RaycastHit snapHit;
                 if (Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out snapHit, snapRadius, snapLayer))
@@ -53,10 +53,10 @@ public class DragMoveScript : MonoBehaviour
                 {
                     shouldSnap = false;
                 }
-            }
+            }*/
             selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);
         }
-        line.enabled = shouldSnap;
+        //line.enabled = shouldSnap;
     }
 
     private RaycastHit CastRay()
@@ -108,14 +108,21 @@ public class DragMoveScript : MonoBehaviour
                 Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-        if (shouldSnap)
+        /*if (shouldSnap)
         {
             selectedObject.transform.position = targetSnap.transform.position - snapOffset;
+        }*/
 
-            /*selectedObject.transform.position = new Vector3(
-                        targetSnap.transform.position.x - xDistance,
-                        targetSnap.transform.position.y - yDistance,
-                        objectZ);*/
+        foreach(SnapPoint sp in snapPoints)
+        {
+            sp.line.enabled = false;
+
+            if(!sp.shouldSnap)
+            {
+                continue;
+            }
+            selectedObject.transform.position = sp.targetSnap.transform.position - sp.snapOffset;
+            sp.shouldSnap = false;
         }
 
         selectedObject = null;
@@ -132,10 +139,5 @@ public class DragMoveScript : MonoBehaviour
             snapPoint.transform.position.y + snapRadius,
             snapPoint.transform.position.z);
         return pos;
-    }
-
-    public void DrawSnapLine(Vector3 pos1, Vector3 pos2)
-    {
-        Debug.DrawLine(pos1, pos2);
     }
 }
