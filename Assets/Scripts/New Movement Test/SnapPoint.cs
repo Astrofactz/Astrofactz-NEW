@@ -9,23 +9,52 @@ public class SnapPoint : MonoBehaviour
     public float snapRadius;
     public LayerMask snapLayer;
 
+    [HideInInspector]
     public Vector3 snapOffset;
+    [HideInInspector]
     public GameObject targetSnap;
+
+    [HideInInspector]
     public bool shouldSnap;
+    [HideInInspector]
+    public bool hasTarget;
 
     public LineRenderer line;
 
-    private void Update()
-    {
-        RaycastHit snapHit;
-        if(Physics.SphereCast(SetCastPoint(gameObject), snapRadius, Vector3.back, out snapHit, snapRadius, snapLayer))
-        {
-            snapOffset = gameObject.transform.position - parentObject.transform.position;
+    private DragMoveScript dm;
 
-            if(!gameObject.CompareTag(snapHit.collider.tag))
+    private void Awake()
+    {
+        dm = gameObject.GetComponentInParent<DragMoveScript>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (dm.selectedObject != null)
+            MovePiece();
+    }
+
+    private void MovePiece()
+    {
+        Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit snapHit;
+
+        if(!hasTarget)
+        {
+            if (Physics.SphereCast(SetCastPoint(gameObject), snapRadius, Vector3.back, out snapHit, snapRadius, snapLayer) && !gameObject.CompareTag(snapHit.collider.tag))
             {
                 targetSnap = snapHit.collider.gameObject;
+                hasTarget = true;
+            }
+        }
 
+        if (Physics.CheckSphere(transform.position, snapRadius, snapLayer) && hasTarget)
+        {
+
+            snapOffset = gameObject.transform.position - parentObject.transform.position;
+
+            if (snapRadius >= Vector3.Distance(transform.position, targetSnap.transform.position))
+            {
                 if (targetSnap == correctSnap)
                 {
                     line.startColor = Color.green;
@@ -44,10 +73,11 @@ public class SnapPoint : MonoBehaviour
                 line.enabled = true;
             }
         }
-        else
+        else if(!hasTarget || snapRadius < Vector3.Distance(transform.position, targetSnap.transform.position))
         {
             line.enabled = false;
             shouldSnap = false;
+            hasTarget = false;
             targetSnap = null;
         }
     }

@@ -66,4 +66,5 @@ MonoBehaviour:
   snapOffset: {x: 0, y: 0, z: 0}
   targetSnap: {fileID: 0}
   shouldSnap: 0
+  colliders: []
   line: {fileID: 0}

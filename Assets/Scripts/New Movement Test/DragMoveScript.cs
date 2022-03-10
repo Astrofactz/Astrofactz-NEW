@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class DragMoveScript : MonoBehaviour
 {
-    private GameObject selectedObject;
+    [HideInInspector]
+    public GameObject selectedObject;
+
     private GameObject targetSnap;
     public float objectZ;
-    public float snapRadius;
 
-    public LineRenderer line;
+    //public LineRenderer line;
 
     public LayerMask snapLayer;
 
@@ -17,6 +18,8 @@ public class DragMoveScript : MonoBehaviour
     private bool shouldSnap;
 
     public SnapPoint[] snapPoints;
+
+    [HideInInspector]
     public Vector3 snapOffset;
 
     // Update is called once per frame
@@ -28,32 +31,6 @@ public class DragMoveScript : MonoBehaviour
                 Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-            /*foreach(GameObject obj in snapPoints)
-            {
-                RaycastHit snapHit;
-                if (Physics.SphereCast(SetCastPoint(obj), snapRadius, Vector3.down, out snapHit, snapRadius, snapLayer))
-                {
-                    targetSnap = snapHit.collider.gameObject;
-                    snapOffset = obj.transform.position - selectedObject.transform.position;
-
-                    if (selectedObject.CompareTag(targetSnap.tag))
-                    {
-                        continue;
-                    }
-
-                    shouldSnap = true;
-
-                    selectedObject.transform.position = targetSnap.transform.position - obj.transform.position;
-
-                    line.SetPosition(0, targetSnap.transform.position - obj.transform.position);
-                    line.SetPosition(1, targetSnap.transform.position);
-                    
-                }
-                else
-                {
-                    shouldSnap = false;
-                }
-            }*/
             selectedObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, objectZ);
         }
         //line.enabled = shouldSnap;
@@ -104,20 +81,17 @@ public class DragMoveScript : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
 
-        /*if (shouldSnap)
+        if (shouldSnap)
         {
             selectedObject.transform.position = targetSnap.transform.position - snapOffset;
-        }*/
+        }
 
-        foreach(SnapPoint sp in snapPoints)
+        foreach (SnapPoint sp in snapPoints)
         {
             sp.line.enabled = false;
 
-            if(!sp.shouldSnap)
+            if (!sp.shouldSnap)
             {
                 continue;
             }
@@ -130,14 +104,5 @@ public class DragMoveScript : MonoBehaviour
 
         isBeingHeld = false;
         shouldSnap = false;
-    }
-
-    public Vector3 SetCastPoint(GameObject snapPoint)
-    {
-        Vector3 pos = new Vector3(
-            snapPoint.transform.position.x,
-            snapPoint.transform.position.y + snapRadius,
-            snapPoint.transform.position.z);
-        return pos;
     }
 }
