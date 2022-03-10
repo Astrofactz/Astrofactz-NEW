@@ -60,7 +60,7 @@ public class MouseDrag : MonoBehaviour
                         );
                 }
                 else
-                    gameObject.transform.position = new Vector3((mousePos.x - startPosX), (mousePos.y - startPosY), objectZ);
+                    gameObject.transform.position = new Vector3(Mathf.Clamp((mousePos.x - startPosX),-4,5), Mathf.Clamp((mousePos.y - startPosY),-3,1), objectZ);
             }
 
             //Debug.Log(Physics.OverlapSphere(snapPoint.transform.position, 0.5f, snapLayer));
