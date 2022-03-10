@@ -7,7 +7,7 @@ public class MouseDrag : MonoBehaviour
 {
     private float startPosX;
     private float startPosY;
-    private bool isBeingHeld;
+    public bool isBeingHeld;
 
     private bool isInMenu;
 
@@ -32,6 +32,7 @@ public class MouseDrag : MonoBehaviour
 
         //finds the artifact manager.
         apm = FindObjectOfType<ArtifactPieceManager>();
+
     }
 
     // Update is called once per frame
@@ -58,6 +59,7 @@ public class MouseDrag : MonoBehaviour
                         Mathf.Round((mousePos.y - startPosY) + (hit.transform.position.y - Mathf.Round(hit.transform.position.y))),
                         objectZ
                         );
+
                 }
                 else
                     gameObject.transform.position = new Vector3(Mathf.Clamp((mousePos.x - startPosX),-4,5), Mathf.Clamp((mousePos.y - startPosY),-3,1), objectZ);
@@ -88,7 +90,7 @@ public class MouseDrag : MonoBehaviour
 
             //allows the player to grab any part of the object.
             startPosX = mousePos.x - transform.localPosition.x;
-            startPosY = mousePos.y - transform.localPosition.y;
+            startPosY = mousePos.y - transform.localPosition.y;           
 
             isBeingHeld = true;
         }
@@ -107,7 +109,7 @@ public class MouseDrag : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
         //checks if the piece needs to be removed from or added to the menu.
-        if(Physics.Raycast(mousePos, Vector3.forward, menuLayer) && apm.piecesInSpace.Contains(gameObject))
+        if (Physics.Raycast(mousePos, Vector3.forward, menuLayer) && apm.piecesInSpace.Contains(gameObject))
         {
             apm.BackInMenu(gameObject);
             isInMenu = true;
@@ -116,6 +118,7 @@ public class MouseDrag : MonoBehaviour
         {
             apm.TakeFromMenu(gameObject);
         }
+
     }
 
     void OnDrawGizmosSelected()

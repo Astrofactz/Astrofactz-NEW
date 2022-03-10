@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4912832684332481774}
   - component: {fileID: 8142433957976831022}
   - component: {fileID: 1769309776966340598}
+  - component: {fileID: 4239278658034119620}
   - component: {fileID: 1769309776966340585}
   m_Layer: 0
   m_Name: GlassPiece02
@@ -99,6 +100,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 782962433128235197, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &4239278658034119620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28167802253639639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 2100000, guid: 0327d0ee171610646bc667898b0ebc96, type: 2}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &1769309776966340585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.2332043
   objectZ: -6.255
   snapLayer:

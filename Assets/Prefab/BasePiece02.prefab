@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6329177418344243229}
   - component: {fileID: 2989099975102465127}
   - component: {fileID: 6933288749001852493}
+  - component: {fileID: 7151556094599434024}
   - component: {fileID: 6933288749001852494}
   m_Layer: 0
   m_Name: bottom_R_stands
@@ -98,6 +99,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 639883894853050273, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &7151556094599434024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548514275187546289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3965608839777307849, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &6933288749001852494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.09554976
   objectZ: -0.3189276
   snapLayer:
@@ -132,6 +148,7 @@ GameObject:
   - component: {fileID: 6148336914020349341}
   - component: {fileID: 665635599507492791}
   - component: {fileID: 6933288748896518213}
+  - component: {fileID: 1477533540623370557}
   - component: {fileID: 6933288748896518214}
   m_Layer: 0
   m_Name: BasePiece02
@@ -222,6 +239,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4279743707293494155, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &1477533540623370557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374054641074341727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3422668283488390947, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &6933288748896518214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.5
   objectZ: -6.682403
   snapLayer:
@@ -257,6 +289,7 @@ GameObject:
   - component: {fileID: 7862910487028544006}
   - component: {fileID: 2954098865365700027}
   - component: {fileID: 6933288749397118561}
+  - component: {fileID: 5975071310473094473}
   - component: {fileID: 6933288749397118562}
   m_Layer: 0
   m_Name: Nut
@@ -343,6 +376,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7203793515398447662, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &5975071310473094473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412352126849554909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3422668283488390947, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &6933288749397118562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.001525787
   objectZ: -0.2643593
   snapLayer:
@@ -377,6 +425,7 @@ GameObject:
   - component: {fileID: 2902004703119828401}
   - component: {fileID: 4146720583471182677}
   - component: {fileID: 6933288748807705688}
+  - component: {fileID: 7573357225912504918}
   m_Layer: 0
   m_Name: top_R_stands
   m_TagString: Untagged
@@ -460,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.0711233
   objectZ: -0.3189276
   snapLayer:
@@ -470,6 +520,20 @@ MonoBehaviour:
     m_Bits: 128
   snapPoints:
   - {fileID: 8552901842785461282}
+--- !u!114 &7573357225912504918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7493205533502145967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3965608839777307849, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!1 &8552901842411833703
 GameObject:
   m_ObjectHideFlags: 0

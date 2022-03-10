@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 5208525078702823124}
   - component: {fileID: 1922443742786755610}
   - component: {fileID: 1922443742786755615}
+  - component: {fileID: 4059821499682103852}
   m_Layer: 0
   m_Name: bottom_L_stands
   m_TagString: Untagged
@@ -374,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.1043331
   objectZ: -0.3189276
   snapLayer:
@@ -384,6 +386,20 @@ MonoBehaviour:
     m_Bits: 128
   snapPoints:
   - {fileID: 875980833461322232}
+--- !u!114 &4059821499682103852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337153801139306026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3965608839777307849, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!1 &4954851923019508441
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +412,7 @@ GameObject:
   - component: {fileID: 4643840044572612830}
   - component: {fileID: 6935744341305880799}
   - component: {fileID: 1922443742803169345}
+  - component: {fileID: 7289647193666224670}
   - component: {fileID: 1922443742803169346}
   m_Layer: 0
   m_Name: top_L_stands
@@ -482,6 +499,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 438824461044648231, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &7289647193666224670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4954851923019508441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3965608839777307849, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &1922443742803169346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.08573104
   objectZ: -0.3189276
   snapLayer:
@@ -516,6 +548,7 @@ GameObject:
   - component: {fileID: 515821509445518170}
   - component: {fileID: 7518307677073507033}
   - component: {fileID: 1922443743165532152}
+  - component: {fileID: 3724667468700125586}
   - component: {fileID: 1922443743165532157}
   m_Layer: 0
   m_Name: base_2
@@ -603,6 +636,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4917387047622071293, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+--- !u!114 &3724667468700125586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410268710707239243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3422668283488390947, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!114 &1922443743165532157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.5
   objectZ: -0.239961
   snapLayer:
@@ -639,6 +687,7 @@ GameObject:
   - component: {fileID: 7661633667670982976}
   - component: {fileID: 1922443744000884096}
   - component: {fileID: 1922443744000884101}
+  - component: {fileID: 4938015111294178449}
   m_Layer: 0
   m_Name: BasePiece01
   m_TagString: Untagged
@@ -740,6 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba98f85124bad94f8f8bd713cb07144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingHeld: 0
   snapRadius: 0.1638418
   objectZ: -6.321
   snapLayer:
@@ -751,3 +801,17 @@ MonoBehaviour:
   snapPoints:
   - {fileID: 875980833409447938}
   - {fileID: 875980833260763647}
+--- !u!114 &4938015111294178449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916144462507879347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 3422668283488390947, guid: 0e4db9ee24e60524b97541d887b25b69, type: 3}
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
