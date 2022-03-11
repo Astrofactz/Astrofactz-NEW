@@ -4,40 +4,23 @@ using UnityEngine;
 
 public class SnapPointBehavior : MonoBehaviour
 {
-    private GameObject[] snapPointArray;
-
-    [HideInInspector]
-    public List<GameObject> snapPointList = new List<GameObject>();
+    public GameObject correctSnapPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        snapPointArray = GameObject.FindGameObjectsWithTag("SnapPoint");
-
-        snapPointList.AddRange(snapPointArray);
-
-        DisableSnapPoints();
+        
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void EnableSnapPoints()
+    // Update is called once per frame
+    void Update()
     {
-        foreach(GameObject snapPoint in snapPointList)
-        {
-            snapPoint.SetActive(true);
-        }
+        
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void DisableSnapPoints()
+    public void DestroySnapPoints()
     {
-        foreach (GameObject snapPoint in snapPointList)
-        {
-            snapPoint.SetActive(false);
-        }
+        Destroy(correctSnapPoint);
+        Destroy(gameObject);
     }
 }

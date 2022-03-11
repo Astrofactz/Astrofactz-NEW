@@ -50,6 +50,8 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Reference to SnapPointBehavior script
     /// </summary>
+    private SnapPointManager spm;
+
     private SnapPointBehavior spb;
 
     /// <summary>
@@ -67,7 +69,7 @@ public class FragmentBehavior : MonoBehaviour
     {
         startPos = transform.position;
 
-        spb = FindObjectOfType<SnapPointBehavior>();
+        spm = FindObjectOfType<SnapPointManager>();
 
         foreach (Transform child in transform)
         {
@@ -89,8 +91,11 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseDrag()
     {
-        //if (!isPlaced)
+        if (!isPlaced)
             MovePiece();
+
+        else if (isPlaced)
+            MoveAssembled();
 
         //else if (isPlaced)
         //    MoveAssembled();
@@ -111,23 +116,14 @@ public class FragmentBehavior : MonoBehaviour
                 // If current target is correct and piece is not placed, snap in place
                 if (currentSnapTarget == correctSnapTarget && (!isPlaced)) //&& !currentSnapTarget.transform.IsChildOf(transform));
                 {
-                    print(transform.childCount);
-
-                    foreach(GameObject child in childSnapPoints)
-                    {
-                        child.transform.parent = currentSnapTarget.transform.parent;
-                    }
-
-                    transform.parent = currentSnapTarget.transform.parent;
-
-                    isPlaced = true;
+                    CombinePieces();
                 }
             }
 
             // Disables correct snap points after piece is placed
             if (isPlaced)
             {
-
+                
             }
                 //DestroySnapPoints(currentSnapTarget);
 
@@ -174,13 +170,37 @@ public class FragmentBehavior : MonoBehaviour
         }
     }
 
+    private void CombinePieces()
+    {
+        GameObject parentArtifact = currentSnapTarget.transform.parent.gameObject;
+
+        // moves snap target children to parent
+        foreach (GameObject child in childSnapPoints)
+        {
+            child.transform.parent = currentSnapTarget.transform.parent;
+            parentArtifact.GetComponent<FragmentBehavior>().correctSnapTargets.Add(child);
+        }
+
+        // parents object to correct piece
+        transform.parent = parentArtifact.transform;
+
+        //currentSnapTarget.GetComponent<SnapPointBehavior>().DestroySnapPoints();
+
+        isPlaced = true;
+
+        // combine colliders
+        // move correct snap targets to correct snap target list
+    }
+
     /// <summary>
     /// 
     /// </summary>
     private void MoveAssembled()
     {
-        // if parent, not really an issue, just move pieces
-        // if child, will need to get parent's transform
+        //SendMessageUpwards("MovePiece");
+        // if parent, not really an issue,just move pieces
+
+        // if child, move parent instead
     }
 
     /// <summary>
@@ -189,7 +209,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
     private void DestroySnapPoints(GameObject snapPoint)//List<GameObject> correctSnapTargets)
     {
-        spb.snapPointList.Remove(snapPoint);
+        spm.snapPointList.Remove(snapPoint);
 
         //foreach(GameObject snapTarget in correctSnapTargets)
         //{
@@ -203,10 +223,6 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void ToggleChildSnapPoints()
     {
-
-
-        //GameObject[] childArray = ;
-
         if(childSnapPointsActive)
         {
             foreach (Transform child in transform)
@@ -252,7 +268,8 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void EnableSnapPoints()
     {
-        spb.EnableSnapPoints();
+        print("enabled");
+        spm.EnableSnapPoints();
         ToggleChildSnapPoints();
     }
 
@@ -261,7 +278,8 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void DisableSnapPoints()
     {
+        print("disabled");
         ToggleChildSnapPoints();
-        spb.DisableSnapPoints();
+        spm.DisableSnapPoints();
     }
 }

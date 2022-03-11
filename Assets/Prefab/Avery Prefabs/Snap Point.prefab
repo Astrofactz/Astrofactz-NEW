@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2216342032290416774}
   - component: {fileID: 3261925786738409625}
   - component: {fileID: 8416269084497779203}
+  - component: {fileID: 3968400528323858470}
   m_Layer: 6
   m_Name: Snap Point
   m_TagString: SnapPoint
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 302389595813277508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.961, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302389595813277508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -93,5 +94,18 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.25
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3968400528323858470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302389595813277508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd678371fad07415fa25bb4dc51286ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctSnapPoint: {fileID: 0}

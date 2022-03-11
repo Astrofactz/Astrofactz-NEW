@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class ColorSwitch : MonoBehaviour
 {
-    public Material original;
+    private Material original;
     public Material selected;
-    
+
+    private void Start()
+    {
+        original = GetComponent<Renderer>().material;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if((GetComponent<MouseDrag>().isBeingHeld == true))
-        {
-            GetComponent<Renderer>().material = selected;
-        }
-        else
-        {
-            GetComponent<Renderer>().material = original;
-        }
+        //if((GetComponent<MouseDrag>().isBeingHeld == true))
+        //{
+        //    GetComponent<Renderer>().material = selected;
+        //}
+        //else
+        //{
+        //    GetComponent<Renderer>().material = original;
+        //}
     }
+
+    private void OnMouseDrag()
+    {
+        GetComponent<Renderer>().material = selected;
+    }
+
+    private void OnMouseUp()
+    {
+        GetComponent<Renderer>().material = original;
+    }
+
 }
