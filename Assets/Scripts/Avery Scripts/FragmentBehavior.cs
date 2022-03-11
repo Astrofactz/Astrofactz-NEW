@@ -1,19 +1,26 @@
 /*******************************************************************************
-// File Name :      SnapBehavior.cs
+// File Name :      FragmentBehavior.cs
 // Author :         Avery Macke
 // Creation Date :  4 March 2022
 // 
 // Description :    Allows for movement and placement of artifact pieces.
 *******************************************************************************/
 using UnityEngine;
+using System.Collections.Generic;
 
-public class SnapBehavior : MonoBehaviour
+public class FragmentBehavior : MonoBehaviour
 {
-    [Tooltip("Correct snap point for piece")]
-    public GameObject correctSnapTarget;
+    [Tooltip("List of correct snap targets for piece")]
+    public List<GameObject> correctSnapTargets;
 
     [Tooltip("Index of SnapPoint layer mask")]
     public int snapLayerMask;
+
+    [Tooltip("Movement speed while dragging pieces")]
+    public float dragSpeed;
+
+    [Tooltip("Movement speed while piece snaps into place")]
+    public float snapSpeed;
 
     /// <summary>
     /// Current snap point target
@@ -62,12 +69,29 @@ public class SnapBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        if(currentSnapTarget == correctSnapTarget)
+        if (currentSnapTarget)
         {
-            transform.parent = correctSnapTarget.transform;
-            isPlaced = true;
+            // Checks through list of correct snap targets
+
+            foreach (GameObject correctSnapTarget in correctSnapTargets)
+            {
+                // If current target is correct, snap in place
+                if (currentSnapTarget == correctSnapTarget && !isPlaced)
+                {
+                    transform.parent = currentSnapTarget.transform;
+                    isPlaced = true;
+                }
+            }
+
+            // Disables correct snap points after piece is placed
+            if (isPlaced)
+                DisableSnapPoints(correctSnapTargets);
+
+            else if (!isPlaced)
+                transform.position = startPos;
         }
-        else
+
+        else if (!currentSnapTarget)
             transform.position = startPos;
     }
 
@@ -91,11 +115,37 @@ public class SnapBehavior : MonoBehaviour
 
         // If mouse on snap point, snap piece to point
         if (currentSnapTarget)
-            transform.position = currentSnapTarget.transform.position;
+        {
+            Vector3 targetPos = currentSnapTarget.transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, snapSpeed * Time.deltaTime);
+        }
 
         // Else follow mouse
         else if (!currentSnapTarget)
-            transform.position = mousePos;
+        {
+            transform.position = Vector3.MoveTowards(transform.position, mousePos, dragSpeed * Time.deltaTime);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void MoveAssembled()
+    {
+        // if parent, not really an issue, just move pieces
+        // if child, will need to get parent's transform
+    }
+
+    /// <summary>
+    /// Disables all correct snap targets after a piece has been placed
+    /// </summary>
+    /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
+    private void DisableSnapPoints(List<GameObject> correctSnapTargets)
+    {
+        foreach(GameObject snapTarget in correctSnapTargets)
+        {
+            snapTarget.GetComponent<SphereCollider>().enabled = false;
+        }
     }
 
     /// <summary>
