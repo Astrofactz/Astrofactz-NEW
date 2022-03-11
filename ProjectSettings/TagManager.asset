@@ -10,6 +10,9 @@ TagManager:
   - Drag03
   - Drag04
   - Drag05
+  - Drag06
+  - Drag07
+  - Fragment
   layers:
   - Default
   - TransparentFX

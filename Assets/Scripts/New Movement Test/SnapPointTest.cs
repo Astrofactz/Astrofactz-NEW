@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnapPoint : MonoBehaviour
+public class SnapPointTest : MonoBehaviour
 {
     public GameObject correctSnap;
     public GameObject parentObject;

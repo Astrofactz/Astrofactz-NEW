@@ -10,22 +10,50 @@ using System.Collections.Generic;
 
 public class FragmentBehavior : MonoBehaviour
 {
-    [Tooltip("List of correct snap targets for piece")]
-    public List<GameObject> correctSnapTargets;
+    [Tooltip("Fragment scriptable object")]
+    public Fragment fragment;
 
-    [Tooltip("Index of SnapPoint layer mask")]
-    public int snapLayerMask;
+    [Tooltip("Correct Snap Point for fragment")]
+    public GameObject correctSnapPoint;
 
-    [Tooltip("Movement speed while dragging pieces")]
-    public float dragSpeed;
-
-    [Tooltip("Movement speed while piece snaps into place")]
-    public float snapSpeed;
+    #region Active Movement
+    /// <summary>
+    /// Index of SnapPoint layer
+    /// </summary>
+    private int snapLayerMask;
 
     /// <summary>
-    /// List of all childed snap point colliders
+    /// Speed fragment moves when dragged
     /// </summary>
-    private List<GameObject> childSnapPoints = new List<GameObject>();
+    private float dragSpeed;
+
+    /// <summary>
+    /// Speed fragment moves when snapping into place
+    /// </summary>
+    private float snapSpeed;
+
+    /// <summary>
+    /// Speed fragment rotates
+    /// </summary>
+    private float rotateSpeed;
+    #endregion
+
+    #region Idle Movement
+    /// <summary>
+    /// Speed fragment moves when idle
+    /// </summary>
+    private float moveIdleSpeed;
+
+    /// <summary>
+    /// Speed fragment rotates when idle
+    /// </summary>
+    private float rotateIdleSpeed;
+    #endregion
+
+    /// <summary>
+    /// Array of all artifact fragments in scene
+    /// </summary>
+    private FragmentBehavior[] fbArray;
 
     /// <summary>
     /// Current snap point target
@@ -38,9 +66,9 @@ public class FragmentBehavior : MonoBehaviour
     private bool isPlaced = false;
 
     /// <summary>
-    /// Tracks whether child snap points are activated
+    /// Tracks whether child snap points are active
     /// </summary>
-    private bool childSnapPointsActive = true;
+    private bool snapPointsActive = true;
 
     /// <summary>
     /// Starting position of piece
@@ -48,11 +76,9 @@ public class FragmentBehavior : MonoBehaviour
     private Vector3 startPos;
 
     /// <summary>
-    /// Reference to SnapPointBehavior script
+    /// Reference to BoxCollider component
     /// </summary>
-    private SnapPointManager spm;
-
-    private SnapPointBehavior spb;
+    private BoxCollider bc;
 
     /// <summary>
     /// Called at start; initializes variables
@@ -69,22 +95,34 @@ public class FragmentBehavior : MonoBehaviour
     {
         startPos = transform.position;
 
-        spm = FindObjectOfType<SnapPointManager>();
+        snapLayerMask = fragment.snapLayerMask;
 
-        foreach (Transform child in transform)
-        {
-            childSnapPoints.Add(child.gameObject);
-        }
+        dragSpeed = fragment.dragSpeed;
+        snapSpeed = fragment.snapSpeed;
+        rotateSpeed = fragment.rotateSpeed;
+
+        moveIdleSpeed = fragment.moveIdleSpeed;
+        rotateIdleSpeed = fragment.rotateIdleSpeed;
+
+        bc = GetComponent<BoxCollider>();
+
+        fbArray = FindObjectsOfType<FragmentBehavior>();
+        print(fbArray.Length);
+
+        ToggleSnapPoints(snapPointsActive);
     }
 
     /// <summary>
-    /// 
+    /// Returns 
     /// </summary>
-    private void OnMouseDown()
+    /// <returns>Whether fragment is placed correctly</returns>
+    public bool IsPlaced()
     {
-        Invoke("EnableSnapPoints", 0.25f);
+        return isPlaced;
     }
 
+
+    #region Fragment interaction
     /// <summary>
     /// Called when mouse drags object; if mouse collides with snap point, snaps
     /// piece to snap point, else piece follows mouse
@@ -93,51 +131,33 @@ public class FragmentBehavior : MonoBehaviour
     {
         if (!isPlaced)
             MovePiece();
-
-        else if (isPlaced)
-            MoveAssembled();
-
-        //else if (isPlaced)
-        //    MoveAssembled();
     }
 
     /// <summary>
-    /// Called when mouse is released; if piece is in correct position, keeps
-    /// piece in position, else sends piece back to starting position
+    /// Called when mouse is released; determines fragment behavior when mouse
+    /// is released
     /// </summary>
     private void OnMouseUp()
     {
         if (currentSnapTarget)
         {
-            // Checks through list of correct snap targets
+            // If correct target, combine pieces
+            if (currentSnapTarget == correctSnapPoint)
+                CombinePieces();
 
-            foreach (GameObject correctSnapTarget in correctSnapTargets)
-            {
-                // If current target is correct and piece is not placed, snap in place
-                if (currentSnapTarget == correctSnapTarget && (!isPlaced)) //&& !currentSnapTarget.transform.IsChildOf(transform));
-                {
-                    CombinePieces();
-                }
-            }
-
-            // Disables correct snap points after piece is placed
-            if (isPlaced)
-            {
-                
-            }
-                //DestroySnapPoints(currentSnapTarget);
-
-            else if (!isPlaced)
-            {
+            // If incorrect target, return to startPos
+            else if (currentSnapTarget != correctSnapPoint)
                 transform.position = startPos;
-            }
+                // return to idle movement
         }
 
-        Invoke("DisableSnapPoints", 0.25f);
-        //if (!currentSnapTarget)
-        //transform.position = startPos;
+        // If no target, stay at position, return to idle movement
+        // return to idle movement
     }
+    #endregion
 
+
+    #region Fragment movement and behavior
     /// <summary>
     /// Moves piece; piece follows mouse if not on snap point; if mouse is over
     /// snap point, piece snaps to snap point
@@ -147,11 +167,10 @@ public class FragmentBehavior : MonoBehaviour
         Vector3 mousePos = FindMousePos();
 
         Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
         int layerMask = 1 << snapLayerMask;
 
-        if (Physics.Raycast(snapRay, out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(snapRay, out RaycastHit hit, Mathf.Infinity, layerMask))
             currentSnapTarget = hit.transform.gameObject;
         else
             currentSnapTarget = null;
@@ -170,79 +189,6 @@ public class FragmentBehavior : MonoBehaviour
         }
     }
 
-    private void CombinePieces()
-    {
-        GameObject parentArtifact = currentSnapTarget.transform.parent.gameObject;
-
-        // moves snap target children to parent
-        foreach (GameObject child in childSnapPoints)
-        {
-            child.transform.parent = currentSnapTarget.transform.parent;
-            parentArtifact.GetComponent<FragmentBehavior>().correctSnapTargets.Add(child);
-        }
-
-        // parents object to correct piece
-        transform.parent = parentArtifact.transform;
-
-        //currentSnapTarget.GetComponent<SnapPointBehavior>().DestroySnapPoints();
-
-        isPlaced = true;
-
-        // combine colliders
-        // move correct snap targets to correct snap target list
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void MoveAssembled()
-    {
-        //SendMessageUpwards("MovePiece");
-        // if parent, not really an issue,just move pieces
-
-        // if child, move parent instead
-    }
-
-    /// <summary>
-    /// Disables all correct snap targets after a piece has been placed
-    /// </summary>
-    /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
-    private void DestroySnapPoints(GameObject snapPoint)//List<GameObject> correctSnapTargets)
-    {
-        spm.snapPointList.Remove(snapPoint);
-
-        //foreach(GameObject snapTarget in correctSnapTargets)
-        //{
-            //spb.snapPointList.Remove(snapTarget);
-            //Destroy(snapTarget);
-        //}
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void ToggleChildSnapPoints()
-    {
-        if(childSnapPointsActive)
-        {
-            foreach (Transform child in transform)
-            {
-                if (child.tag == "SnapPoint")
-                    child.gameObject.SetActive(false);
-            }
-        }
-        else if(!childSnapPointsActive)
-        {
-            foreach (Transform child in transform)
-            {
-                if (child.tag == "SnapPoint")
-                    child.gameObject.SetActive(true);
-            }
-        }
-
-        childSnapPointsActive = !childSnapPointsActive;
-    }
-
     /// <summary>
     /// Finds position of mouse in world space using raycast
     /// </summary>
@@ -253,33 +199,74 @@ public class FragmentBehavior : MonoBehaviour
 
         Plane plane = new Plane(Vector3.forward, 0);
 
-        float distance;
-
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (plane.Raycast(mouseRay, out distance))
+        if (plane.Raycast(mouseRay, out float distance))
             mousePos = mouseRay.GetPoint(distance);
 
         return mousePos;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    private void EnableSnapPoints()
+    // if piece not placed, snap point not active
+    // when piece placed, snap point active
+    // if piece placed correctly, turn off the snap point it snapped to
+
+    private void CombinePieces()
     {
-        print("enabled");
-        spm.EnableSnapPoints();
-        ToggleChildSnapPoints();
+        GameObject parentArtifact = currentSnapTarget.transform.parent.gameObject;
+
+        // parents object to correct piece
+        transform.parent = parentArtifact.transform;
+
+        bc.enabled = false;
+
+        ToggleSnapPoints(snapPointsActive);
+        // disable snap point just connected to
+
+        isPlaced = true;
+
+        CheckArtifactComplete();
+    }
+    #endregion
+
+    /// <summary>
+    /// Checks if artifact has been completed; called when pieces are assembled
+    /// </summary>
+    /// <returns>True if artifact is complete, false if incomplete</returns>
+    private bool CheckArtifactComplete()
+    {
+        bool artifactComplete = true;
+
+        foreach(FragmentBehavior fb in fbArray)
+        {
+            if (!fb.IsPlaced())
+                artifactComplete = false;
+        }
+
+        print(artifactComplete);
+        return artifactComplete;
     }
 
     /// <summary>
-    /// 
+    /// Disables all correct snap targets after a piece has been placed
     /// </summary>
-    private void DisableSnapPoints()
+    /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
+    private void DestroySnapPoints(GameObject snapPoint)//List<GameObject> correctSnapTargets)
     {
-        print("disabled");
-        ToggleChildSnapPoints();
-        spm.DisableSnapPoints();
+
+    }
+
+    /// <summary>
+    /// Toggles childed snap points on and off
+    /// </summary>
+    /// <param name="snapPointStatus">Tracks whether snap points are active</param>
+    private void ToggleSnapPoints(bool snapPointStatus)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.tag == "SnapPoint")
+                child.gameObject.SetActive(!snapPointStatus);
+        }
+        snapPointsActive = !snapPointsActive;
     }
 }

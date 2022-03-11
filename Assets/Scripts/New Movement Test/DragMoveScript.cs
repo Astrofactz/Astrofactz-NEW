@@ -17,7 +17,7 @@ public class DragMoveScript : MonoBehaviour
     private bool isBeingHeld;
     private bool shouldSnap;
 
-    public SnapPoint[] snapPoints;
+    public SnapPointTest[] snapPoints;
 
     [HideInInspector]
     public Vector3 snapOffset;
@@ -87,7 +87,7 @@ public class DragMoveScript : MonoBehaviour
             selectedObject.transform.position = targetSnap.transform.position - snapOffset;
         }
 
-        foreach (SnapPoint sp in snapPoints)
+        foreach (SnapPointTest sp in snapPoints)
         {
             sp.line.enabled = false;
 

@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnapPointBehavior : MonoBehaviour
+public class SnapPoint : MonoBehaviour
 {
-
-
-    public float snapPointRadius;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +14,5 @@ public class SnapPointBehavior : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void DestroySnapPoints()
-    {
-        Destroy(gameObject);
     }
 }
