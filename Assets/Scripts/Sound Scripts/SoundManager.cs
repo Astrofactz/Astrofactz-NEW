@@ -34,6 +34,8 @@ public class SoundManager : MonoBehaviour
 
             s.srce.outputAudioMixerGroup = s.outputChannel;
         }
+
+        Play("Stellar Station");
     }
 
     //Plays the selected sound
