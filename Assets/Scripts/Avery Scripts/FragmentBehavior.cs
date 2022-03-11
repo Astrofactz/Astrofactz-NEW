@@ -23,6 +23,11 @@ public class FragmentBehavior : MonoBehaviour
     public float snapSpeed;
 
     /// <summary>
+    /// List of all childed snap point colliders
+    /// </summary>
+    private List<GameObject> childSnapPoints = new List<GameObject>();
+
+    /// <summary>
     /// Current snap point target
     /// </summary>
     private GameObject currentSnapTarget = null;
@@ -33,9 +38,19 @@ public class FragmentBehavior : MonoBehaviour
     private bool isPlaced = false;
 
     /// <summary>
+    /// Tracks whether child snap points are activated
+    /// </summary>
+    private bool childSnapPointsActive = true;
+
+    /// <summary>
     /// Starting position of piece
     /// </summary>
     private Vector3 startPos;
+
+    /// <summary>
+    /// Reference to SnapPointBehavior script
+    /// </summary>
+    private SnapPointBehavior spb;
 
     /// <summary>
     /// Called at start; initializes variables
@@ -51,6 +66,21 @@ public class FragmentBehavior : MonoBehaviour
     private void InitializeVariables()
     {
         startPos = transform.position;
+
+        spb = FindObjectOfType<SnapPointBehavior>();
+
+        foreach (Transform child in transform)
+        {
+            childSnapPoints.Add(child.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void OnMouseDown()
+    {
+        Invoke("EnableSnapPoints", 0.25f);
     }
 
     /// <summary>
@@ -59,8 +89,11 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseDrag()
     {
-        if(!isPlaced)
+        //if (!isPlaced)
             MovePiece();
+
+        //else if (isPlaced)
+        //    MoveAssembled();
     }
 
     /// <summary>
@@ -75,24 +108,38 @@ public class FragmentBehavior : MonoBehaviour
 
             foreach (GameObject correctSnapTarget in correctSnapTargets)
             {
-                // If current target is correct, snap in place
-                if (currentSnapTarget == correctSnapTarget && !isPlaced)
+                // If current target is correct and piece is not placed, snap in place
+                if (currentSnapTarget == correctSnapTarget && (!isPlaced)) //&& !currentSnapTarget.transform.IsChildOf(transform));
                 {
-                    transform.parent = currentSnapTarget.transform;
+                    print(transform.childCount);
+
+                    foreach(GameObject child in childSnapPoints)
+                    {
+                        child.transform.parent = currentSnapTarget.transform.parent;
+                    }
+
+                    transform.parent = currentSnapTarget.transform.parent;
+
                     isPlaced = true;
                 }
             }
 
             // Disables correct snap points after piece is placed
             if (isPlaced)
-                DisableSnapPoints(correctSnapTargets);
+            {
+
+            }
+                //DestroySnapPoints(currentSnapTarget);
 
             else if (!isPlaced)
+            {
                 transform.position = startPos;
+            }
         }
 
-        else if (!currentSnapTarget)
-            transform.position = startPos;
+        Invoke("DisableSnapPoints", 0.25f);
+        //if (!currentSnapTarget)
+        //transform.position = startPos;
     }
 
     /// <summary>
@@ -140,12 +187,44 @@ public class FragmentBehavior : MonoBehaviour
     /// Disables all correct snap targets after a piece has been placed
     /// </summary>
     /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
-    private void DisableSnapPoints(List<GameObject> correctSnapTargets)
+    private void DestroySnapPoints(GameObject snapPoint)//List<GameObject> correctSnapTargets)
     {
-        foreach(GameObject snapTarget in correctSnapTargets)
+        spb.snapPointList.Remove(snapPoint);
+
+        //foreach(GameObject snapTarget in correctSnapTargets)
+        //{
+            //spb.snapPointList.Remove(snapTarget);
+            //Destroy(snapTarget);
+        //}
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void ToggleChildSnapPoints()
+    {
+
+
+        //GameObject[] childArray = ;
+
+        if(childSnapPointsActive)
         {
-            snapTarget.GetComponent<SphereCollider>().enabled = false;
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "SnapPoint")
+                    child.gameObject.SetActive(false);
+            }
         }
+        else if(!childSnapPointsActive)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.tag == "SnapPoint")
+                    child.gameObject.SetActive(true);
+            }
+        }
+
+        childSnapPointsActive = !childSnapPointsActive;
     }
 
     /// <summary>
@@ -166,5 +245,23 @@ public class FragmentBehavior : MonoBehaviour
             mousePos = mouseRay.GetPoint(distance);
 
         return mousePos;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void EnableSnapPoints()
+    {
+        spb.EnableSnapPoints();
+        ToggleChildSnapPoints();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void DisableSnapPoints()
+    {
+        ToggleChildSnapPoints();
+        spb.DisableSnapPoints();
     }
 }
