@@ -1521,6 +1521,7 @@ GameObject:
   - component: {fileID: 4632123361576466895}
   - component: {fileID: 2664706176329109573}
   - component: {fileID: 2664706176329109572}
+  - component: {fileID: 2664706176329109574}
   m_Layer: 0
   m_Name: stands_L
   m_TagString: Untagged
@@ -1558,6 +1559,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &2664706176329109574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664706176329109571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!4 &2985148850716497227
 Transform:
   m_ObjectHideFlags: 0
@@ -1585,6 +1599,7 @@ GameObject:
   - component: {fileID: 6615790140865499529}
   - component: {fileID: 3748425117413369988}
   - component: {fileID: 3748425117413369987}
+  - component: {fileID: 3748425117413369989}
   m_Layer: 0
   m_Name: bottom_glass_2
   m_TagString: Untagged
@@ -1623,6 +1638,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &3748425117413369989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748425117413369986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!1 &4169273341581812575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1664,7 @@ GameObject:
   - component: {fileID: 5280350713897707686}
   - component: {fileID: 4169273341581812577}
   - component: {fileID: 4169273341581812576}
+  - component: {fileID: 4169273341581812578}
   m_Layer: 0
   m_Name: Middle_glass
   m_TagString: Untagged
@@ -1674,6 +1703,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &4169273341581812578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4169273341581812575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!1 &4299524198294629781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1729,7 @@ GameObject:
   - component: {fileID: 2508936834392233919}
   - component: {fileID: 4299524198294629783}
   - component: {fileID: 4299524198294629782}
+  - component: {fileID: 4299524198294629784}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -1724,6 +1767,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &4299524198294629784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4299524198294629781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!33 &4373139422372378507
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1864,6 +1920,7 @@ GameObject:
   - component: {fileID: 1448878595307147113}
   - component: {fileID: 5834836674468086601}
   - component: {fileID: 5834836674468086600}
+  - component: {fileID: 5834836674468086602}
   m_Layer: 0
   m_Name: stands_R
   m_TagString: Untagged
@@ -1901,6 +1958,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &5834836674468086602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834836674468086599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!23 &5893950730404984209
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2103,6 +2173,7 @@ GameObject:
   - component: {fileID: 88460748207512894}
   - component: {fileID: 8075415387647745294}
   - component: {fileID: 8075415387647745293}
+  - component: {fileID: 8075415387647745295}
   m_Layer: 0
   m_Name: bottom_glass_1
   m_TagString: Untagged
@@ -2141,6 +2212,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &8075415387647745295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8075415387647745292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!1 &8196973518225937615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,6 +2238,7 @@ GameObject:
   - component: {fileID: 8791099003734425235}
   - component: {fileID: 8196973518225937617}
   - component: {fileID: 8196973518225937616}
+  - component: {fileID: 8196973518225937618}
   m_Layer: 0
   m_Name: top_glass
   m_TagString: Untagged
@@ -2191,6 +2276,19 @@ MonoBehaviour:
   snapLayerMask: 6
   dragSpeed: 15
   snapSpeed: 10
+--- !u!114 &8196973518225937618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8196973518225937615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920e40ce8ee1c2949ad1663a69dd34bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: {fileID: 2100000, guid: 5ed12cac19388d04ab8e24855a080ae1, type: 2}
 --- !u!33 &8529052720628110026
 MeshFilter:
   m_ObjectHideFlags: 0
