@@ -16,5 +16,5 @@ MonoBehaviour:
   dragSpeed: 10
   snapSpeed: 15
   rotateSpeed: 0
-  moveIdleSpeed: 0
+  moveIdleSpeed: 15
   rotateIdleSpeed: 0

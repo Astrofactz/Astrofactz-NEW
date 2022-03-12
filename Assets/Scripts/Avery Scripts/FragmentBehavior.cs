@@ -66,6 +66,16 @@ public class FragmentBehavior : MonoBehaviour
     private bool isPlaced = false;
 
     /// <summary>
+    /// Tracks whether the piece is currently being dragged
+    /// </summary>
+    private bool beingDragged = false;
+
+    /// <summary>
+    /// Tracks previous mouse positoin
+    /// </summary>
+    private Vector3 prevFragmentPos;
+
+    /// <summary>
     /// Tracks whether child snap points are active
     /// </summary>
     private bool snapPointsActive = true;
@@ -81,11 +91,17 @@ public class FragmentBehavior : MonoBehaviour
     private BoxCollider bc;
 
     /// <summary>
+    /// Reference to Rigidbody componend
+    /// </summary>
+    private Rigidbody rb;
+
+    /// <summary>
     /// Called at start; initializes variables
     /// </summary>
     void Start()
     {
         InitializeVariables();
+        AddRandomForce();
     }
 
     /// <summary>
@@ -105,6 +121,7 @@ public class FragmentBehavior : MonoBehaviour
         rotateIdleSpeed = fragment.rotateIdleSpeed;
 
         bc = GetComponent<BoxCollider>();
+        rb = GetComponent<Rigidbody>();
 
         fbArray = FindObjectsOfType<FragmentBehavior>();
 
@@ -137,20 +154,30 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
+        beingDragged = false;
+
+        // If has snap target
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
             if (currentSnapTarget == correctSnapPoint)
                 CombinePieces();
 
-            // If incorrect target, return to startPos
-            else if (currentSnapTarget != correctSnapPoint)
-                transform.position = startPos;
-                // return to idle movement
+            // If incorrect target                                              // figure out what to do when pieces placed incorrectly
+            else if (currentSnapTarget != correctSnapPoint)                     // also zPos of pieces; bg when floating, foreground when moving, artifact in middle
+            {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds
+                AddIdleForce();
+            }
         }
+        // If does not have snap target
+        else
+        {
+            // Throw piece, if magnitude under threshold, add random force
+            AddIdleForce();
 
-        // If no target, stay at position, return to idle movement
-        // return to idle movement, move backwards to avoid collision w artifact
+            if (rb.velocity.magnitude < 0.01f)                                  // need stop movement check for non-drag pieces too
+                Invoke("AddRandomForce", 2.0f);
+        }
     }
     #endregion
 
@@ -162,6 +189,14 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void MovePiece()
     {
+        CancelInvoke("AddRandomForce");
+
+        beingDragged = true;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        // Gets mouse position, raycasts to find snap points
         Vector3 mousePos = FindMousePos();
 
         Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -173,17 +208,85 @@ public class FragmentBehavior : MonoBehaviour
         else
             currentSnapTarget = null;
 
+        prevFragmentPos = transform.position;
+
         // If mouse on snap point, snap piece to point
         if (currentSnapTarget)
         {
             Vector3 targetPos = currentSnapTarget.transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, snapSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,
+                                 targetPos, snapSpeed * Time.deltaTime);
         }
 
         // Else follow mouse
         else if (!currentSnapTarget)
         {
-            transform.position = Vector3.MoveTowards(transform.position, mousePos, dragSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,
+                                  mousePos, dragSpeed * Time.deltaTime);
+        }
+    }
+
+    /// <summary>
+    /// Adds force to Rigidbody in a random direction; called when non-placed
+    /// fragment stops moving
+    /// </summary>
+    private void AddRandomForce()
+    {
+        float xForce, yForce;
+
+        xForce = Random.Range(-1.0f, 1.0f);
+        yForce = Random.Range(-1.0f, 1.0f);
+
+        Vector3 moveForce = new Vector3(xForce, yForce, 0.0f) * moveIdleSpeed
+                                                              * Time.deltaTime;
+
+        rb.AddForce(moveForce);
+    }
+
+    /// <summary>
+    /// Adds force in direction fragment is thrown after dragging; called when
+    /// mouse is released
+    /// </summary>
+    private void AddIdleForce()
+    {
+        Vector3 direction = transform.position - prevFragmentPos;
+        direction.z = 0;
+
+        float speed = direction.magnitude;
+
+        Vector3 moveForce = speed * direction.normalized;
+
+        rb.velocity = moveForce * moveIdleSpeed;
+    }
+
+
+    private void CheckBoundsDrag()
+    {
+        // prevent player from dragging piece out of bounds
+    }
+
+    private void CheckBoundsIdle()
+    {
+        // if not being dragged
+        // if past x bound, teleport to other side
+        // if past y bound, teleport to other side
+    }
+
+    /// <summary>
+    /// Called on collision; handles knockback and collision of fragments
+    /// </summary>
+    /// <param name="collision">Other collider ivolved in collision</param>
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(!beingDragged && collision.gameObject.tag == "Fragment")
+        {
+            // Applies force in opposite direction of collision
+            Vector3 force = transform.position - collision.transform.position;
+            force.z = 0;
+
+            force.Normalize();
+
+            rb.AddForce(force * moveIdleSpeed * Time.deltaTime);
         }
     }
 
@@ -211,6 +314,9 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void CombinePieces()
     {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
         GameObject parentArtifact = correctSnapPoint.transform.parent.gameObject;
         transform.parent = parentArtifact.transform;
 
@@ -263,7 +369,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Toggles childed snap points on and off
     /// </summary>
-    /// <param name="snapPointStatus">Tracks whether snap points are active</param>
+    /// <param name="snapPointStatus">Tracks if snap points are active</param>
     private void ToggleSnapPoints(bool snapPointStatus)
     {
         foreach (Transform child in transform)
