@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+/*******************************************************************************
+// File Name :      SnapPoint.cs
+// Author :         Avery Macke
+// Creation Date :  11 March 2022
+// 
+// Description :    Contains variables for snap point objects.
+*******************************************************************************/
 using UnityEngine;
 
-public class SnapPoint : MonoBehaviour
+[CreateAssetMenu(fileName = "New Fragment", menuName = "Fragment Assets/Snap Point")]
+public class SnapPoint : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Snap Point Variables")]
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Tooltip("Radius in which mouse detects snap point")]
+    public float snapPointRadius;
 }

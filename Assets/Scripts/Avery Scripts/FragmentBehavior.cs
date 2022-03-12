@@ -3,14 +3,14 @@
 // Author :         Avery Macke
 // Creation Date :  4 March 2022
 // 
-// Description :    Allows for movement and placement of artifact pieces.
+// Description :    Allows for movement, placement, and combination of artifact
+                    pieces.
 *******************************************************************************/
 using UnityEngine;
-using System.Collections.Generic;
 
 public class FragmentBehavior : MonoBehaviour
 {
-    [Tooltip("Fragment scriptable object")]
+    [Tooltip("Fragment ScriptableObject")]
     public Fragment fragment;
 
     [Tooltip("Correct Snap Point for fragment")]
@@ -107,20 +107,18 @@ public class FragmentBehavior : MonoBehaviour
         bc = GetComponent<BoxCollider>();
 
         fbArray = FindObjectsOfType<FragmentBehavior>();
-        print(fbArray.Length);
 
         ToggleSnapPoints(snapPointsActive);
     }
 
     /// <summary>
-    /// Returns 
+    /// Returns whether fragment has been correctly placed
     /// </summary>
     /// <returns>Whether fragment is placed correctly</returns>
     public bool IsPlaced()
     {
         return isPlaced;
     }
-
 
     #region Fragment interaction
     /// <summary>
@@ -152,7 +150,7 @@ public class FragmentBehavior : MonoBehaviour
         }
 
         // If no target, stay at position, return to idle movement
-        // return to idle movement
+        // return to idle movement, move backwards to avoid collision w artifact
     }
     #endregion
 
@@ -207,21 +205,22 @@ public class FragmentBehavior : MonoBehaviour
         return mousePos;
     }
 
-    // if piece not placed, snap point not active
-    // when piece placed, snap point active
-    // if piece placed correctly, turn off the snap point it snapped to
-
+    /// <summary>
+    /// Combines fragment when targeting correct snap point; childs fragment
+    /// to snap point parent, manages snap points, and checks for win
+    /// </summary>
     private void CombinePieces()
     {
-        GameObject parentArtifact = currentSnapTarget.transform.parent.gameObject;
-
-        // parents object to correct piece
+        GameObject parentArtifact = correctSnapPoint.transform.parent.gameObject;
         transform.parent = parentArtifact.transform;
 
         bc.enabled = false;
 
+        // Enable fragments snap points
         ToggleSnapPoints(snapPointsActive);
-        // disable snap point just connected to
+
+        // Disables snap point fragment connected to
+        DisableSnapPoint(correctSnapPoint);
 
         isPlaced = true;
 
@@ -237,23 +236,28 @@ public class FragmentBehavior : MonoBehaviour
     {
         bool artifactComplete = true;
 
+        // If any fragment is not placed, artifact is not complete
         foreach(FragmentBehavior fb in fbArray)
         {
             if (!fb.IsPlaced())
                 artifactComplete = false;
         }
 
-        print(artifactComplete);
+        if (artifactComplete)
+            print("game over");
+        else
+            print("not game over");
+
         return artifactComplete;
     }
 
     /// <summary>
-    /// Disables all correct snap targets after a piece has been placed
+    /// Disables snap point after a piece has been placed at that point
     /// </summary>
-    /// <param name="correctSnapTargets">List of piece's correct snap targets</param>
-    private void DestroySnapPoints(GameObject snapPoint)//List<GameObject> correctSnapTargets)
+    /// <param name="snapPoint">Snap point to disable</param>
+    private void DisableSnapPoint(GameObject snapPoint)
     {
-
+        snapPoint.SetActive(false);
     }
 
     /// <summary>

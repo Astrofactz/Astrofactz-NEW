@@ -1,7 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*******************************************************************************
+// File Name :      Fragment.cs
+// Author :         Avery Macke
+// Creation Date :  11 March 2022
+// 
+// Description :    Contains variables for artifact fragment objects.
+*******************************************************************************/
 using UnityEngine;
-
 
 [CreateAssetMenu(fileName = "New Fragment", menuName = "Fragment Assets/Fragment")]
 public class Fragment : ScriptableObject

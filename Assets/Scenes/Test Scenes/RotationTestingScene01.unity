@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -299,11 +299,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &593061125 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5965185065057661480, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-  m_PrefabInstance: {fileID: 903624132}
-  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &498087022
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 988386889}
+    m_Modifications:
+    - target: {fileID: 6982574759357026515, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_Name
+      value: (NODES ADDED)FINAL_AlienBlender_voronoifracture Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758794043221723753, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9c32ffe94a6b5f49b34985499b6a87c, type: 3}
 --- !u!1 &622570078
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piecesInMenu:
-  - {fileID: 593061125}
+  - {fileID: 0}
   piecesInSpace: []
 --- !u!4 &622570080
 Transform:
@@ -450,83 +514,10 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &903624132
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -6004962024691089879, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: objectZ
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: -6004962024691089879, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: menuLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: -6004962024691089879, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: snapPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -6004962024691089879, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: snapPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 903624133}
-    - target: {fileID: 5965185065057661480, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_Name
-      value: blenderGlass
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.3600473
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6240518637771729072, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
---- !u!1 &903624133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3233158764179821324, guid: 61cca0860c0b38749812d7bdd1697088, type: 3}
-  m_PrefabInstance: {fileID: 903624132}
+--- !u!4 &988386889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6654939131541656085, guid: b2ef1b62589dda845ba4ec328d1319f1, type: 3}
+  m_PrefabInstance: {fileID: 6654939131454810958}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1184004841
 GameObject:
@@ -593,7 +584,7 @@ SpriteRenderer:
   m_Size: {x: 40, y: 30.000002}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1184004843

@@ -1,27 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+/*******************************************************************************
+// File Name :      SnapPointBehavior.cs
+// Author :         Avery Macke
+// Creation Date :  11 March 2022
+// 
+// Description :    Manages Snap Point functionality.
+*******************************************************************************/
 using UnityEngine;
 
 public class SnapPointBehavior : MonoBehaviour
 {
+    [Tooltip("SnapPoint ScriptableObject")]
+    public SnapPoint snapPoint;
 
+    /// <summary>
+    /// Radius in which mouse detects snap point
+    /// </summary>
+    private float snapPointRadius;
 
-    public float snapPointRadius;
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Called at first frame; initializes variables
+    /// </summary>
     void Start()
     {
-        
+        InitializeVariables();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Initializes variables
+    /// </summary>
+    private void InitializeVariables()
     {
-        
-    }
+        snapPointRadius = snapPoint.snapPointRadius;
 
-    public void DestroySnapPoints()
-    {
-        Destroy(gameObject);
+        GetComponent<SphereCollider>().radius = snapPointRadius;
     }
 }

@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5040983999e0c4237953ed6177daeb18, type: 3}
-  m_Name: Fragment
+  m_Script: {fileID: 11500000, guid: b9ff7754fb6264c5d96a666e4fd8bae9, type: 3}
+  m_Name: SnapPoint
   m_EditorClassIdentifier: 
-  snapLayerMask: 6
-  dragSpeed: 10
-  snapSpeed: 15
-  rotateSpeed: 0
-  moveIdleSpeed: 0
-  rotateIdleSpeed: 0
+  snapPointRadius: 2
