@@ -116,21 +116,21 @@ public class FragmentBehavior : MonoBehaviour
         // If the fragment goes offscreen, it will wrap around on the opposite 
         // side
         Vector2 newPos = transform.position;
-        if (transform.position.x >= 8.4)
+        if (transform.position.x >= xBoundry)
         {
-            newPos.x = -7.1f;
+            newPos.x = -xBoundry;
         }
-        if (transform.position.x <= -7.1)
+        if (transform.position.x <= -xBoundry)
         {
-            newPos.x = 8.4f;
+            newPos.x = xBoundry;
         }
-        if (transform.position.y >= 3.6)
+        if (transform.position.y >= yBoundry)
         {
-            newPos.y = -5.8f;
+            newPos.y = -yBoundry;
         }
-        if (transform.position.y <= -5.8)
+        if (transform.position.y <= -yBoundry)
         {
-            newPos.y = 3.6f;
+            newPos.y = yBoundry;
         }
         transform.position = newPos;
     }
