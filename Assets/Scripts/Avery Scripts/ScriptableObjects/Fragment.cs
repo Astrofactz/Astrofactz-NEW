@@ -31,6 +31,9 @@ public class Fragment : ScriptableObject
     [Tooltip("Speed object moves when idle")]
     public float moveIdleSpeed;
 
+    [Tooltip("Speed object moves after being thrown")]
+    public float throwIdleSpeed;
+
     [Tooltip("Speed object rotates when idle")]
     public float rotateIdleSpeed;
 

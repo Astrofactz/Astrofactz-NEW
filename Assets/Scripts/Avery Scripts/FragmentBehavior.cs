@@ -51,6 +51,11 @@ public class FragmentBehavior : MonoBehaviour
     private float moveIdleSpeed;
 
     /// <summary>
+    /// Speed fragmnet moves when thrown
+    /// </summary>
+    private float throwIdleSpeed;
+
+    /// <summary>
     /// Speed fragment rotates when idle
     /// </summary>
     private float rotateIdleSpeed;
@@ -77,7 +82,7 @@ public class FragmentBehavior : MonoBehaviour
     private bool beingDragged = false;
 
     /// <summary>
-    /// Tracks previous mouse positoin
+    /// Tracks previous mouse position
     /// </summary>
     private Vector3 prevFragmentPos;
 
@@ -149,6 +154,7 @@ public class FragmentBehavior : MonoBehaviour
         rotateSpeed = fragment.rotateSpeed;
 
         moveIdleSpeed = fragment.moveIdleSpeed;
+        throwIdleSpeed = fragment.throwIdleSpeed;
         rotateIdleSpeed = fragment.rotateIdleSpeed;
 
         bc = GetComponent<BoxCollider>();
@@ -278,16 +284,19 @@ public class FragmentBehavior : MonoBehaviour
     /// Adds force in direction fragment is thrown after dragging; called when
     /// mouse is released
     /// </summary>
-    private void AddIdleForce()
+    private void AddIdleForce()                                                 // work on this
     {
         Vector3 direction = transform.position - prevFragmentPos;
         direction.z = 0;
 
         float speed = direction.magnitude;
 
+
         Vector3 moveForce = speed * direction.normalized;
 
-        rb.velocity = moveForce * moveIdleSpeed;
+        rb.velocity = moveForce * throwIdleSpeed;
+
+        print(moveForce);
     }
 
 

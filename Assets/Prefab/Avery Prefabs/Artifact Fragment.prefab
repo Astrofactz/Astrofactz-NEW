@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragment: {fileID: 11400000, guid: 8ada786e1b3c34eaf9a829fe29bd8ef3, type: 2}
   correctSnapPoint: {fileID: 0}
+  xBoundry: 11
+  yBoundry: 6
 --- !u!54 &2971703648496083186
 Rigidbody:
   m_ObjectHideFlags: 0
