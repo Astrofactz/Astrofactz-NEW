@@ -957,14 +957,6 @@ PrefabInstance:
       value: Body_Bottom
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
-      propertyPath: xBoundry
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
-      propertyPath: yBoundry
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1187960383}
@@ -1688,14 +1680,6 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
-      propertyPath: xBoundry
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
-      propertyPath: yBoundry
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
