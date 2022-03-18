@@ -16,6 +16,12 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("Correct Snap Point for fragment")]
     public GameObject correctSnapPoint;
 
+    [Tooltip("The X Boundry")]
+    public float xBoundry;
+
+    [Tooltip("The Y Boundry")]
+    public float yBoundry;
+
     #region Active Movement
     /// <summary>
     /// Index of SnapPoint layer
@@ -95,6 +101,7 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
+
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
@@ -102,6 +109,30 @@ public class FragmentBehavior : MonoBehaviour
     {
         InitializeVariables();
         AddRandomForce();
+    }
+
+    public void Update()
+    {
+        // If the fragment goes offscreen, it will wrap around on the opposite 
+        // side
+        Vector2 newPos = transform.position;
+        if (transform.position.x >= 8.4)
+        {
+            newPos.x = -7.1f;
+        }
+        if (transform.position.x <= -7.1)
+        {
+            newPos.x = 8.4f;
+        }
+        if (transform.position.y >= 3.6)
+        {
+            newPos.y = -5.8f;
+        }
+        if (transform.position.y <= -5.8)
+        {
+            newPos.y = 3.6f;
+        }
+        transform.position = newPos;
     }
 
     /// <summary>
