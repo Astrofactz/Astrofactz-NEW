@@ -22,6 +22,9 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("The Y Boundry")]
     public float yBoundry;
 
+    [HideInInspector]
+    public float zPosition;
+
     #region Active Movement
     /// <summary>
     /// Index of SnapPoint layer
@@ -120,7 +123,7 @@ public class FragmentBehavior : MonoBehaviour
     {
         // If the fragment goes offscreen, it will wrap around on the opposite 
         // side
-        Vector2 newPos = transform.position;
+        Vector3 newPos = transform.position;
         if (transform.position.x >= xBoundry)
         {
             newPos.x = -xBoundry;
@@ -137,6 +140,7 @@ public class FragmentBehavior : MonoBehaviour
         {
             newPos.y = yBoundry;
         }
+        newPos.z = zPosition;
         transform.position = newPos;
     }
 
@@ -146,6 +150,7 @@ public class FragmentBehavior : MonoBehaviour
     private void InitializeVariables()
     {
         startPos = transform.position;
+        zPosition = transform.position.z;
 
         snapLayerMask = fragment.snapLayerMask;
 
