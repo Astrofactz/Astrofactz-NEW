@@ -301,8 +301,6 @@ public class FragmentBehavior : MonoBehaviour
         Vector3 moveForce = speed * direction.normalized;
 
         rb.velocity = moveForce * throwIdleSpeed;
-
-        print(moveForce);
     }
 
 
@@ -316,11 +314,7 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void CheckBoundsIdle()
     {
-        print("out of bounds");
-
         Vector3 newPos = transform.position;
-
-        print(newPos);
 
         float xPos = transform.position.x;
         float yPos = transform.position.y;
@@ -331,9 +325,6 @@ public class FragmentBehavior : MonoBehaviour
             newPos.y = -yPos;
 
         transform.position = newPos;
-
-        print(newPos);
-
     }
 
     /// <summary>
