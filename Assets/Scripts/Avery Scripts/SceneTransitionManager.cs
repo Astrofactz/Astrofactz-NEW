@@ -96,4 +96,12 @@ public class SceneTransitionManager : MonoBehaviour
         // Unloads customization scene
         SceneManager.UnloadSceneAsync(prevScene);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

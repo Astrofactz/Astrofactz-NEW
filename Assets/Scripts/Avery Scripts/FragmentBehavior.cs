@@ -71,6 +71,11 @@ public class FragmentBehavior : MonoBehaviour
     private FragmentBehavior[] fbArray;
 
     /// <summary>
+    /// Reference to game manager in scene
+    /// </summary>
+    private GameManager gm;
+
+    /// <summary>
     /// Current snap point target
     /// </summary>
     private GameObject currentSnapTarget = null;
@@ -109,7 +114,6 @@ public class FragmentBehavior : MonoBehaviour
     /// Reference to Rigidbody componend
     /// </summary>
     private Rigidbody rb;
-
 
     /// <summary>
     /// Called at start; initializes variables
@@ -151,6 +155,8 @@ public class FragmentBehavior : MonoBehaviour
 
         bc = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
+
+        gm = FindObjectOfType<GameManager>();
 
         fbArray = FindObjectsOfType<FragmentBehavior>();
 
@@ -393,7 +399,7 @@ public class FragmentBehavior : MonoBehaviour
     /// Checks if artifact has been completed; called when pieces are assembled
     /// </summary>
     /// <returns>True if artifact is complete, false if incomplete</returns>
-    private bool CheckArtifactComplete()
+    private void CheckArtifactComplete()
     {
         bool artifactComplete = true;
 
@@ -405,11 +411,7 @@ public class FragmentBehavior : MonoBehaviour
         }
 
         if (artifactComplete)
-            print("game over");
-        else
-            print("not game over");
-
-        return artifactComplete;
+            gm.ArtifactComplete();
     }
 
     /// <summary>
