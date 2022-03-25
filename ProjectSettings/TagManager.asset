@@ -13,7 +13,6 @@ TagManager:
   - Drag06
   - Drag07
   - Fragment
-  - Bounds
   layers:
   - Default
   - TransparentFX

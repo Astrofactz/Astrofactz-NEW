@@ -91,7 +91,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4716828759234005469}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fcc7478fcc8d24c81b4e0ee20e930b23, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragment: {fileID: 11400000, guid: 8ada786e1b3c34eaf9a829fe29bd8ef3, type: 2}
   correctSnapPoint: {fileID: 0}
-  xBoundry: 7
-  yBoundry: 4
+  xBoundry: 11
+  yBoundry: 6
 --- !u!54 &2971703648496083186
 Rigidbody:
   m_ObjectHideFlags: 0

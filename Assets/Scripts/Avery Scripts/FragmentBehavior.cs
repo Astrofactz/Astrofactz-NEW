@@ -22,16 +22,14 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("The Y Boundry")]
     public float yBoundry;
 
+    [HideInInspector]
+    public float zPosition;
+
     #region Active Movement
     /// <summary>
     /// Index of SnapPoint layer
     /// </summary>
     private int snapLayerMask;
-
-    /// <summary>
-    /// Maximum movement speed for fragment
-    /// </summary>
-    private float maxSpeed;
 
     /// <summary>
     /// Speed fragment moves when dragged
@@ -84,7 +82,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Tracks whether the piece is currently being dragged
     /// </summary>
-    private bool isDragging = false;
+    private bool beingDragged = false;
 
     /// <summary>
     /// Tracks previous mouse position
@@ -121,16 +119,29 @@ public class FragmentBehavior : MonoBehaviour
         AddRandomForce();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public void Update()
     {
-        if (rb.velocity.magnitude > maxSpeed && !isDragging && !isPlaced)
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-
-        if (rb.velocity.magnitude <  0.01f && !isDragging && !isPlaced)
-            Invoke("AddRandomForce", 2.0f);
+        // If the fragment goes offscreen, it will wrap around on the opposite 
+        // side
+        Vector3 newPos = transform.position;
+        if (transform.position.x >= xBoundry)
+        {
+            newPos.x = -xBoundry;
+        }
+        if (transform.position.x <= -xBoundry)
+        {
+            newPos.x = xBoundry;
+        }
+        if (transform.position.y >= yBoundry)
+        {
+            newPos.y = -yBoundry;
+        }
+        if (transform.position.y <= -yBoundry)
+        {
+            newPos.y = yBoundry;
+        }
+        newPos.z = zPosition;
+        transform.position = newPos;
     }
 
     /// <summary>
@@ -139,10 +150,10 @@ public class FragmentBehavior : MonoBehaviour
     private void InitializeVariables()
     {
         startPos = transform.position;
+        zPosition = transform.position.z;
 
         snapLayerMask = fragment.snapLayerMask;
 
-        maxSpeed = fragment.maxSpeed;
         dragSpeed = fragment.dragSpeed;
         snapSpeed = fragment.snapSpeed;
         rotateSpeed = fragment.rotateSpeed;
@@ -185,7 +196,7 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        isDragging = false;
+        beingDragged = false;
 
         // If has snap target
         if (currentSnapTarget)
@@ -222,7 +233,7 @@ public class FragmentBehavior : MonoBehaviour
     {
         CancelInvoke("AddRandomForce");
 
-        isDragging = true;
+        beingDragged = true;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -258,43 +269,11 @@ public class FragmentBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Detects if fragment leave bounds of level; teleports piece to opposite
-    /// side of level
-    /// </summary>
-    /// <param name="other">Other collider involved in collision</param>
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Bounds")
-        {
-            print("out of bounds");
-
-            float xPos = transform.position.x;
-            float yPos = transform.position.y;
-
-            Vector3 newPos = new Vector3(xPos, yPos, 0.0f);
-
-            print(newPos);
-
-            if (xPos >= xBoundry || xPos <= -xBoundry)
-                newPos.x = -xPos;
-
-            if (yPos >= yBoundry || yPos <= -yBoundry)
-                newPos.y = -yPos;
-
-            print(newPos);
-
-            transform.position = newPos;
-        }
-    }
-
-    /// <summary>
     /// Adds force to Rigidbody in a random direction; called when non-placed
     /// fragment stops moving
     /// </summary>
     private void AddRandomForce()
     {
-        CancelInvoke("AddRandomForce");
-
         float xForce, yForce;
 
         xForce = Random.Range(-1.0f, 1.0f);
@@ -344,7 +323,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <param name="collision">Other collider ivolved in collision</param>
     private void OnCollisionEnter(Collision collision)
     {
-        if(!isDragging && collision.gameObject.tag == "Fragment")
+        if(!beingDragged && collision.gameObject.tag == "Fragment")
         {
             // Applies force in opposite direction of collision
             Vector3 force = transform.position - collision.transform.position;
@@ -382,8 +361,6 @@ public class FragmentBehavior : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
-        transform.position = correctSnapPoint.transform.position;
 
         GameObject parentArtifact = correctSnapPoint.transform.parent.gameObject;
         transform.parent = parentArtifact.transform;

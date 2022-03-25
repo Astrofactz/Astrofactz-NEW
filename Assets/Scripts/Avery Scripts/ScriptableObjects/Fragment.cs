@@ -17,9 +17,6 @@ public class Fragment : ScriptableObject
 
     [Header("Active Movement")]
 
-    [Tooltip("Maximum movement speed for fragment")]
-    public float maxSpeed;
-
     [Tooltip("Speed fragment moves when dragged")]
     public float dragSpeed;
 
@@ -39,6 +36,7 @@ public class Fragment : ScriptableObject
 
     [Tooltip("Speed object rotates when idle")]
     public float rotateIdleSpeed;
+
 
     // might need rotation offsets/threshold or other weird shit
 }
