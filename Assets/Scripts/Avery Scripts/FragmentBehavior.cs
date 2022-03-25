@@ -16,20 +16,21 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("Correct Snap Point for fragment")]
     public GameObject correctSnapPoint;
 
-    [Tooltip("The X Boundry")]
-    public float xBoundry;
-
-    [Tooltip("The Y Boundry")]
-    public float yBoundry;
-
-    [HideInInspector]
-    public float zPosition;
+    /// <summary>
+    /// Horizontal and vertical level bounds
+    /// </summary>
+    private float xBoundary, yBoundary;
 
     #region Active Movement
     /// <summary>
     /// Index of SnapPoint layer
     /// </summary>
     private int snapLayerMask;
+
+    /// <summary>
+    /// Maximum fragment movement speed
+    /// </summary>
+    private float maxSpeed;
 
     /// <summary>
     /// Speed fragment moves when dragged
@@ -82,7 +83,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Tracks whether the piece is currently being dragged
     /// </summary>
-    private bool beingDragged = false;
+    private bool isDragged = false;
 
     /// <summary>
     /// Tracks previous mouse position
@@ -121,27 +122,11 @@ public class FragmentBehavior : MonoBehaviour
 
     public void Update()
     {
-        // If the fragment goes offscreen, it will wrap around on the opposite 
-        // side
-        Vector3 newPos = transform.position;
-        if (transform.position.x >= xBoundry)
-        {
-            newPos.x = -xBoundry;
-        }
-        if (transform.position.x <= -xBoundry)
-        {
-            newPos.x = xBoundry;
-        }
-        if (transform.position.y >= yBoundry)
-        {
-            newPos.y = -yBoundry;
-        }
-        if (transform.position.y <= -yBoundry)
-        {
-            newPos.y = yBoundry;
-        }
-        newPos.z = zPosition;
-        transform.position = newPos;
+        if (rb.velocity.magnitude >= maxSpeed && !isPlaced && !isDragged)
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
+        if (rb.velocity.magnitude <= 0.01f && !isPlaced && !isDragged)
+            Invoke("AddRandomForce", 2.0f);
     }
 
     /// <summary>
@@ -150,10 +135,12 @@ public class FragmentBehavior : MonoBehaviour
     private void InitializeVariables()
     {
         startPos = transform.position;
-        zPosition = transform.position.z;
 
+        xBoundary = fragment.xBoundary;
+        yBoundary = fragment.yBoundry;
         snapLayerMask = fragment.snapLayerMask;
 
+        maxSpeed = fragment.maxSpeed;
         dragSpeed = fragment.dragSpeed;
         snapSpeed = fragment.snapSpeed;
         rotateSpeed = fragment.rotateSpeed;
@@ -196,7 +183,7 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        beingDragged = false;
+        isDragged = false;
 
         // If has snap target
         if (currentSnapTarget)
@@ -233,7 +220,7 @@ public class FragmentBehavior : MonoBehaviour
     {
         CancelInvoke("AddRandomForce");
 
-        beingDragged = true;
+        isDragged = true;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -269,11 +256,25 @@ public class FragmentBehavior : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Bounds")
+        {
+            CheckBoundsIdle();
+        }
+    }
+
+    /// <summary>
     /// Adds force to Rigidbody in a random direction; called when non-placed
     /// fragment stops moving
     /// </summary>
     private void AddRandomForce()
     {
+        CancelInvoke("AddRandomForce");
+
         float xForce, yForce;
 
         xForce = Random.Range(-1.0f, 1.0f);
@@ -310,11 +311,29 @@ public class FragmentBehavior : MonoBehaviour
         // prevent player from dragging piece out of bounds
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CheckBoundsIdle()
     {
-        // if not being dragged
-        // if past x bound, teleport to other side
-        // if past y bound, teleport to other side
+        print("out of bounds");
+
+        Vector3 newPos = transform.position;
+
+        print(newPos);
+
+        float xPos = transform.position.x;
+        float yPos = transform.position.y;
+
+        if (xPos >= xBoundary || xPos <= -xBoundary)
+            newPos.x = -xPos;
+        if (yPos >= yBoundary || yPos <= -yBoundary)
+            newPos.y = -yPos;
+
+        transform.position = newPos;
+
+        print(newPos);
+
     }
 
     /// <summary>
@@ -323,7 +342,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <param name="collision">Other collider ivolved in collision</param>
     private void OnCollisionEnter(Collision collision)
     {
-        if(!beingDragged && collision.gameObject.tag == "Fragment")
+        if (!isDragged && collision.gameObject.tag == "Fragment")
         {
             // Applies force in opposite direction of collision
             Vector3 force = transform.position - collision.transform.position;
@@ -388,7 +407,7 @@ public class FragmentBehavior : MonoBehaviour
         bool artifactComplete = true;
 
         // If any fragment is not placed, artifact is not complete
-        foreach(FragmentBehavior fb in fbArray)
+        foreach (FragmentBehavior fb in fbArray)
         {
             if (!fb.IsPlaced())
                 artifactComplete = false;

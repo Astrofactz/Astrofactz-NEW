@@ -12,10 +12,19 @@ public class Fragment : ScriptableObject
 {
     [Header("Fragment Variables")]
 
+    [Tooltip("Horizontal level boundary")]
+    public float xBoundary;
+
+    [Tooltip("Vertical level boundary")]
+    public float yBoundry;
+
     [Tooltip("Index of SnapPoint layer")]
     public int snapLayerMask;
 
     [Header("Active Movement")]
+
+    [Tooltip("Maximum fragment movement speed")]
+    public float maxSpeed;
 
     [Tooltip("Speed fragment moves when dragged")]
     public float dragSpeed;
