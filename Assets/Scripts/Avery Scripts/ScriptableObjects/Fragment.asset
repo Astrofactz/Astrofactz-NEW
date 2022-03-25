@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Fragment
   m_EditorClassIdentifier: 
   snapLayerMask: 6
+  maxSpeed: 2.25
   dragSpeed: 10
   snapSpeed: 15
   rotateSpeed: 0
   moveIdleSpeed: 15
-  throwIdleSpeed: 30
+  throwIdleSpeed: 20
   rotateIdleSpeed: 0
