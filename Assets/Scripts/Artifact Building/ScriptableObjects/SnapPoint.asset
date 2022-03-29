@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ff7754fb6264c5d96a666e4fd8bae9, type: 3}
   m_Name: SnapPoint
   m_EditorClassIdentifier: 
-  snapPointRadius: 2
+  snapPointRadius: 1.75
