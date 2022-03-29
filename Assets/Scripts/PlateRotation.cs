@@ -10,16 +10,16 @@ public class PlateRotation : MonoBehaviour
     public float rotMultiplierX;
     public float rotMultiplierY;
 
-    //public List<GameObject> piecesInMenu;
-    //public List<GameObject> piecesInSpace;
+    public List<GameObject> piecesInMenu;
+    public List<GameObject> piecesInSpace;
 
     private Quaternion currentRotation;
 
-    private ArtifactPieceManager apm;
+    
 
     private void Awake()
     {
-        apm = FindObjectOfType<ArtifactPieceManager>();
+        
     }
 
     // Update is called once per frame
@@ -34,14 +34,14 @@ public class PlateRotation : MonoBehaviour
 
             currentRotation.eulerAngles = new Vector3(0, -rotMultiplierX * (mousePos.x - startPosX), 0);
 
-            foreach (GameObject obj in apm.piecesInSpace)
+            foreach (GameObject obj in piecesInSpace)
             {
                 obj.transform.parent = gameObject.transform;
             }
 
             transform.localRotation = currentRotation;
 
-            foreach(GameObject obj in apm.piecesInMenu)
+            foreach(GameObject obj in piecesInMenu)
             {
                 obj.transform.localRotation = currentRotation;
             }
