@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5040983999e0c4237953ed6177daeb18, type: 3}
   m_Name: Fragment
   m_EditorClassIdentifier: 
-  xBoundary: 7.5
-  yBoundry: 4
+  xBoundary: 5
+  yBoundry: 3
+  zPosIdle: 2
   snapLayerMask: 6
-  maxSpeed: 2
-  dragSpeed: 10
-  snapSpeed: 15
+  maxSpeed: 1.75
+  dragSpeed: 8
+  snapSpeed: 10
   rotateSpeed: 0
-  moveIdleSpeed: 15
-  throwIdleSpeed: 30
+  moveIdleSpeed: 12
+  throwIdleSpeed: 25
   rotateIdleSpeed: 0

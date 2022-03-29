@@ -7,6 +7,7 @@
                     pieces.
 *******************************************************************************/
 using UnityEngine;
+using System.Collections;
 
 public class FragmentBehavior : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class FragmentBehavior : MonoBehaviour
     /// Horizontal and vertical level bounds
     /// </summary>
     private float xBoundary, yBoundary;
+
+    /// <summary>
+    /// Z Position for pieces when idle
+    /// </summary>
+    private float zPosIdle;
+
+    /// <summary>
+    /// Boundary offset when looping pieces around level
+    /// </summary>
+    private float boundaryOffset = 0.25f;
 
     #region Active Movement
     /// <summary>
@@ -124,11 +135,16 @@ public class FragmentBehavior : MonoBehaviour
         AddRandomForce();
     }
 
+    /// <summary>
+    /// Called once per frame; checks fragment velocity
+    /// </summary>
     public void Update()
     {
+        // Limits speed fragment can float while idle
         if (rb.velocity.magnitude >= maxSpeed && !isPlaced && !isDragged)
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
+        // Checks for stationary pieces, adds force
         if (rb.velocity.magnitude <= 0.01f && !isPlaced && !isDragged)
             Invoke("AddRandomForce", 2.0f);
     }
@@ -138,10 +154,15 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void InitializeVariables()
     {
-        startPos = transform.position;
-
         xBoundary = fragment.xBoundary;
         yBoundary = fragment.yBoundry;
+
+        zPosIdle = fragment.zPosIdle;
+
+        transform.position = new Vector3 (transform.position.x, transform.position.y, zPosIdle);
+
+        startPos = transform.position;
+
         snapLayerMask = fragment.snapLayerMask;
 
         maxSpeed = fragment.maxSpeed;
@@ -184,6 +205,14 @@ public class FragmentBehavior : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void OnMouseDown()
+    {
+        StopCoroutine("MoveZPos");
+    }
+
+    /// <summary>
     /// Called when mouse is released; determines fragment behavior when mouse
     /// is released
     /// </summary>
@@ -199,9 +228,11 @@ public class FragmentBehavior : MonoBehaviour
                 CombinePieces();
 
             // If incorrect target                                              // figure out what to do when pieces placed incorrectly
-            else if (currentSnapTarget != correctSnapPoint)                     // also zPos of pieces; bg when floating, foreground when moving, artifact in middle
-            {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds
+            else if (currentSnapTarget != correctSnapPoint)                     
+            {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds ?
                 AddIdleForce();
+
+                StartCoroutine(MoveZPos(zPosIdle));
             }
         }
         // If does not have snap target
@@ -209,6 +240,7 @@ public class FragmentBehavior : MonoBehaviour
         {
             // Throw piece, if magnitude under threshold, add random force
             AddIdleForce();
+            StartCoroutine(MoveZPos(zPosIdle));
 
             if (rb.velocity.magnitude < 0.01f)                                  // need stop movement check for non-drag pieces too
                 Invoke("AddRandomForce", 2.0f);
@@ -258,18 +290,47 @@ public class FragmentBehavior : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position,
                                   mousePos, dragSpeed * Time.deltaTime);
+
+            // Clamps fragment in level boundary while following mouse
+            float xClamp = Mathf.Clamp(transform.position.x, -xBoundary, xBoundary);
+            float yClamp = Mathf.Clamp(transform.position.y, -yBoundary, yBoundary);
+
+            transform.position = new Vector3(xClamp, yClamp, transform.position.z);
         }
     }
 
     /// <summary>
-    /// 
+    /// Moves fragment to specified target on z axis
     /// </summary>
-    /// <param name="other"></param>
+    /// <param name="zPosTarget">target z position</param>
+    IEnumerator MoveZPos(float zPosTarget)
+    {
+        while (transform.position.z - zPosTarget > 0.01f ||
+               transform.position.z - zPosTarget < -0.01f)
+        {
+
+            Vector3 targetPos = new Vector3 (transform.position.x,
+                                transform.position.y, zPosTarget);
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPos,
+                                 (moveIdleSpeed / 4) * Time.deltaTime);
+
+            yield return null;
+        }
+
+        print("z pos done");
+    }
+
+
+    /// <summary>
+    /// Called when fragment moves outside of level boundary collider
+    /// </summary>
+    /// <param name="other">Other collider involved in collision</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Bounds")
         {
-            CheckBoundsIdle();
+            CheckBounds();
         }
     }
 
@@ -309,26 +370,25 @@ public class FragmentBehavior : MonoBehaviour
         rb.velocity = moveForce * throwIdleSpeed;
     }
 
-
-    private void CheckBoundsDrag()
-    {
-        // prevent player from dragging piece out of bounds
-    }
-
     /// <summary>
-    /// 
+    /// Checks if fragment is within level boundaries; if not, moves fragment
+    /// piece to opposite side of screen
     /// </summary>
-    private void CheckBoundsIdle()
+    private void CheckBounds()
     {
         Vector3 newPos = transform.position;
 
         float xPos = transform.position.x;
         float yPos = transform.position.y;
 
-        if (xPos >= xBoundary || xPos <= -xBoundary)
-            newPos.x = -xPos;
-        if (yPos >= yBoundary || yPos <= -yBoundary)
-            newPos.y = -yPos;
+        if (xPos >= xBoundary)
+            newPos.x = -xPos + boundaryOffset;
+        else if (xPos <= -xBoundary)
+            newPos.x = -xPos - boundaryOffset;
+        if (yPos >= yBoundary)
+            newPos.y = -yPos + boundaryOffset;
+        else if (yPos <= -yBoundary)
+            newPos.y = -yPos - boundaryOffset;
 
         transform.position = newPos;
     }
@@ -378,15 +438,19 @@ public class FragmentBehavior : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
+        StopCoroutine("MoveZPos");
+
         GameObject parentArtifact = correctSnapPoint.transform.parent.gameObject;
         transform.parent = parentArtifact.transform;
+
+        transform.position = correctSnapPoint.transform.position;
 
         bc.enabled = false;
 
         // Enable fragments snap points
         ToggleSnapPoints(snapPointsActive);
 
-        // Disables snap point fragment connected to
+        // Disables snap point fragment is connected to
         DisableSnapPoint(correctSnapPoint);
 
         isPlaced = true;

@@ -18,6 +18,9 @@ public class Fragment : ScriptableObject
     [Tooltip("Vertical level boundary")]
     public float yBoundry;
 
+    [Tooltip("Z Position for pieces when idle")]
+    public float zPosIdle;
+
     [Tooltip("Index of SnapPoint layer")]
     public int snapLayerMask;
 
