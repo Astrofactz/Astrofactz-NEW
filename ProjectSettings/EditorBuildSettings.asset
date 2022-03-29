@@ -27,12 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Gameplay Scenes/Rover Levels/RoverHard.unity
     guid: 6509d229c6a384175982e81bf4b37d10
   - enabled: 1
-    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/BlenderEasy.unity
+    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/RocketEasy.unity
     guid: 75ef5c3e14e74449f967ecd0fdce2a1b
   - enabled: 1
-    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/BlenderHard.unity
+    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/RocketHard.unity
     guid: 6a7b70e9c912a439586a5a8405c6283d
   - enabled: 1
-    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/BlenderMedium.unity
+    path: Assets/Scenes/Gameplay Scenes/Rocket Levels/RocketMedium.unity
     guid: 0ff1bd27c665e4a8bb23f9defed82294
   m_configObjects: {}
