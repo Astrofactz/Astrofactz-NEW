@@ -9,6 +9,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class FragmentBehavior : MonoBehaviour
 {
     [Tooltip("Fragment ScriptableObject")]
@@ -16,6 +17,9 @@ public class FragmentBehavior : MonoBehaviour
 
     [Tooltip("Correct Snap Point for fragment")]
     public GameObject correctSnapPoint;
+
+    [Tooltip("Sound that plays while dragging the fragment")]
+    public AudioClip dragSnd;
 
     /// <summary>
     /// Horizontal and vertical level bounds
@@ -85,6 +89,16 @@ public class FragmentBehavior : MonoBehaviour
     /// Reference to game manager in scene
     /// </summary>
     private GameManager gm;
+
+    /// <summary>
+    /// Reference to sound manager in scene
+    /// </summary>
+    private SoundManager sm;
+
+    /// <summary>
+    /// Audio Source attatched to the object
+    /// </summary>
+    private AudioSource srce;
 
     /// <summary>
     /// Current snap point target
@@ -182,6 +196,14 @@ public class FragmentBehavior : MonoBehaviour
         fbArray = FindObjectsOfType<FragmentBehavior>();
 
         ToggleSnapPoints(snapPointsActive);
+
+        sm = FindObjectOfType<SoundManager>();
+        srce = GetComponent<AudioSource>();
+        srce.volume = 0;
+        srce.clip = dragSnd;
+        srce.playOnAwake = true;
+        srce.loop = true;
+        srce.Play();
     }
 
     /// <summary>
@@ -220,17 +242,26 @@ public class FragmentBehavior : MonoBehaviour
     {
         isDragged = false;
 
+        srce.volume = 0;
+
         // If has snap target
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
             if (currentSnapTarget == correctSnapPoint)
+            {
                 CombinePieces();
+
+                sm.Play("RightSnap");
+            }
 
             // If incorrect target                                              // figure out what to do when pieces placed incorrectly
             else if (currentSnapTarget != correctSnapPoint)                     
             {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds ?
                 AddIdleForce();
+
+
+                sm.Play("WrongSnap");
 
                 StartCoroutine(MoveZPos(zPosIdle));
             }
@@ -296,6 +327,10 @@ public class FragmentBehavior : MonoBehaviour
             float yClamp = Mathf.Clamp(transform.position.y, -yBoundary, yBoundary);
 
             transform.position = new Vector3(xClamp, yClamp, transform.position.z);
+
+            float t = Vector3.Distance(mousePos, transform.position);
+            srce.volume = Mathf.Lerp(0.1f, 1, t);
+            srce.pitch = Mathf.Lerp(0.75f, 1.25f, t);
         }
     }
 
