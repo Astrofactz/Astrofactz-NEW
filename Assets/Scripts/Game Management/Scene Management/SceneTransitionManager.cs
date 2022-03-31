@@ -20,11 +20,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     private static Artifact artifactSelect;
 
-    enum Difficulty { Easy, Medium, Hard };
+    public enum Difficulty { Easy, Medium, Hard };
 
     private static Difficulty difficultySelect;
 
     private string sceneToLoad;
+
+    public LevelSelectButtonsScript levelSelect;
 
     /// <summary>
     /// 
@@ -38,9 +40,23 @@ public class SceneTransitionManager : MonoBehaviour
     /// 
     /// </summary>
     /// <param name="sceneToLoad"></param>
-    public void SetSceneToLoad(string sceneToLoad)
+    public void SetSceneToLoad(string difficulty)
     {
-        this.sceneToLoad = sceneToLoad;
+        if (difficulty == "easy")
+        {
+            if (levelSelect.Rover) { sceneToLoad = "RoverEasy"; }
+            else { sceneToLoad = "RocketEasy"; }
+        }
+        else if (difficulty == "medium")
+        {
+            if (levelSelect.Rover) { sceneToLoad = "RoverMedium"; }
+            else { sceneToLoad = "RocketMedium"; }
+        }
+        else if (difficulty == "hard")
+        {
+            if (levelSelect.Rover) { sceneToLoad = "RoverHard"; }
+            else { sceneToLoad = "RocketHard"; }
+        }
     }
 
     /// <summary>
