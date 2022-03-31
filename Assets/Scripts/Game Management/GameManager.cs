@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject GameWinUI;
+    public GameObject firework;
+
+    public float timeBetweenSpawn = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,5 +31,12 @@ public class GameManager : MonoBehaviour
     public void ArtifactComplete()
     {
         GameWinUI.SetActive(true);
+        Invoke("Firework", 0);
     }
+
+    public void Firework()
+    {
+        Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
+    }
+
 }
