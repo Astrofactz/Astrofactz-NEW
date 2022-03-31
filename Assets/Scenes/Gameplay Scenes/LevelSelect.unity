@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -215,7 +215,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RoverMedium
+          m_StringArgument: hard
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 960481438}
@@ -456,6 +456,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3851178027468680632, guid: c625eac4c5474471da503f005b3d0d93, type: 3}
+      propertyPath: levelSelect
+      value: 
+      objectReference: {fileID: 1323872472}
     - target: {fileID: 5902324058545694288, guid: c625eac4c5474471da503f005b3d0d93, type: 3}
       propertyPath: m_Name
       value: Scene Manager
@@ -611,8 +615,8 @@ RectTransform:
   - {fileID: 924864698}
   - {fileID: 1762854413}
   - {fileID: 1677724435}
-  - {fileID: 1033275328}
   - {fileID: 1721936566}
+  - {fileID: 1033275328}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -867,7 +871,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RoverEasy
+          m_StringArgument: easy
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 960481438}
@@ -1062,7 +1066,7 @@ GameObject:
   - component: {fileID: 1033275330}
   - component: {fileID: 1033275329}
   m_Layer: 5
-  m_Name: Rover Select
+  m_Name: Rocket Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,7 +1085,7 @@ RectTransform:
   m_Children:
   - {fileID: 1070065858}
   m_Father: {fileID: 578275450}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1127,7 +1131,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1033275330}
   m_OnClick:
     m_PersistentCalls:
@@ -1141,7 +1145,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Rover
+          m_StringArgument: Blender
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1033275330
@@ -1558,7 +1562,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: RoverMedium
+          m_StringArgument: medium
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 960481438}
@@ -1807,7 +1811,7 @@ GameObject:
   - component: {fileID: 1721936568}
   - component: {fileID: 1721936567}
   m_Layer: 5
-  m_Name: Rocket Select
+  m_Name: Rover Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1826,7 +1830,7 @@ RectTransform:
   m_Children:
   - {fileID: 349642721}
   m_Father: {fileID: 578275450}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1886,7 +1890,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Blender
+          m_StringArgument: Rover
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1721936568
