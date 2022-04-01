@@ -20,6 +20,8 @@ public class SceneTransitionManager : MonoBehaviour
 
     private string sceneToLoad;
 
+    private string currentScene;
+
     private LevelSelectButtonsScript levelSelect;
 
     /// <summary>
@@ -27,7 +29,16 @@ public class SceneTransitionManager : MonoBehaviour
     /// </summary>
     public void Start()
     {
+        currentScene = SceneManager.GetActiveScene().name;
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+            LoadScene("MainMenu");
+
+        else if (Input.GetKeyDown(KeyCode.R))
+            LoadScene(currentScene);
     }
 
     /// <summary>
