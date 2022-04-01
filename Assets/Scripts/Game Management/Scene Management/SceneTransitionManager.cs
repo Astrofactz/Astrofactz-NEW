@@ -16,8 +16,6 @@ public class SceneTransitionManager : MonoBehaviour
     [Tooltip("List of objects to retain during async scene transition")]
     public GameObject[] retainObjs = new GameObject[1];
 
-    enum Artifact { Rover, Rocket }
-
     private string artifact;
 
     private string sceneToLoad;

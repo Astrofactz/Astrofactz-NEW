@@ -5,18 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject blueprintUI;
+
     public GameObject GameWinUI;
     public GameObject firework;
 
     public float timeBetweenSpawn = 1.0f;
 
-    // Start is called before the first frame update
+    private bool blueprintActive = false;
+
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 
+    /// </summary>
     void Update()
     {
         if(Input.GetKey(KeyCode.Escape))
@@ -27,13 +35,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ToggleBlueprint()
+    {
+        if (blueprintActive)
+            blueprintUI.SetActive(false);
 
+        else if (!blueprintActive)
+            blueprintUI.SetActive(true);
+
+        blueprintActive = !blueprintActive;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void ArtifactComplete()
     {
         GameWinUI.SetActive(true);
         Invoke("Firework", 0);
     }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void Firework()
     {
         Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
