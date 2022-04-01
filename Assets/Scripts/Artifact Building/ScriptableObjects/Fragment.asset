@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xBoundary: 5
   yBoundry: 3
-  zPosIdle: 2
+  zPosIdle: 3
   snapLayerMask: 6
   maxSpeed: 1.75
   dragSpeed: 8
