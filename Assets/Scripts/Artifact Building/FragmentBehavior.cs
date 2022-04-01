@@ -511,6 +511,9 @@ public class FragmentBehavior : MonoBehaviour
 
     #region Fragment rotation
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void Rotate()
     {
         Vector3 mousePos = FindMousePos();

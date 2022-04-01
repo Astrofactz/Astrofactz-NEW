@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Tooltip("Options UI panel")]
+    public GameObject optionsUI;
+
+    [Tooltip("Blueprint UI panel")]
     public GameObject blueprintUI;
 
-    public GameObject GameWinUI;
+    [Tooltip("Game win UI panel")]
+    public GameObject gameWinUI;
+
     public GameObject firework;
 
     public float timeBetweenSpawn = 1.0f;
 
-    private bool blueprintActive = false;
+    private bool blueprintActive, optionsActive = false;
 
     /// <summary>
     /// 
@@ -27,16 +33,12 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            string currentScene = SceneManager.GetActiveScene().name;
-
-            SceneManager.LoadScene(currentScene);
-        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+            ToggleOptions();
     }
 
     /// <summary>
-    /// 
+    /// Toggles blueprint panel on/off
     /// </summary>
     public void ToggleBlueprint()
     {
@@ -50,11 +52,25 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Toggles options panel on/off
+    /// </summary>
+    private void ToggleOptions()
+    {
+        if (optionsActive)
+            optionsUI.SetActive(false);
+
+        else if (!optionsActive)
+            optionsUI.SetActive(true);
+
+        optionsActive = !optionsActive;
+    }
+
+    /// <summary>
     /// 
     /// </summary>
     public void ArtifactComplete()
     {
-        GameWinUI.SetActive(true);
+        gameWinUI.SetActive(true);
         Invoke("Firework", 0);
     }
 
