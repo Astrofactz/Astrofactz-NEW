@@ -19,7 +19,7 @@ MonoBehaviour:
   maxSpeed: 1.75
   dragSpeed: 8
   snapSpeed: 10
-  rotateSpeed: 0
+  rotateSpeed: 50
   moveIdleSpeed: 12
   throwIdleSpeed: 25
   rotateIdleSpeed: 0

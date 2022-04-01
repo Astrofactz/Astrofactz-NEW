@@ -202,6 +202,10 @@ PrefabInstance:
       value: FRAGMENT_Booster_Top
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 298561054}
@@ -289,6 +293,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_Name
       value: FRAGMENT_Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -381,6 +389,10 @@ PrefabInstance:
       value: FRAGMENT_Body_Top
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1576559322}
@@ -406,15 +418,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -935,6 +947,10 @@ PrefabInstance:
       value: FRAGMENT_Stands_Side
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 676146285}
@@ -1027,6 +1043,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_Name
       value: FRAGMENT_Stands_Front
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -1546,6 +1566,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_Name
       value: FRAGMENT_Booster_Bottom
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint

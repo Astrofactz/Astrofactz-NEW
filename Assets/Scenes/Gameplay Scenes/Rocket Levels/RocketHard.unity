@@ -135,6 +135,10 @@ PrefabInstance:
       value: FRAGMENT_Stand_Front
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1868865560}
@@ -442,6 +446,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1103005773}
@@ -538,6 +546,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_Name
       value: FRAGMENT_Stand_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -710,6 +722,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -939,6 +955,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -1226,6 +1246,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -2077,6 +2101,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 991266703}
@@ -2173,6 +2201,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
@@ -2482,6 +2514,10 @@ PrefabInstance:
     - target: {fileID: 4716828759234005469, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: rotationOffset
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint

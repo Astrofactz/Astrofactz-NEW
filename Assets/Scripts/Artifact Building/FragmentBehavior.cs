@@ -21,6 +21,9 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("Sound that plays while dragging the fragment")]
     public AudioClip dragSnd;
 
+
+    public float rotationOffset;
+
     /// <summary>
     /// Horizontal and vertical level bounds
     /// </summary>
@@ -116,6 +119,11 @@ public class FragmentBehavior : MonoBehaviour
     private bool isDragged = false;
 
     /// <summary>
+    /// 
+    /// </summary>
+    private bool rotationCorrect = false;
+
+    /// <summary>
     /// Tracks previous mouse position
     /// </summary>
     private Vector3 prevFragmentPos;
@@ -146,6 +154,7 @@ public class FragmentBehavior : MonoBehaviour
     void Start()
     {
         InitializeVariables();
+        RandomRotation();
         AddRandomForce();
     }
 
@@ -222,7 +231,13 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseDrag()
     {
-        if (!isPlaced)
+        if (!isPlaced && Input.GetMouseButton(1))
+        {
+            print("rotating");
+            Rotate();
+        }
+
+        else if (!isPlaced)
             MovePiece();
     }
 
@@ -248,7 +263,7 @@ public class FragmentBehavior : MonoBehaviour
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
-            if (currentSnapTarget == correctSnapPoint)
+            if (currentSnapTarget == correctSnapPoint && rotationCorrect)
             {
                 CombinePieces();
 
@@ -492,6 +507,90 @@ public class FragmentBehavior : MonoBehaviour
 
         CheckArtifactComplete();
     }
+    #endregion
+
+    #region Fragment rotation
+
+    private void Rotate()
+    {
+        Vector3 mousePos = FindMousePos();
+
+        Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        int layerMask = 1 << snapLayerMask;
+
+        if (Physics.Raycast(snapRay, out RaycastHit hit, Mathf.Infinity, layerMask))
+            currentSnapTarget = hit.transform.gameObject;
+        else
+            currentSnapTarget = null;
+
+
+        float mouseDif = transform.position.x - mousePos.x;
+
+        Vector3 rotationDir;
+
+        if (mouseDif > 1.0f)
+        {
+            rotationDir = Vector3.up;
+            print("rotate right");
+        }
+        else if (mouseDif < -1.0f)
+        {
+            rotationDir = Vector3.down;
+            print("rotate left");
+        }
+        else
+            rotationDir = Vector3.zero;
+
+        Vector3 targetRot = transform.eulerAngles + rotationDir;
+
+        Quaternion targetRotation = Quaternion.Euler(targetRot);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
+        if(currentSnapTarget)
+        {
+            if (transform.rotation.y < rotationOffset || transform.rotation.y > -rotationOffset)
+            {
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                rotationCorrect = true;
+            }
+
+            else
+                rotationCorrect = false;
+        }
+
+        //get mouse position in relation to artifact
+
+        //rotation direction = 0
+
+        //if mouse distance.x greater than x, rotation dir = 1
+
+        //if mouse distance.x less than x, rotation dir = -1
+
+
+        // while rotation offset greater than/less than && input mouse down
+        // y rot = transform.rotation.y
+        // change y rot while true
+        // transform.rotation = (0, yrot, 0)
+
+        //transform.rotation = transfrom.rotation
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void RandomRotation()
+    {
+        float randomRot = Random.Range(0.0f, 360.0f);
+
+        Quaternion randomRotation = Quaternion.Euler(0, randomRot, 0);
+
+        transform.rotation = randomRotation;
+    }
+
+
     #endregion
 
     /// <summary>
