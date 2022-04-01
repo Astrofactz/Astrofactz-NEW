@@ -18,15 +18,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     enum Artifact { Rover, Rocket }
 
-    private static Artifact artifactSelect;
-
-    public enum Difficulty { Easy, Medium, Hard };
-
-    private static Difficulty difficultySelect;
+    private string artifact;
 
     private string sceneToLoad;
 
-    public LevelSelectButtonsScript levelSelect;
+    private LevelSelectButtonsScript levelSelect;
 
     /// <summary>
     /// 
@@ -39,23 +35,47 @@ public class SceneTransitionManager : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="artifact"></param>
+    public void SetArtifact(string artifact)
+    {
+        this.artifact = artifact;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="difficulty"></param>
+    public void SetDifficulty(string difficulty)
+    {
+        sceneToLoad = artifact + difficulty;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="sceneToLoad"></param>
     public void SetSceneToLoad(string difficulty)
     {
         if (difficulty == "easy")
         {
-            if (levelSelect.Rover) { sceneToLoad = "RoverEasy"; }
-            else { sceneToLoad = "RocketEasy"; }
+            if (levelSelect.Rover)
+                sceneToLoad = "RoverEasy";
+            else
+                sceneToLoad = "RocketEasy";
         }
         else if (difficulty == "medium")
         {
-            if (levelSelect.Rover) { sceneToLoad = "RoverMedium"; }
-            else { sceneToLoad = "RocketMedium"; }
+            if (levelSelect.Rover)
+                sceneToLoad = "RoverMedium";
+            else
+                sceneToLoad = "RocketMedium";
         }
         else if (difficulty == "hard")
         {
-            if (levelSelect.Rover) { sceneToLoad = "RoverHard"; }
-            else { sceneToLoad = "RocketHard"; }
+            if (levelSelect.Rover)
+                sceneToLoad = "RoverHard";
+            else
+                sceneToLoad = "RocketHard";
         }
     }
 
@@ -86,7 +106,7 @@ public class SceneTransitionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads gameplay scene; used to retain player-customized ships            // Keep this one
+    /// Loads gameplay scene; can move objects from one scene to another
     /// </summary>
     /// <returns></returns>
     IEnumerator ChangeSceneAsync(string sceneName)
@@ -102,7 +122,7 @@ public class SceneTransitionManager : MonoBehaviour
             yield return null;
         }
 
-        // Transfers ships from customization to gameplay scene
+        // Transfers objects from current scene to new
         foreach (GameObject obj in retainObjs)
         {
             SceneManager.MoveGameObjectToScene(obj,
