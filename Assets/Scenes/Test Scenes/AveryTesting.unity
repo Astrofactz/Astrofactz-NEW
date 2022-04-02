@@ -869,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6734602204809741897, guid: e8cc5fa23c34046549cae8449b5be862, type: 3}
       propertyPath: m_Name
-      value: Pedestal (1)
+      value: Pedestal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cc5fa23c34046549cae8449b5be862, type: 3}
