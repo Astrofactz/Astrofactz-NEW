@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Options UI panel")]
     public GameObject optionsUI;
 
+    [Tooltip("Options close menu button")]
+    public GameObject optionsCloseButton;
+
     [Tooltip("Blueprint UI panel")]
     public GameObject blueprintUI;
 
@@ -54,13 +57,19 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Toggles options panel on/off
     /// </summary>
-    private void ToggleOptions()
+    public void ToggleOptions()
     {
         if (optionsActive)
+        {
             optionsUI.SetActive(false);
+            optionsCloseButton.SetActive(false);
+        }
 
         else if (!optionsActive)
+        {
             optionsUI.SetActive(true);
+            optionsCloseButton.SetActive(true);
+        }
 
         optionsActive = !optionsActive;
     }
