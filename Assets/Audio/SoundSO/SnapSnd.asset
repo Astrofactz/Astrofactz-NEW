@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fdbf2ac7842424ea18a2ce7cfebfa9, type: 3}
   m_Name: SnapSnd
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: aa1b4ee7410582647824622839c3f83c, type: 3}
+  clip: {fileID: 8300000, guid: c15c5ae6617cc1541929e9386208ceff, type: 3}
   volume: 1
   pitch: 1
   doesLoop: 0

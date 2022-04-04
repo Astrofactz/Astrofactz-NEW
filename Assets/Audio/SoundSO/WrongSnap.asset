@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fdbf2ac7842424ea18a2ce7cfebfa9, type: 3}
   m_Name: WrongSnap
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: efd79d2728b7fcb4dbb2e473e31b37d3, type: 3}
+  clip: {fileID: 8300000, guid: 205c30a12e17f0843b8572ae25104577, type: 3}
   volume: 1
   pitch: 1
   doesLoop: 0
