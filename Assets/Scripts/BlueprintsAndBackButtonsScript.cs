@@ -24,16 +24,6 @@ public class BlueprintsAndBackButtonsScript : MonoBehaviour
     public Button BackButton1 { get => backButton; set => backButton = value; }
 
     /// <summary>
-    /// Function that allows the back button to destroy the blueprints and 
-    /// itself so the player can see the gameplay agian
-    /// </summary>
-    public void BackButton()
-    {
-        Destroy(blueprintsImage);
-        Destroy(backButton);
-    }
-
-    /// <summary>
     /// Function that allows the blueprints button to spawn the blueprints
     /// image and the back button
     /// </summary>
@@ -46,13 +36,13 @@ public class BlueprintsAndBackButtonsScript : MonoBehaviour
             blueprintView = false;
             print("blueprint appear");
         }
-        else if(blueprintView == true && secondPress == false)
+        /*else if(blueprintView == true && secondPress == false)
         {
             blueprintsImage.GetComponent<Image>().color
             = new Color(225, 225, 225, 0);
             blueprintView = false;
             secondPress = true;
-        }
+        }*/
         else if(blueprintView == false && firstPress == false)
         {
             blueprintsImage.GetComponent<Image>().color
@@ -60,7 +50,26 @@ public class BlueprintsAndBackButtonsScript : MonoBehaviour
             firstPress = true;
             blueprintView = true;
         }
-        else if(blueprintView == false && firstPress == true)
+        /*else if(blueprintView == false && firstPress == true)
+        {
+            blueprintsImage.GetComponent<Image>().color
+            = new Color(225, 225, 225, 0);
+            blueprintView = true;
+            firstPress = true;
+            print("blueprint disappear");
+        }*/
+    }
+
+    public void InvisibleButton()
+    {
+        if (blueprintView == true && secondPress == false)
+        {
+            blueprintsImage.GetComponent<Image>().color
+            = new Color(225, 225, 225, 0);
+            blueprintView = false;
+            secondPress = true;
+        }
+        else if (blueprintView == false && firstPress == true)
         {
             blueprintsImage.GetComponent<Image>().color
             = new Color(225, 225, 225, 0);

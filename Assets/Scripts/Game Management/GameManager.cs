@@ -54,6 +54,16 @@ public class GameManager : MonoBehaviour
         blueprintActive = !blueprintActive;
     }
 
+    public void InvisibleToggle()
+    {
+        if(blueprintActive)
+        {
+            blueprintUI.SetActive(false);
+        }
+
+        blueprintActive = !blueprintActive;
+    }
+
     /// <summary>
     /// Toggles options panel on/off
     /// </summary>
