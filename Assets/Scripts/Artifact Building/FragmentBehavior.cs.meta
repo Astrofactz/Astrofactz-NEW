@@ -3,7 +3,11 @@ guid: 8444cd9cf6f09404eb42aa96ed679cb5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fragment: {instanceID: 0}
+  - correctSnapPoint: {instanceID: 0}
+  - dragSnd: {instanceID: 0}
+  - snapParticle: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

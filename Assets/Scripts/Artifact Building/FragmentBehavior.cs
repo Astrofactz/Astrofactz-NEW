@@ -148,6 +148,11 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
+    ///<summary>
+    /// Particle effect to be instantiated upon snapping a piece to the artifact.
+    ///</summary>
+    public GameObject snapParticle;
+
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
@@ -222,6 +227,7 @@ public class FragmentBehavior : MonoBehaviour
     public bool IsPlaced()
     {
         return isPlaced;
+
     }
 
     #region Fragment interaction
@@ -622,6 +628,8 @@ public class FragmentBehavior : MonoBehaviour
     private void DisableSnapPoint(GameObject snapPoint)
     {
         snapPoint.SetActive(false);
+        Instantiate(snapParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        print("particle");
     }
 
     /// <summary>
@@ -636,5 +644,14 @@ public class FragmentBehavior : MonoBehaviour
                 child.gameObject.SetActive(!snapPointStatus);
         }
         snapPointsActive = !snapPointsActive;
+    }
+
+    ///<summary>
+    /// Creates the snap particle effect
+    /// </summary>
+    private void SnapParticle()
+    {
+         Instantiate(snapParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+         print("particle");
     }
 }

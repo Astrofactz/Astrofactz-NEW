@@ -961,6 +961,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1800309841}
@@ -1154,6 +1158,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
@@ -1677,6 +1685,10 @@ PrefabInstance:
       value: Wheels_Left
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 265804402}
@@ -1943,6 +1955,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1828129593}
@@ -2048,6 +2064,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
@@ -2274,6 +2294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wheels_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: snapParticle
+      value: 
+      objectReference: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
