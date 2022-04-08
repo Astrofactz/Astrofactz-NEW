@@ -159,7 +159,7 @@ public class FragmentBehavior : MonoBehaviour
     void Start()
     {
         InitializeVariables();
-        RandomRotation();
+        //RandomRotation();
         AddRandomForce();
     }
 
@@ -240,7 +240,7 @@ public class FragmentBehavior : MonoBehaviour
         if (!isPlaced && Input.GetMouseButton(1))
         {
             print("rotating");
-            Rotate();
+            //Rotate();
         }
 
         else if (!isPlaced)
@@ -269,7 +269,7 @@ public class FragmentBehavior : MonoBehaviour
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
-            if (currentSnapTarget == correctSnapPoint && rotationCorrect)
+            if (currentSnapTarget == correctSnapPoint)// && rotationCorrect)
             {
                 CombinePieces();
 
@@ -503,6 +503,8 @@ public class FragmentBehavior : MonoBehaviour
 
         bc.enabled = false;
 
+        SpawnSnapParticles();
+
         // Enable fragments snap points
         ToggleSnapPoints(snapPointsActive);
 
@@ -628,8 +630,6 @@ public class FragmentBehavior : MonoBehaviour
     private void DisableSnapPoint(GameObject snapPoint)
     {
         snapPoint.SetActive(false);
-        Instantiate(snapParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        print("particle");
     }
 
     /// <summary>
@@ -649,9 +649,8 @@ public class FragmentBehavior : MonoBehaviour
     ///<summary>
     /// Creates the snap particle effect
     /// </summary>
-    private void SnapParticle()
+    private void SpawnSnapParticles()
     {
-         Instantiate(snapParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-         print("particle");
+         Instantiate(snapParticle, transform.position, Quaternion.identity);
     }
 }

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fragment
   m_EditorClassIdentifier: 
   xBoundary: 5
-  yBoundry: 3
-  zPosIdle: 3
+  yBoundry: 2.5
+  zPosIdle: 0
   snapLayerMask: 6
   maxSpeed: 1.75
   dragSpeed: 8
