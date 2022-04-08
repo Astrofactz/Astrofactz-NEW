@@ -8,6 +8,7 @@
 *******************************************************************************/
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class FragmentBehavior : MonoBehaviour
@@ -211,12 +212,14 @@ public class FragmentBehavior : MonoBehaviour
 
         ToggleSnapPoints(snapPointsActive);
 
+        AudioMixer mixer = Resources.Load("Mixer") as AudioMixer;
         sm = FindObjectOfType<SoundManager>();
         srce = GetComponent<AudioSource>();
         srce.volume = 0;
         srce.clip = dragSnd;
         srce.playOnAwake = true;
         srce.loop = true;
+        srce.outputAudioMixerGroup = mixer.FindMatchingGroups("SFX")[0];
         srce.Play();
     }
 
@@ -350,8 +353,9 @@ public class FragmentBehavior : MonoBehaviour
             transform.position = new Vector3(xClamp, yClamp, transform.position.z);
 
             float t = Vector3.Distance(mousePos, transform.position);
-            srce.volume = Mathf.Lerp(0.1f, 1, t) /3;
-            srce.pitch = Mathf.Lerp(0.75f, 1.25f, t);
+            t /= dragSpeed * Time.deltaTime;
+            srce.volume = Mathf.Lerp(0.25f, 1, t);
+            srce.pitch = Mathf.Lerp(0.5f, 1f, t);
         }
     }
 

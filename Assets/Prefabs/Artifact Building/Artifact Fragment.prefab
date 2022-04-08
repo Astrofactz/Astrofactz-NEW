@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragment: {fileID: 11400000, guid: 8ada786e1b3c34eaf9a829fe29bd8ef3, type: 2}
   correctSnapPoint: {fileID: 0}
-  dragSnd: {fileID: 8300000, guid: a940fa81e3544f742b5cf15c370a5ec2, type: 3}
+  dragSnd: {fileID: 8300000, guid: a7720ef34a4caa347b87409b3ef4dd48, type: 3}
   rotationOffset: 0
   snapParticle: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
 --- !u!54 &2971703648496083186
