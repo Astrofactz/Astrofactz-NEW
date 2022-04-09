@@ -354,8 +354,8 @@ public class FragmentBehavior : MonoBehaviour
 
             float t = Vector3.Distance(mousePos, transform.position);
             t /= dragSpeed * Time.deltaTime;
-            srce.volume = Mathf.Lerp(0.25f, 1, t);
-            srce.pitch = Mathf.Lerp(0.5f, 1f, t);
+            srce.volume = 0.5f;
+            srce.pitch = Mathf.Lerp(0.5f, 1.25f, t);
         }
     }
 
