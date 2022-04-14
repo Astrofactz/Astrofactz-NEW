@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleBlueprint
       objectReference: {fileID: 0}
+    - target: {fileID: 689523085200818297, guid: 72350c99a1afe46639a85a1eadc410d1, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1886511119993182035, guid: 72350c99a1afe46639a85a1eadc410d1, type: 3}
       propertyPath: m_IsActive
       value: 1

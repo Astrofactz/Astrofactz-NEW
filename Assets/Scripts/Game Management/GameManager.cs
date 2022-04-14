@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Game win UI panel")]
     public GameObject gameWinUI;
 
+    [Tooltip("Tutorial UI Panel")]
+    public GameObject TutorialUI;
+
     public GameObject firework;
 
     public float timeBetweenSpawn = 1.0f;
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+        TutorialUI.SetActive(true);
     }
 
     /// <summary>
@@ -85,7 +88,8 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// When the artifact is completed, the winning UI will appear and fireworks
+    /// will be invoked
     /// </summary>
     public void ArtifactComplete()
     {
@@ -95,11 +99,12 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// 
+    /// Starts firework particle effect
     /// </summary>
     public void Firework()
     {
         Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
     }
+
 
 }
