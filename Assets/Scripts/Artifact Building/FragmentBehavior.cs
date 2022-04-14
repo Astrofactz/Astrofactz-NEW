@@ -7,6 +7,7 @@
                     pieces.
 *******************************************************************************/
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Audio;
 
@@ -154,6 +155,16 @@ public class FragmentBehavior : MonoBehaviour
     ///</summary>
     public GameObject snapParticle;
 
+    ///<summary>
+    /// Graphic to reward player for connect a piece
+    ///</summary>
+    public GameObject snapGraphic;
+
+    public GameObject stella;
+    public GameObject alistar;
+
+    public float seconds = 1f;
+
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
@@ -162,6 +173,7 @@ public class FragmentBehavior : MonoBehaviour
         InitializeVariables();
         //RandomRotation();
         AddRandomForce();
+        snapGraphic.SetActive(false);
     }
 
     /// <summary>
@@ -277,6 +289,8 @@ public class FragmentBehavior : MonoBehaviour
                 CombinePieces();
 
                 sm.Play("RightSnap");
+                
+
             }
 
             // If incorrect target                                              // figure out what to do when pieces placed incorrectly
@@ -621,6 +635,8 @@ public class FragmentBehavior : MonoBehaviour
         {
             if (!fb.IsPlaced())
                 artifactComplete = false;
+            snapGraphic.SetActive(true);
+            StartCoroutine(CorrectSnapUI());
         }
 
         if (artifactComplete)
@@ -656,5 +672,30 @@ public class FragmentBehavior : MonoBehaviour
     private void SpawnSnapParticles()
     {
          Instantiate(snapParticle, transform.position, Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Decides what character will popup to reward the player upon getting a
+    /// correct snapped piece
+    /// </summary>
+    IEnumerator CorrectSnapUI()
+    {
+        
+        float characterChoice = Random.Range(1, 3);
+
+        if (characterChoice == 1)
+        {
+            stella.SetActive(false);
+            alistar.SetActive(true);
+        }
+        else if (characterChoice == 2)
+        {
+            stella.SetActive(true);
+            alistar.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(seconds);
+        snapGraphic.SetActive(false);
+
     }
 }
