@@ -160,9 +160,19 @@ public class FragmentBehavior : MonoBehaviour
     ///</summary>
     public GameObject snapGraphic;
 
+    /// <summary>
+    /// Stella graphic for the CorrectSnapUI scnrren
+    /// </summary>
     public GameObject stella;
+
+    /// <summary>
+    /// Alistar graphic for the CorrectSnapUI scnrren
+    /// </summary>
     public GameObject alistar;
 
+    /// <summary>
+    /// Time it takes for the reward popup to disappear
+    /// </summary>
     public float seconds = 1f;
 
     /// <summary>
