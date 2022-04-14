@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        TutorialUI.SetActive(true);
+        
     }
 
     /// <summary>
