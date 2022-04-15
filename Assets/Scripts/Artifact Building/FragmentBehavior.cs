@@ -23,9 +23,10 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("Sound that plays while dragging the fragment")]
     public AudioClip dragSnd;
 
+    [Tooltip("Particle system to play when fragment placed correctly")]
+    public GameObject snapParticle;
 
-    public float rotationOffset;
-
+    #region Level Bounds
     /// <summary>
     /// Horizontal and vertical level bounds
     /// </summary>
@@ -39,7 +40,8 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Boundary offset when looping pieces around level
     /// </summary>
-    private float boundaryOffset = 0.25f;
+    private float boundaryOffset = 0.5f;
+    #endregion
 
     #region Active Movement
     /// <summary>
@@ -66,6 +68,16 @@ public class FragmentBehavior : MonoBehaviour
     /// Speed fragment rotates
     /// </summary>
     private float rotateSpeed;
+
+    /// <summary>
+    /// Threshold rotation must be from correct rotation to be correct
+    /// </summary>
+    public float rotationThreshold;
+
+    /// <summary>
+    /// Distance mouse must be from fragment before rotating
+    /// </summary>
+    public float rotationRadius;
     #endregion
 
     #region Idle Movement
@@ -89,6 +101,11 @@ public class FragmentBehavior : MonoBehaviour
     /// Array of all artifact fragments in scene
     /// </summary>
     private FragmentBehavior[] fbArray;
+
+    /// <summary>
+    /// Pedestal object in scene
+    /// </summary>
+    private GameObject pedestal;
 
     /// <summary>
     /// Reference to game manager in scene
@@ -150,31 +167,6 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
-    ///<summary>
-    /// Particle effect to be instantiated upon snapping a piece to the artifact.
-    ///</summary>
-    public GameObject snapParticle;
-
-    ///<summary>
-    /// Graphic to reward player for connect a piece
-    ///</summary>
-    public GameObject snapGraphic;
-
-    /// <summary>
-    /// Stella graphic for the CorrectSnapUI scnrren
-    /// </summary>
-    public GameObject stella;
-
-    /// <summary>
-    /// Alistar graphic for the CorrectSnapUI scnrren
-    /// </summary>
-    public GameObject alistar;
-
-    /// <summary>
-    /// Time it takes for the reward popup to disappear
-    /// </summary>
-    public float seconds = 1f;
-
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
@@ -183,7 +175,6 @@ public class FragmentBehavior : MonoBehaviour
         InitializeVariables();
         //RandomRotation();
         AddRandomForce();
-        snapGraphic.SetActive(false);
     }
 
     /// <summary>
@@ -231,9 +222,11 @@ public class FragmentBehavior : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
 
         fbArray = FindObjectsOfType<FragmentBehavior>();
+        pedestal = GameObject.FindGameObjectWithTag("Pedestal");
 
         ToggleSnapPoints(snapPointsActive);
 
+        // Sounds
         AudioMixer mixer = Resources.Load("Mixer") as AudioMixer;
         sm = FindObjectOfType<SoundManager>();
         srce = GetComponent<AudioSource>();
@@ -252,7 +245,6 @@ public class FragmentBehavior : MonoBehaviour
     public bool IsPlaced()
     {
         return isPlaced;
-
     }
 
     #region Fragment interaction
@@ -264,20 +256,14 @@ public class FragmentBehavior : MonoBehaviour
     {
         if (!isPlaced && Input.GetMouseButton(1))
         {
-            print("rotating");
-            //Rotate();
+            Rotate();
+            transform.position = transform.position;
+
+            // fix cursor shit
         }
 
         else if (!isPlaced)
             MovePiece();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void OnMouseDown()
-    {
-        StopCoroutine("MoveZPos");
     }
 
     /// <summary>
@@ -294,21 +280,15 @@ public class FragmentBehavior : MonoBehaviour
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
-            if (currentSnapTarget == correctSnapPoint)// && rotationCorrect)
+            if (currentSnapTarget == correctSnapPoint && rotationCorrect)
             {
                 CombinePieces();
-
-                sm.Play("RightSnap");
-                
-
             }
 
             // If incorrect target                                              // figure out what to do when pieces placed incorrectly
             else if (currentSnapTarget != correctSnapPoint)                     
             {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds ?
                 AddIdleForce();
-
-
                 sm.Play("WrongSnap");
 
                 StartCoroutine(MoveZPos(zPosIdle));
@@ -378,6 +358,7 @@ public class FragmentBehavior : MonoBehaviour
 
             float t = Vector3.Distance(mousePos, transform.position);
             t /= dragSpeed * Time.deltaTime;
+
             srce.volume = 0.5f;
             srce.pitch = Mathf.Lerp(0.5f, 1.25f, t);
         }
@@ -401,19 +382,20 @@ public class FragmentBehavior : MonoBehaviour
 
             yield return null;
         }
-
-        print("z pos done");
     }
 
 
     /// <summary>
-    /// Called when fragment moves outside of level boundary collider
+    /// Called when fragment colliders with level boundary collider
     /// </summary>
     /// <param name="other">Other collider involved in collision</param>
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
+        print("collision");
+
         if (other.gameObject.tag == "Bounds")
         {
+            print("hit bounds");
             CheckBounds();
         }
     }
@@ -531,7 +513,8 @@ public class FragmentBehavior : MonoBehaviour
 
         bc.enabled = false;
 
-        SpawnSnapParticles();
+        PlayPS();
+        sm.Play("RightSnap");
 
         // Enable fragments snap points
         ToggleSnapPoints(snapPointsActive);
@@ -555,66 +538,56 @@ public class FragmentBehavior : MonoBehaviour
         Vector3 mousePos = FindMousePos();
 
         Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         int layerMask = 1 << snapLayerMask;
 
+        // Checks if mouse is over snap target
         if (Physics.Raycast(snapRay, out RaycastHit hit, Mathf.Infinity, layerMask))
             currentSnapTarget = hit.transform.gameObject;
         else
             currentSnapTarget = null;
 
-
+        // Difference between mouse and fragment center
         float mouseDif = transform.position.x - mousePos.x;
+        float mouseDis = Vector3.Distance(transform.position, mousePos);
 
         Vector3 rotationDir;
 
-        if (mouseDif > 1.0f)
-        {
+        // Rotate right
+        if (mouseDif > 0f && mouseDis > rotationRadius)
             rotationDir = Vector3.up;
-            print("rotate right");
-        }
-        else if (mouseDif < -1.0f)
-        {
+        // Rotate left
+        else if (mouseDif < 0f && mouseDis > rotationRadius)
             rotationDir = Vector3.down;
-            print("rotate left");
-        }
+        // Don't rotate
         else
             rotationDir = Vector3.zero;
 
+        // Gets target rotation
         Vector3 targetRot = transform.eulerAngles + rotationDir;
-
         Quaternion targetRotation = Quaternion.Euler(targetRot);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        // Rotates towards target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * mouseDis * Time.deltaTime);
 
-        if(currentSnapTarget)
+        // Check if rotation correct
+        float correctRot = pedestal.transform.rotation.eulerAngles.y;
+        float currentRot = transform.rotation.eulerAngles.y;
+
+        if (Vector3.Distance(transform.position, correctSnapPoint.transform.position) < 0.1f)
         {
-            if (transform.rotation.y < rotationOffset || transform.rotation.y > -rotationOffset)
+            if (currentRot < correctRot + rotationThreshold &&
+                currentRot > correctRot - rotationThreshold)
             {
-                transform.rotation = Quaternion.Euler(Vector3.zero);
+                transform.rotation = Quaternion.Euler(0, correctRot, 0);
                 rotationCorrect = true;
             }
 
             else
                 rotationCorrect = false;
         }
-
-        //get mouse position in relation to artifact
-
-        //rotation direction = 0
-
-        //if mouse distance.x greater than x, rotation dir = 1
-
-        //if mouse distance.x less than x, rotation dir = -1
-
-
-        // while rotation offset greater than/less than && input mouse down
-        // y rot = transform.rotation.y
-        // change y rot while true
-        // transform.rotation = (0, yrot, 0)
-
-        //transform.rotation = transfrom.rotation
     }
+
+    // only snap rotation if over a snap target/over correct snap target
 
 
     /// <summary>
@@ -645,8 +618,8 @@ public class FragmentBehavior : MonoBehaviour
         {
             if (!fb.IsPlaced())
                 artifactComplete = false;
-            snapGraphic.SetActive(true);
-            StartCoroutine(CorrectSnapUI());
+
+            // call snap pop-up
         }
 
         if (artifactComplete)
@@ -677,35 +650,10 @@ public class FragmentBehavior : MonoBehaviour
     }
 
     ///<summary>
-    /// Creates the snap particle effect
+    /// Spawns snap particle effect; called when fragment placed correctly
     /// </summary>
-    private void SpawnSnapParticles()
+    private void PlayPS()
     {
          Instantiate(snapParticle, transform.position, Quaternion.identity);
-    }
-
-    /// <summary>
-    /// Decides what character will popup to reward the player upon getting a
-    /// correct snapped piece
-    /// </summary>
-    IEnumerator CorrectSnapUI()
-    {
-        
-        float characterChoice = Random.Range(1, 3);
-
-        if (characterChoice == 1)
-        {
-            stella.SetActive(false);
-            alistar.SetActive(true);
-        }
-        else if (characterChoice == 2)
-        {
-            stella.SetActive(true);
-            alistar.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(seconds);
-        snapGraphic.SetActive(false);
-
     }
 }
