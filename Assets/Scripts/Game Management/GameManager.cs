@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Options close menu button")]
     public GameObject optionsCloseButton;
 
+    [Tooltip("Blueprint UI Canvas")]
+    public GameObject blueprintCanavs;
+
     [Tooltip("Blueprint UI panel")]
     public GameObject blueprintUI;
 
@@ -57,16 +60,6 @@ public class GameManager : MonoBehaviour
         blueprintActive = !blueprintActive;
     }
 
-    public void InvisibleToggle()
-    {
-        if(blueprintActive)
-        {
-            blueprintUI.SetActive(false);
-        }
-
-        blueprintActive = !blueprintActive;
-    }
-
     /// <summary>
     /// Toggles options panel on/off
     /// </summary>
@@ -93,6 +86,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ArtifactComplete()
     {
+        blueprintCanavs.SetActive(false);
         gameWinUI.SetActive(true);
         Invoke("Firework", 0);
     }

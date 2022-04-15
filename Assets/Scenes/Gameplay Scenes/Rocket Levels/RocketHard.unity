@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22537345, g: 0.18958956, b: 0.2866928, a: 1}
+  m_IndirectSpecularColor: {r: 0.22538412, g: 0.18959224, b: 0.286738, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2990,10 +2990,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7741528943896348222, guid: 56a5e7a00657d47aa8f2e01d1b0cd040, type: 3}
-      propertyPath: m_Intensity
-      value: 0.65
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56a5e7a00657d47aa8f2e01d1b0cd040, type: 3}
 --- !u!1001 &1758298166
@@ -3192,6 +3188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72350c99a1afe46639a85a1eadc410d1, type: 3}
+--- !u!1 &1836198757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 22281450827478961, guid: 72350c99a1afe46639a85a1eadc410d1, type: 3}
+  m_PrefabInstance: {fileID: 1836198756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868865559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3930,6 +3931,10 @@ PrefabInstance:
       propertyPath: blueprintUI
       value: 
       objectReference: {fileID: 1455186312}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: blueprintCanavs
+      value: 
+      objectReference: {fileID: 1836198757}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: optionsCloseButton
       value: 
