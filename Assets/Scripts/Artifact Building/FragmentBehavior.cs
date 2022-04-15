@@ -167,13 +167,34 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
+                                                                                // MOVE THESE TO SEPARATE SCRIPT
+    ///<summary>
+    /// Graphic to reward player for connect a piece
+    ///</summary>
+    public GameObject snapGraphic;
+
+    /// <summary>
+    /// Stella graphic for the CorrectSnapUI scnrren
+    /// </summary>
+    public GameObject stella;
+
+    /// <summary>
+    /// Alistar graphic for the CorrectSnapUI scnrren
+    /// </summary>
+    public GameObject alistar;
+
+    /// <summary>
+    /// Time it takes for the reward popup to disappear
+    /// </summary>
+    public float seconds = 1f;
+
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
     void Start()
     {
         InitializeVariables();
-        //RandomRotation();
+        RandomRotation();
         AddRandomForce();
     }
 
@@ -182,6 +203,9 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     public void Update()
     {
+        CheckBounds();
+
+
         // Limits speed fragment can float while idle
         if (rb.velocity.magnitude >= maxSpeed && !isPlaced && !isDragged)
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -275,6 +299,8 @@ public class FragmentBehavior : MonoBehaviour
         isDragged = false;
 
         srce.volume = 0;
+
+        CheckRotation();
 
         // If has snap target
         if (currentSnapTarget)
@@ -579,11 +605,7 @@ public class FragmentBehavior : MonoBehaviour
                 currentRot > correctRot - rotationThreshold)
             {
                 transform.rotation = Quaternion.Euler(0, correctRot, 0);
-                rotationCorrect = true;
             }
-
-            else
-                rotationCorrect = false;
         }
     }
 
@@ -602,6 +624,25 @@ public class FragmentBehavior : MonoBehaviour
         transform.rotation = randomRotation;
     }
 
+    private void CheckRotation()
+    {
+        // Check if rotation correct
+        float correctRot = pedestal.transform.rotation.eulerAngles.y;
+        float currentRot = transform.rotation.eulerAngles.y;
+
+        if (Vector3.Distance(transform.position, correctSnapPoint.transform.position) < 0.1f)
+        {
+            if (currentRot < correctRot + rotationThreshold &&
+                currentRot > correctRot - rotationThreshold)
+            {
+                transform.rotation = Quaternion.Euler(0, correctRot, 0);
+                rotationCorrect = true;
+            }
+
+            else
+                rotationCorrect = false;
+        }
+    }
 
     #endregion
 
@@ -619,6 +660,7 @@ public class FragmentBehavior : MonoBehaviour
             if (!fb.IsPlaced())
                 artifactComplete = false;
 
+            StartCoroutine(CorrectSnapUI());
             // call snap pop-up
         }
 
@@ -655,5 +697,32 @@ public class FragmentBehavior : MonoBehaviour
     private void PlayPS()
     {
          Instantiate(snapParticle, transform.position, Quaternion.identity);
+    }
+
+                                                                               // MOVE TO SEPARATE SCRIPT
+    /// <summary>
+    /// Decides what character will popup to reward the player upon getting a
+    /// correct snapped piece
+    /// </summary>
+    IEnumerator CorrectSnapUI()
+    {
+
+        float characterChoice = Random.Range(1, 3);
+
+        if (characterChoice == 1)
+        {
+            stella.SetActive(false);
+            alistar.SetActive(true);
+        }
+        else if (characterChoice == 2)
+        {
+            stella.SetActive(true);
+            alistar.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(seconds);
+
+        stella.SetActive(false);
+        alistar.SetActive(false);
     }
 }

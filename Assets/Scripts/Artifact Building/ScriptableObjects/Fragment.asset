@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5040983999e0c4237953ed6177daeb18, type: 3}
   m_Name: Fragment
   m_EditorClassIdentifier: 
-  xBoundary: 4.5
-  yBoundry: 2.5
+  xBoundary: 5.5
+  yBoundry: 3.5
   zPosIdle: 0
   snapLayerMask: 6
   maxSpeed: 2
