@@ -15,13 +15,21 @@ public class PedestalBehavior : MonoBehaviour
     /// </summary>
     private Vector3 rotationDir = Vector3.zero;
 
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = GameObject.FindObjectOfType<GameManager>();
+    }
+
+
     /// <summary>
     /// Called every frame mouse is dragged; if holding right click, rotate
     /// pedestal
     /// </summary>
     private void OnMouseDrag()
     {
-        if (Input.GetMouseButton(1))
+        if(!gm.gameWon)
             Rotate();
     }
 
@@ -47,9 +55,8 @@ public class PedestalBehavior : MonoBehaviour
         else
             rotationDir = Vector3.zero;
 
-
+        // Rotates towards target direction
         Vector3 targetRot = transform.eulerAngles + rotationDir;
-
         Quaternion targetRotation = Quaternion.Euler(targetRot);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,

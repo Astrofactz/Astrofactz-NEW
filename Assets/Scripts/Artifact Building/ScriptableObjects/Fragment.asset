@@ -16,10 +16,10 @@ MonoBehaviour:
   yBoundry: 3.5
   zPosIdle: 0
   snapLayerMask: 6
-  maxSpeed: 2
+  maxSpeed: 1.75
   dragSpeed: 8
   snapSpeed: 10
-  rotateSpeed: 25
-  moveIdleSpeed: 12
-  throwIdleSpeed: 25
-  rotateIdleSpeed: 0
+  rotateSpeed: 1
+  moveIdleSpeed: 30
+  throwIdleSpeed: 30
+  rotateIdleSpeed: 15

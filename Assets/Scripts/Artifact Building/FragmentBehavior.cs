@@ -26,6 +26,9 @@ public class FragmentBehavior : MonoBehaviour
     [Tooltip("Particle system to play when fragment placed correctly")]
     public GameObject snapParticle;
 
+    [Tooltip("Z position offset for spawning particle effects")]
+    public float zPosOffsetPS;
+
     #region Level Bounds
     /// <summary>
     /// Horizontal and vertical level bounds
@@ -68,16 +71,6 @@ public class FragmentBehavior : MonoBehaviour
     /// Speed fragment rotates
     /// </summary>
     private float rotateSpeed;
-
-    /// <summary>
-    /// Threshold rotation must be from correct rotation to be correct
-    /// </summary>
-    public float rotationThreshold;
-
-    /// <summary>
-    /// Distance mouse must be from fragment before rotating
-    /// </summary>
-    public float rotationRadius;
     #endregion
 
     #region Idle Movement
@@ -130,7 +123,7 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Tracks whether piece is placed in correct position
     /// </summary>
-    private bool isPlaced = false;
+    public bool isPlaced { get; set; } = false;
 
     /// <summary>
     /// Tracks whether the piece is currently being dragged
@@ -138,24 +131,24 @@ public class FragmentBehavior : MonoBehaviour
     private bool isDragged = false;
 
     /// <summary>
-    /// 
-    /// </summary>
-    private bool rotationCorrect = false;
-
-    /// <summary>
-    /// Tracks previous mouse position
+    /// Tracks previous mouse position when dragging
     /// </summary>
     private Vector3 prevFragmentPos;
+
+    /// <summary>
+    /// Tracks position of fragment when first dragged
+    /// </summary>
+    private Vector3 startDragPos;
+
+    /// <summary>
+    /// Tracks whether piece is in artifact build zone
+    /// </summary>
+    private bool inBuildZone = false;
 
     /// <summary>
     /// Tracks whether child snap points are active
     /// </summary>
     private bool snapPointsActive = true;
-
-    /// <summary>
-    /// Starting position of piece
-    /// </summary>
-    private Vector3 startPos;
 
     /// <summary>
     /// Reference to BoxCollider component
@@ -167,34 +160,13 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private Rigidbody rb;
 
-                                                                                // MOVE THESE TO SEPARATE SCRIPT
-    ///<summary>
-    /// Graphic to reward player for connect a piece
-    ///</summary>
-    public GameObject snapGraphic;
-
-    /// <summary>
-    /// Stella graphic for the CorrectSnapUI scnrren
-    /// </summary>
-    public GameObject stella;
-
-    /// <summary>
-    /// Alistar graphic for the CorrectSnapUI scnrren
-    /// </summary>
-    public GameObject alistar;
-
-    /// <summary>
-    /// Time it takes for the reward popup to disappear
-    /// </summary>
-    public float seconds = 1f;
-
     /// <summary>
     /// Called at start; initializes variables
     /// </summary>
     void Start()
     {
         InitializeVariables();
-        RandomRotation();
+        AddRandomRotation();
         AddRandomForce();
     }
 
@@ -204,7 +176,6 @@ public class FragmentBehavior : MonoBehaviour
     public void Update()
     {
         CheckBounds();
-
 
         // Limits speed fragment can float while idle
         if (rb.velocity.magnitude >= maxSpeed && !isPlaced && !isDragged)
@@ -227,8 +198,6 @@ public class FragmentBehavior : MonoBehaviour
 
         transform.position = new Vector3 (transform.position.x, transform.position.y, zPosIdle);
 
-        startPos = transform.position;
-
         snapLayerMask = fragment.snapLayerMask;
 
         maxSpeed = fragment.maxSpeed;
@@ -250,7 +219,7 @@ public class FragmentBehavior : MonoBehaviour
 
         ToggleSnapPoints(snapPointsActive);
 
-        // Sounds
+        // Audio
         AudioMixer mixer = Resources.Load("Mixer") as AudioMixer;
         sm = FindObjectOfType<SoundManager>();
         srce = GetComponent<AudioSource>();
@@ -262,31 +231,26 @@ public class FragmentBehavior : MonoBehaviour
         srce.Play();
     }
 
+    #region Fragment interaction
     /// <summary>
-    /// Returns whether fragment has been correctly placed
+    /// 
     /// </summary>
-    /// <returns>Whether fragment is placed correctly</returns>
-    public bool IsPlaced()
+    private void OnMouseDown()
     {
-        return isPlaced;
+        if (!isPlaced)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            StartCoroutine(MatchTargetRot());
+        }
     }
 
-    #region Fragment interaction
     /// <summary>
     /// Called when mouse drags object; if mouse collides with snap point, snaps
     /// piece to snap point, else piece follows mouse
     /// </summary>
     private void OnMouseDrag()
     {
-        if (!isPlaced && Input.GetMouseButton(1))
-        {
-            Rotate();
-            transform.position = transform.position;
-
-            // fix cursor shit
-        }
-
-        else if (!isPlaced)
+        if (!isPlaced)
             MovePiece();
     }
 
@@ -297,35 +261,47 @@ public class FragmentBehavior : MonoBehaviour
     private void OnMouseUp()
     {
         isDragged = false;
-
         srce.volume = 0;
-
-        CheckRotation();
 
         // If has snap target
         if (currentSnapTarget)
         {
             // If correct target, combine pieces
-            if (currentSnapTarget == correctSnapPoint && rotationCorrect)
+            if (currentSnapTarget == correctSnapPoint)
             {
                 CombinePieces();
             }
 
-            // If incorrect target                                              // figure out what to do when pieces placed incorrectly
-            else if (currentSnapTarget != correctSnapPoint)                     
-            {                                                                   // if placed incorrectly anywhere in build zone, teleport it those outside bounds ?
+            // If incorrect target
+            else if (currentSnapTarget != correctSnapPoint)
+            {
+                rb.constraints = RigidbodyConstraints.None;
+                rb.constraints = RigidbodyConstraints.FreezePositionZ;
                 AddIdleForce();
                 sm.Play("WrongSnap");
 
-                StartCoroutine(MoveZPos(zPosIdle));
+                StartCoroutine(MovePos(startDragPos, 0.2f));
             }
         }
         // If does not have snap target
         else
         {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezePositionZ;
+
             // Throw piece, if magnitude under threshold, add random force
             AddIdleForce();
-            StartCoroutine(MoveZPos(zPosIdle));
+
+            // if in build zone, target outside of zone; else wherever is released
+            Vector3 target;
+
+            if (inBuildZone)
+                target = startDragPos;
+
+            else
+                target = new Vector3 (transform.position.x, transform.position.y, zPosIdle);
+
+            StartCoroutine(MovePos(target, 0.2f));
 
             if (rb.velocity.magnitude < 0.01f)                                  // need stop movement check for non-drag pieces too
                 Invoke("AddRandomForce", 2.0f);
@@ -394,17 +370,16 @@ public class FragmentBehavior : MonoBehaviour
     /// Moves fragment to specified target on z axis
     /// </summary>
     /// <param name="zPosTarget">target z position</param>
-    IEnumerator MoveZPos(float zPosTarget)
+    IEnumerator MovePos(Vector3 targetPos, float moveSpeedMod)
     {
-        while (transform.position.z - zPosTarget > 0.01f ||
-               transform.position.z - zPosTarget < -0.01f)
+        float dist = Vector3.Distance(transform.position, targetPos);
+
+        while (dist > 0.01f || dist < -0.01f)
         {
-
-            Vector3 targetPos = new Vector3 (transform.position.x,
-                                transform.position.y, zPosTarget);
-
             transform.position = Vector3.MoveTowards(transform.position, targetPos,
-                                 (moveIdleSpeed / 4) * Time.deltaTime);
+                                 (moveIdleSpeed * moveSpeedMod) * Time.deltaTime);
+
+            dist = Vector3.Distance(transform.position, targetPos);
 
             yield return null;
         }
@@ -417,13 +392,27 @@ public class FragmentBehavior : MonoBehaviour
     /// <param name="other">Other collider involved in collision</param>
     private void OnTriggerEnter(Collider other)
     {
-        print("collision");
-
         if (other.gameObject.tag == "Bounds")
         {
             print("hit bounds");
             CheckBounds();
         }
+
+        else if (other.gameObject.tag == "Build Zone")
+        {
+            inBuildZone = true;
+            startDragPos = transform.position;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Build Zone")
+            inBuildZone = false;
     }
 
     /// <summary>
@@ -440,7 +429,7 @@ public class FragmentBehavior : MonoBehaviour
         yForce = Random.Range(-1.0f, 1.0f);
 
         Vector3 moveForce = new Vector3(xForce, yForce, 0.0f) * moveIdleSpeed
-                                                              * Time.deltaTime;
+                                                              / 100;
 
         rb.AddForce(moveForce);
     }
@@ -499,7 +488,7 @@ public class FragmentBehavior : MonoBehaviour
 
             force.Normalize();
 
-            rb.AddForce(force * moveIdleSpeed * Time.deltaTime);
+            rb.AddForce(force * moveIdleSpeed / 100);
         }
     }
 
@@ -539,7 +528,7 @@ public class FragmentBehavior : MonoBehaviour
 
         bc.enabled = false;
 
-        PlayPS();
+        SpawnPS();
         sm.Play("RightSnap");
 
         // Enable fragments snap points
@@ -561,87 +550,56 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void Rotate()
     {
-        Vector3 mousePos = FindMousePos();
 
-        Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        int layerMask = 1 << snapLayerMask;
-
-        // Checks if mouse is over snap target
-        if (Physics.Raycast(snapRay, out RaycastHit hit, Mathf.Infinity, layerMask))
-            currentSnapTarget = hit.transform.gameObject;
-        else
-            currentSnapTarget = null;
-
-        // Difference between mouse and fragment center
-        float mouseDif = transform.position.x - mousePos.x;
-        float mouseDis = Vector3.Distance(transform.position, mousePos);
-
-        Vector3 rotationDir;
-
-        // Rotate right
-        if (mouseDif > 0f && mouseDis > rotationRadius)
-            rotationDir = Vector3.up;
-        // Rotate left
-        else if (mouseDif < 0f && mouseDis > rotationRadius)
-            rotationDir = Vector3.down;
-        // Don't rotate
-        else
-            rotationDir = Vector3.zero;
-
-        // Gets target rotation
-        Vector3 targetRot = transform.eulerAngles + rotationDir;
-        Quaternion targetRotation = Quaternion.Euler(targetRot);
-
-        // Rotates towards target rotation
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * mouseDis * Time.deltaTime);
-
-        // Check if rotation correct
-        float correctRot = pedestal.transform.rotation.eulerAngles.y;
-        float currentRot = transform.rotation.eulerAngles.y;
-
-        if (Vector3.Distance(transform.position, correctSnapPoint.transform.position) < 0.1f)
-        {
-            if (currentRot < correctRot + rotationThreshold &&
-                currentRot > correctRot - rotationThreshold)
-            {
-                transform.rotation = Quaternion.Euler(0, correctRot, 0);
-            }
-        }
     }
-
-    // only snap rotation if over a snap target/over correct snap target
 
 
     /// <summary>
-    /// 
+    /// Adds random rotatoinal force on all axes
     /// </summary>
-    private void RandomRotation()
+    private void AddRandomRotation()
     {
-        float randomRot = Random.Range(0.0f, 360.0f);
+        float xForce, yForce, zForce;
 
-        Quaternion randomRotation = Quaternion.Euler(0, randomRot, 0);
+        xForce = Random.Range(-1.0f, 1.0f);
+        yForce = Random.Range(-1.0f, 1.0f);
+        zForce = Random.Range(-1.0f, 1.0f);
 
-        transform.rotation = randomRotation;
+        Vector3 rotForce = new Vector3(xForce, yForce, zForce);
+
+        rb.AddTorque(rotForce * rotateIdleSpeed / 100);
+
+
+        // rotate along all axes; not just set static rotation
+
+        //float randomRot = Random.Range(0.0f, 360.0f);
+
+        //Quaternion randomRotation = Quaternion.Euler(0, randomRot, 0);
+
+        //transform.rotation = randomRotation;
     }
 
-    private void CheckRotation()
+    /// <summary>
+    /// Rotates fragment to match rotation of base artifact on pedestal
+    /// </summary>
+    IEnumerator MatchTargetRot()
     {
-        // Check if rotation correct
-        float correctRot = pedestal.transform.rotation.eulerAngles.y;
-        float currentRot = transform.rotation.eulerAngles.y;
+        Quaternion targetRot = pedestal.transform.rotation;
 
-        if (Vector3.Distance(transform.position, correctSnapPoint.transform.position) < 0.1f)
+        float rotDiff = (transform.rotation.eulerAngles - targetRot.eulerAngles).magnitude;
+
+        while ((rotDiff > 0.1f || rotDiff < -0.1f) && rotDiff != 360)
         {
-            if (currentRot < correctRot + rotationThreshold &&
-                currentRot > correctRot - rotationThreshold)
-            {
-                transform.rotation = Quaternion.Euler(0, correctRot, 0);
-                rotationCorrect = true;
-            }
+            Quaternion target = Quaternion.RotateTowards(transform.rotation, targetRot, rotateSpeed);
 
-            else
-                rotationCorrect = false;
+            transform.rotation = target;
+
+            rotDiff = (transform.rotation.eulerAngles - targetRot.eulerAngles).magnitude;
+
+            yield return null;
         }
+
+        transform.rotation = targetRot;
     }
 
     #endregion
@@ -657,10 +615,10 @@ public class FragmentBehavior : MonoBehaviour
         // If any fragment is not placed, artifact is not complete
         foreach (FragmentBehavior fb in fbArray)
         {
-            if (!fb.IsPlaced())
+            if (!fb.isPlaced)
                 artifactComplete = false;
 
-            StartCoroutine(CorrectSnapUI());
+            //StartCoroutine(CorrectSnapUI());
             // call snap pop-up
         }
 
@@ -694,35 +652,11 @@ public class FragmentBehavior : MonoBehaviour
     ///<summary>
     /// Spawns snap particle effect; called when fragment placed correctly
     /// </summary>
-    private void PlayPS()
+    private void SpawnPS()
     {
-         Instantiate(snapParticle, transform.position, Quaternion.identity);
-    }
+        Vector3 offset = new Vector3(0.0f, 0.0f, zPosOffsetPS);
 
-                                                                               // MOVE TO SEPARATE SCRIPT
-    /// <summary>
-    /// Decides what character will popup to reward the player upon getting a
-    /// correct snapped piece
-    /// </summary>
-    IEnumerator CorrectSnapUI()
-    {
-
-        float characterChoice = Random.Range(1, 3);
-
-        if (characterChoice == 1)
-        {
-            stella.SetActive(false);
-            alistar.SetActive(true);
-        }
-        else if (characterChoice == 2)
-        {
-            stella.SetActive(true);
-            alistar.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(seconds);
-
-        stella.SetActive(false);
-        alistar.SetActive(false);
+        Instantiate(snapParticle, transform.position - offset,
+                    Quaternion.identity);
     }
 }

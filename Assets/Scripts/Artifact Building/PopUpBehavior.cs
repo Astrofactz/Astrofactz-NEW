@@ -24,7 +24,8 @@ public class PopUpBehavior : MonoBehaviour
     /// </summary>
     public float seconds = 1f;
 
-
+    
+    public List<string> dialogueList;
 
     // Start is called before the first frame update
     void Start()

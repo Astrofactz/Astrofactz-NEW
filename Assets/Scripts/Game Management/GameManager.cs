@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
+    public bool gameWon { get; set; } = false;
+
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         
@@ -84,10 +89,23 @@ public class GameManager : MonoBehaviour
     /// When the artifact is completed, the winning UI will appear and fireworks
     /// will be invoked
     /// </summary>
-    public void ArtifactComplete()
+    public void ArtifactComplete()                                              // COROUTINE
     {
+        gameWon = true;
+
+        // disable blueprint canvas
+        // rotate pedestal to face front
+        // spawn fireworks? here or later?
+
+        // trigger complete artifact animation
+
+        // trigger complete artifact curator pop-ups
+        // click to continue, enable continue panel in UI
+
+
         blueprintCanavs.SetActive(false);
         gameWinUI.SetActive(true);
+
         Invoke("Firework", 0);
     }
 
@@ -99,6 +117,4 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
     }
-
-
 }

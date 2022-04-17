@@ -15,6 +15,7 @@ TagManager:
   - Fragment
   - Bounds
   - Pedestal
+  - Build Zone
   layers:
   - Default
   - TransparentFX
