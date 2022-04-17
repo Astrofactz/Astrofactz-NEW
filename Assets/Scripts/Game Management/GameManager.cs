@@ -8,26 +8,25 @@ public class GameManager : MonoBehaviour
     [Tooltip("Options UI panel")]
     public GameObject optionsUI;
 
-    [Tooltip("Options close menu button")]
-    public GameObject optionsCloseButton;
+    /// <summary>
+    /// 
+    /// </summary>
+    private bool optionsActive = false;
 
-    [Tooltip("Blueprint UI Canvas")]
-    public GameObject blueprintCanavs;
+    [Tooltip("Buttons UI panel")]
+    public GameObject buttonsUI;
 
-    [Tooltip("Blueprint UI panel")]
-    public GameObject blueprintUI;
+    [Tooltip("Tutorial UI panel")]
+    public GameObject tutorialUI;
+
+    [Header("Game Win Variables")]
 
     [Tooltip("Game win UI panel")]
     public GameObject gameWinUI;
 
-    [Tooltip("Tutorial UI Panel")]
-    public GameObject TutorialUI;
-
     public GameObject firework;
 
     public float timeBetweenSpawn = 1.0f;
-
-    private bool blueprintActive, optionsActive = false;
 
     /// <summary>
     /// 
@@ -51,19 +50,19 @@ public class GameManager : MonoBehaviour
             ToggleOptions();
     }
 
-    /// <summary>
-    /// Toggles blueprint panel on/off
-    /// </summary>
-    public void ToggleBlueprint()
-    {
-        if (blueprintActive)
-            blueprintUI.SetActive(false);
+    ///// <summary>
+    ///// Toggles blueprint panel on/off
+    ///// </summary>
+    //public void ToggleBlueprint()
+    //{
+    //    if (blueprintActive)
+    //        blueprintUI.SetActive(false);
 
-        else if (!blueprintActive)
-            blueprintUI.SetActive(true);
+    //    else if (!blueprintActive)
+    //        blueprintUI.SetActive(true);
 
-        blueprintActive = !blueprintActive;
-    }
+    //    blueprintActive = !blueprintActive;
+    //}
 
     /// <summary>
     /// Toggles options panel on/off
@@ -71,18 +70,30 @@ public class GameManager : MonoBehaviour
     public void ToggleOptions()
     {
         if (optionsActive)
-        {
             optionsUI.SetActive(false);
-            optionsCloseButton.SetActive(false);
-        }
 
         else if (!optionsActive)
-        {
             optionsUI.SetActive(true);
-            optionsCloseButton.SetActive(true);
-        }
 
         optionsActive = !optionsActive;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void CheckTutorial()
+    {
+        // if main menu scene
+            // set player prefs to true
+
+
+        // if gameplay scene
+            // check player prefs
+
+            // if false, do nothing
+            // if true, display tutorial
+
+            // set player prefs to false
     }
 
     /// <summary>
@@ -102,8 +113,7 @@ public class GameManager : MonoBehaviour
         // trigger complete artifact curator pop-ups
         // click to continue, enable continue panel in UI
 
-
-        blueprintCanavs.SetActive(false);
+        buttonsUI.SetActive(false);
         gameWinUI.SetActive(true);
 
         Invoke("Firework", 0);

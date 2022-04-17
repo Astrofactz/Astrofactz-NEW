@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2707709189988275448}
   - component: {fileID: 2707709189988275449}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Build Zone
   m_TagString: Build Zone
   m_Icon: {fileID: 0}
