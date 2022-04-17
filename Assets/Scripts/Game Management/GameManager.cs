@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
+    public bool isDraggingPiece { get; set; } = false;
+
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         

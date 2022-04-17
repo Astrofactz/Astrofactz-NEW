@@ -10,18 +10,28 @@ public class PedestalBehavior : MonoBehaviour
     [Tooltip("Distance mouse must be before pedestal can rotate")]
     public float rotationRadius;
 
+    private bool isRotating = false;
+
     /// <summary>
     /// Direction pedestal should rotate
     /// </summary>
     private Vector3 rotationDir = Vector3.zero;
 
+    /// <summary>
+    /// Default and selected outline shaders
+    /// </summary>
+    private GameObject outlineIdle, outlineSelected;
+
     private GameManager gm;
 
     private void Start()
     {
-        gm = GameObject.FindObjectOfType<GameManager>();
-    }
+        gm = FindObjectOfType<GameManager>();
 
+        outlineIdle = transform.Find("outlineIdle").gameObject;
+
+        outlineSelected = transform.Find("outlineSelected").gameObject;
+    }
 
     /// <summary>
     /// Called every frame mouse is dragged; if holding right click, rotate
@@ -34,10 +44,48 @@ public class PedestalBehavior : MonoBehaviour
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    private void OnMouseUp()
+    {
+        gm.isDraggingPiece = false;
+        isRotating = false;
+        outlineIdle.SetActive(true);
+        outlineSelected.SetActive(false);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void OnMouseEnter()
+    {
+        if (!gm.isDraggingPiece)
+        {
+            outlineIdle.SetActive(false);
+            outlineSelected.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void OnMouseExit()
+    {
+        if (!isRotating)
+        {
+            outlineIdle.SetActive(true);
+            outlineSelected.SetActive(false);
+        }
+    }
+
+    /// <summary>
     /// Rotates pedestal on y axis based on position of mouse
     /// </summary>
     private void Rotate()
     {
+        gm.isDraggingPiece = true;
+        isRotating = true;
+
         Vector3 mousePos = FindMousePos();
         Ray snapRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 

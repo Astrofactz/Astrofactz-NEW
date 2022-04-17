@@ -151,6 +151,11 @@ public class FragmentBehavior : MonoBehaviour
     private bool snapPointsActive = true;
 
     /// <summary>
+    /// Default and selected outline shaders
+    /// </summary>
+    private GameObject outlineIdle, outlineSelected;
+
+    /// <summary>
     /// Reference to BoxCollider component
     /// </summary>
     private BoxCollider bc;
@@ -217,6 +222,10 @@ public class FragmentBehavior : MonoBehaviour
         fbArray = FindObjectsOfType<FragmentBehavior>();
         pedestal = GameObject.FindGameObjectWithTag("Pedestal");
 
+        outlineIdle = transform.Find("outlineIdle").gameObject;
+
+        outlineSelected = transform.Find("outlineSelected").gameObject;
+
         ToggleSnapPoints(snapPointsActive);
 
         // Audio
@@ -241,6 +250,27 @@ public class FragmentBehavior : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(MatchTargetRot());
+
+            outlineIdle.SetActive(false);
+            outlineSelected.SetActive(true);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        if(!gm.isDraggingPiece)
+        {
+            outlineIdle.SetActive(false);
+            outlineSelected.SetActive(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (!isDragged)
+        {
+            outlineIdle.SetActive(true);
+            outlineSelected.SetActive(false);
         }
     }
 
@@ -260,6 +290,10 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
+        gm.isDraggingPiece = false;
+        outlineIdle.SetActive(true);
+        outlineSelected.SetActive(false);
+
         isDragged = false;
         srce.volume = 0;
 
@@ -320,6 +354,7 @@ public class FragmentBehavior : MonoBehaviour
         CancelInvoke("AddRandomForce");
 
         isDragged = true;
+        gm.isDraggingPiece = true;
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
