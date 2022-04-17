@@ -7,7 +7,6 @@
                     pieces.
 *******************************************************************************/
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Audio;
 
@@ -242,7 +241,7 @@ public class FragmentBehavior : MonoBehaviour
 
     #region Fragment interaction
     /// <summary>
-    /// 
+    /// Called when mouse clicks object; rotates object, enables selected shader
     /// </summary>
     private void OnMouseDown()
     {
@@ -256,6 +255,9 @@ public class FragmentBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when mouse is over object; enabled selected shader
+    /// </summary>
     private void OnMouseEnter()
     {
         if(!gm.isDraggingPiece)
@@ -265,6 +267,9 @@ public class FragmentBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when mouse exits object; disables selected shader
+    /// </summary>
     private void OnMouseExit()
     {
         if (!isDragged)
@@ -338,11 +343,12 @@ public class FragmentBehavior : MonoBehaviour
             StartCoroutine(MovePos(target, 0.2f));
 
             if (rb.velocity.magnitude < 0.01f)                                  // need stop movement check for non-drag pieces too
-                Invoke("AddRandomForce", 2.0f);
+                Invoke("AddRandomForce", 1.5f);
+
+            Invoke("AddRandomRotation", 0.25f);
         }
     }
     #endregion
-
 
     #region Fragment movement and behavior
     /// <summary>
@@ -420,7 +426,6 @@ public class FragmentBehavior : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Called when fragment colliders with level boundary collider
     /// </summary>
@@ -441,9 +446,9 @@ public class FragmentBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called when fragment leaves collider
     /// </summary>
-    /// <param name="other"></param>
+    /// <param name="other">Other collider involved in collision</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Build Zone")
@@ -512,11 +517,14 @@ public class FragmentBehavior : MonoBehaviour
     /// <summary>
     /// Called on collision; handles knockback and collision of fragments
     /// </summary>
-    /// <param name="collision">Other collider ivolved in collision</param>
+    /// <param name="collision">Other collider involved in collision</param>
     private void OnCollisionEnter(Collision collision)
     {
         if (!isDragged && collision.gameObject.tag == "Fragment")
         {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
             // Applies force in opposite direction of collision
             Vector3 force = transform.position - collision.transform.position;
             force.z = 0;
@@ -579,16 +587,6 @@ public class FragmentBehavior : MonoBehaviour
     #endregion
 
     #region Fragment rotation
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void Rotate()
-    {
-
-    }
-
-
     /// <summary>
     /// Adds random rotatoinal force on all axes
     /// </summary>
@@ -603,15 +601,6 @@ public class FragmentBehavior : MonoBehaviour
         Vector3 rotForce = new Vector3(xForce, yForce, zForce);
 
         rb.AddTorque(rotForce * rotateIdleSpeed / 100);
-
-
-        // rotate along all axes; not just set static rotation
-
-        //float randomRot = Random.Range(0.0f, 360.0f);
-
-        //Quaternion randomRotation = Quaternion.Euler(0, randomRot, 0);
-
-        //transform.rotation = randomRotation;
     }
 
     /// <summary>

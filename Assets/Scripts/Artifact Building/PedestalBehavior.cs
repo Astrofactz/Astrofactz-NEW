@@ -1,5 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+/*******************************************************************************
+// File Name :      PedestalBehavior.cs
+// Author :         Avery Macke
+// Creation Date :  1 April 2022
+// 
+// Description :    Allows for rotation of pedestal.
+*******************************************************************************/
 using UnityEngine;
 
 public class PedestalBehavior : MonoBehaviour
@@ -10,6 +15,9 @@ public class PedestalBehavior : MonoBehaviour
     [Tooltip("Distance mouse must be before pedestal can rotate")]
     public float rotationRadius;
 
+    /// <summary>
+    /// Tracks whether pedestal is being rotated
+    /// </summary>
     private bool isRotating = false;
 
     /// <summary>
@@ -22,14 +30,19 @@ public class PedestalBehavior : MonoBehaviour
     /// </summary>
     private GameObject outlineIdle, outlineSelected;
 
+    /// <summary>
+    /// Reference to GameManager
+    /// </summary>
     private GameManager gm;
 
+    /// <summary>
+    /// Called at start; initializes variables
+    /// </summary>
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
 
         outlineIdle = transform.Find("outlineIdle").gameObject;
-
         outlineSelected = transform.Find("outlineSelected").gameObject;
     }
 
@@ -44,7 +57,7 @@ public class PedestalBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called when mouse is released; disables selected outline
     /// </summary>
     private void OnMouseUp()
     {
@@ -55,7 +68,7 @@ public class PedestalBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called when mouse if over object; enabled selected outline
     /// </summary>
     private void OnMouseEnter()
     {
@@ -67,7 +80,7 @@ public class PedestalBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called when mouse is not over object; disables selected outline
     /// </summary>
     private void OnMouseExit()
     {

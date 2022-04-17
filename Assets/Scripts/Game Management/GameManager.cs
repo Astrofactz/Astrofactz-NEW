@@ -1,3 +1,11 @@
+/*******************************************************************************
+// File Name :      PedestalBehavior.cs
+// Author :         Avery Macke
+// Creation Date :  30 March 2022
+// 
+// Description :    Allows for general game functionality; tracks UI elements,
+                    game win condition.
+*******************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject optionsUI;
 
     /// <summary>
-    /// 
+    /// Tracks whether options panel is active
     /// </summary>
     private bool optionsActive = false;
 
@@ -24,30 +32,23 @@ public class GameManager : MonoBehaviour
     [Tooltip("Game win UI panel")]
     public GameObject gameWinUI;
 
+    [Tooltip("Fireworks to spawn at game win")]
     public GameObject firework;
 
-    public float timeBetweenSpawn = 1.0f;
+    public float timeBetweenSpawn = 1.0f;               // ???
 
     /// <summary>
-    /// 
+    /// Tracks whether game has been won
     /// </summary>
     public bool gameWon { get; set; } = false;
 
     /// <summary>
-    /// 
+    /// Tracks whether player is currenly interacting with fragment/pedestal
     /// </summary>
     public bool isDraggingPiece { get; set; } = false;
 
     /// <summary>
-    /// 
-    /// </summary>
-    void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// 
+    /// Called every frame; enables options menu when escape is pressed
     /// </summary>
     void Update()
     {
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Checks whether tutorial should be displayed when playing level
     /// </summary>
     private void CheckTutorial()
     {
@@ -110,12 +111,16 @@ public class GameManager : MonoBehaviour
         Invoke("Firework", 0);
     }
 
-
     /// <summary>
     /// Starts firework particle effect
     /// </summary>
     public void Firework()
     {
         Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
+    }
+
+    public void ProgressPopUp()
+    {
+        // move pop-ups here????
     }
 }
