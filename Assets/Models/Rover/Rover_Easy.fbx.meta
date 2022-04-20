@@ -1,12 +1,44 @@
 fileFormatVersion: 2
-guid: 3da1070d1c1d64c45a95187dd9081041
+guid: 57510d102e0a14a73b9e9b9377b93b23
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: -1498010087492872569
-    second: CINEMA_4D_Main
-  externalObjects: {}
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ARM_UV
+    second: {fileID: 2100000, guid: 47af2d727d48d48e6a25fa923d5ba593, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_UV
+    second: {fileID: 2100000, guid: 44e5d3e96ee044cdc867ec2f4c4e0b9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HEAD_UV
+    second: {fileID: 2100000, guid: df6f4e30513a14d409327314ca5954de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Left_Wheels_UV
+    second: {fileID: 2100000, guid: 5dc0d4f81a6b34e11aa71d17426da5ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_UV
+    second: {fileID: 2100000, guid: a184fc80e07d140448f2bae22e652cf7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Right_Wheels_UV
+    second: {fileID: 2100000, guid: 05f66d1c4dfe243a1941526d32d85271, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Satelitte_UV
+    second: {fileID: 2100000, guid: d7e3d38ce2df7436cb85b99647419f19, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
