@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22538412, g: 0.18959224, b: 0.286738, a: 1}
+  m_IndirectSpecularColor: {r: 0.22537345, g: 0.18958956, b: 0.2866928, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -632,9 +632,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1370966237}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1288,9 +1296,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1794636968}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1565,9 +1581,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1017474558}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -2591,9 +2615,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1717594550}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3664,9 +3696,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 1102467388}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -4204,9 +4244,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2105424578}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: correctSnapPoint
       value: 
       objectReference: {fileID: 637590714}
+    - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
+      propertyPath: ingameCursorPressed
+      value: 
+      objectReference: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
     - target: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: m_RootOrder
       value: 8

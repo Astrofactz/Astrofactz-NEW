@@ -8,6 +8,8 @@ MonoImporter:
   - correctSnapPoint: {instanceID: 0}
   - dragSnd: {instanceID: 0}
   - snapParticle: {fileID: 1755328571171868552, guid: a6b373bfe180b5d44875525bd6c3274c, type: 3}
+  - ingameCursor: {fileID: 2800000, guid: dcaa6b247d57668418767805aa8549c4, type: 3}
+  - ingameCursorPressed: {fileID: 2800000, guid: a1cfcdfd9090c2443ac4a55eeae951bc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

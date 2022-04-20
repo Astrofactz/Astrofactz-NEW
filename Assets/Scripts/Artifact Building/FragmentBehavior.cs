@@ -6,8 +6,8 @@
 // Description :    Allows for movement, placement, and combination of artifact
                     pieces.
 *******************************************************************************/
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
@@ -165,6 +165,26 @@ public class FragmentBehavior : MonoBehaviour
     private Rigidbody rb;
 
     /// <summary>
+    /// The cursor used when in game
+    /// </summary>
+    public Texture2D ingameCursor;
+
+    /// <summary>
+    /// The cursor used when holding down left click
+    /// </summary>
+    public Texture2D ingameCursorPressed;
+
+    /// <summary>
+    /// Forces cursor to render as the selected sprite
+    /// </summary>
+    public CursorMode cursorMode = CursorMode.Auto;
+
+    /// <summary>
+    /// The offset from the top left of the texture to use as the target point
+    /// </summary>
+    public Vector2 hotspot = Vector2.zero;
+
+    /// <summary>
     /// Called at start; initializes variables
     /// </summary>
     void Start()
@@ -172,6 +192,8 @@ public class FragmentBehavior : MonoBehaviour
         InitializeVariables();
         AddRandomRotation();
         AddRandomForce();
+
+        Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
     }
 
     /// <summary>
@@ -221,9 +243,9 @@ public class FragmentBehavior : MonoBehaviour
         fbArray = FindObjectsOfType<FragmentBehavior>();
         pedestal = GameObject.FindGameObjectWithTag("Pedestal");
 
-        outlineIdle = transform.Find("outlineIdle").gameObject;
+        //outlineIdle = transform.Find("outlineIdle").gameObject;
 
-        outlineSelected = transform.Find("outlineSelected").gameObject;
+       // outlineSelected = transform.Find("outlineSelected").gameObject;
 
         ToggleSnapPoints(snapPointsActive);
 
@@ -250,8 +272,10 @@ public class FragmentBehavior : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(MatchTargetRot());
 
-            outlineIdle.SetActive(false);
-            outlineSelected.SetActive(true);
+           // outlineIdle.SetActive(false);
+           // outlineSelected.SetActive(true);
+
+            Cursor.SetCursor(ingameCursorPressed, hotspot, cursorMode);
         }
     }
 
@@ -262,8 +286,8 @@ public class FragmentBehavior : MonoBehaviour
     {
         if(!gm.isDraggingPiece)
         {
-            outlineIdle.SetActive(false);
-            outlineSelected.SetActive(true);
+           // outlineIdle.SetActive(false);
+           // outlineSelected.SetActive(true);
         }
     }
 
@@ -274,8 +298,8 @@ public class FragmentBehavior : MonoBehaviour
     {
         if (!isDragged)
         {
-            outlineIdle.SetActive(true);
-            outlineSelected.SetActive(false);
+           // outlineIdle.SetActive(true);
+          //  outlineSelected.SetActive(false);
         }
     }
 
@@ -295,9 +319,10 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
+        Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
         gm.isDraggingPiece = false;
-        outlineIdle.SetActive(true);
-        outlineSelected.SetActive(false);
+        // outlineIdle.SetActive(true);
+        // outlineSelected.SetActive(false);
 
         isDragged = false;
         srce.volume = 0;
@@ -402,7 +427,7 @@ public class FragmentBehavior : MonoBehaviour
             float t = Vector3.Distance(mousePos, transform.position);
             t /= dragSpeed * Time.deltaTime;
 
-            srce.volume = 0.5f;
+           // srce.volume = 0.5f;
             srce.pitch = Mathf.Lerp(0.5f, 1.25f, t);
         }
     }
