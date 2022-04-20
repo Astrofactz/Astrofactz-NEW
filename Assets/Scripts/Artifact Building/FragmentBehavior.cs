@@ -243,9 +243,9 @@ public class FragmentBehavior : MonoBehaviour
         fbArray = FindObjectsOfType<FragmentBehavior>();
         pedestal = GameObject.FindGameObjectWithTag("Pedestal");
 
-        //outlineIdle = transform.Find("outlineIdle").gameObject;
+        outlineIdle = transform.Find("outlineIdle").gameObject;
 
-       // outlineSelected = transform.Find("outlineSelected").gameObject;
+        outlineSelected = transform.Find("outlineSelected").gameObject;
 
         ToggleSnapPoints(snapPointsActive);
 
@@ -272,8 +272,8 @@ public class FragmentBehavior : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(MatchTargetRot());
 
-           // outlineIdle.SetActive(false);
-           // outlineSelected.SetActive(true);
+            outlineIdle.SetActive(false);
+            outlineSelected.SetActive(true);
 
             Cursor.SetCursor(ingameCursorPressed, hotspot, cursorMode);
         }
@@ -286,8 +286,8 @@ public class FragmentBehavior : MonoBehaviour
     {
         if(!gm.isDraggingPiece)
         {
-           // outlineIdle.SetActive(false);
-           // outlineSelected.SetActive(true);
+            outlineIdle.SetActive(false);
+            outlineSelected.SetActive(true);
         }
     }
 
@@ -298,8 +298,8 @@ public class FragmentBehavior : MonoBehaviour
     {
         if (!isDragged)
         {
-           // outlineIdle.SetActive(true);
-          //  outlineSelected.SetActive(false);
+            outlineIdle.SetActive(true);
+            outlineSelected.SetActive(false);
         }
     }
 
@@ -321,8 +321,8 @@ public class FragmentBehavior : MonoBehaviour
     {
         Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
         gm.isDraggingPiece = false;
-        // outlineIdle.SetActive(true);
-        // outlineSelected.SetActive(false);
+         outlineIdle.SetActive(true);
+         outlineSelected.SetActive(false);
 
         isDragged = false;
         srce.volume = 0;
@@ -427,7 +427,7 @@ public class FragmentBehavior : MonoBehaviour
             float t = Vector3.Distance(mousePos, transform.position);
             t /= dragSpeed * Time.deltaTime;
 
-           // srce.volume = 0.5f;
+            srce.volume = 0.5f;
             srce.pitch = Mathf.Lerp(0.5f, 1.25f, t);
         }
     }
