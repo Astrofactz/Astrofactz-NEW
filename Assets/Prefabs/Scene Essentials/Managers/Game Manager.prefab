@@ -64,5 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inGameCursor: {fileID: 2800000, guid: 31be70a7ff2719745afd2c10c41cd5af, type: 3}
   inGameCursorPressed: {fileID: 2800000, guid: 9af9de22cdf6f8d4cbc0a6dc46cadfae, type: 3}
+  inGameCursorTap: {fileID: 2800000, guid: b6e29ef4e2b34b846a5ef92d3a85acab, type: 3}
   cursorMode: 0
   hotspot: {x: 0, y: 0}
+  isMainMenuScenes: 0
