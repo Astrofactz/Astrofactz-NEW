@@ -186,7 +186,7 @@ public class FragmentBehavior : MonoBehaviour
 
     /// <summary>
     /// Called at start; initializes variables
-    /// </summary>
+    /// </summary> 
     void Start()
     {
         InitializeVariables();

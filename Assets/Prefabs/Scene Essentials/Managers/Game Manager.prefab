@@ -43,4 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85822733edcd34218925de4d2deaf4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameWinUI: {fileID: 0}
+  optionsUI: {fileID: 0}
+  buttonsUI: {fileID: 0}
+  tutorialUI: {fileID: 0}
+  gameWinUI: {fileID: 0}
+  firework: {fileID: 0}
+  timeBetweenSpawn: 1
