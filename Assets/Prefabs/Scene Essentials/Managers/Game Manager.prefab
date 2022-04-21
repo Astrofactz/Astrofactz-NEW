@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2470176672519633457}
   - component: {fileID: 2470176672519633458}
+  - component: {fileID: 5392048518748691730}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -49,3 +50,19 @@ MonoBehaviour:
   gameWinUI: {fileID: 0}
   firework: {fileID: 0}
   timeBetweenSpawn: 1
+--- !u!114 &5392048518748691730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470176672519633459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be494114eea784429b4b32347e37324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameCursor: {fileID: 2800000, guid: 31be70a7ff2719745afd2c10c41cd5af, type: 3}
+  inGameCursorPressed: {fileID: 2800000, guid: 9af9de22cdf6f8d4cbc0a6dc46cadfae, type: 3}
+  cursorMode: 0
+  hotspot: {x: 0, y: 0}

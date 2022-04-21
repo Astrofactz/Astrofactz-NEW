@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*******************************************************************************
+// File Name :      CursorBehavior.cs
+// Author :         
+// Creation Date :  2o April 2022
+// 
+// Description :    Handles custom cursor behavior; swaps between sprites when
+                    mouse is clicked.
+*******************************************************************************/
 using UnityEngine;
 
 public class CursorBehavior : MonoBehaviour
@@ -7,12 +13,12 @@ public class CursorBehavior : MonoBehaviour
     // <summary>
     /// The cursor used when in game
     /// </summary>
-    public Texture2D ingameCursor;
+    public Texture2D inGameCursor;
 
     /// <summary>
     /// The cursor used when holding down left click
     /// </summary>
-    public Texture2D ingameCursorPressed;
+    public Texture2D inGameCursorPressed;
 
     /// <summary>
     /// Forces cursor to render as the selected sprite
@@ -24,34 +30,39 @@ public class CursorBehavior : MonoBehaviour
     /// </summary>
     public Vector2 hotspot = Vector2.zero;
 
-
+    /// <summary>
+    /// Called at start; sets mouse cursor sprite
+    /// </summary>
     private void Start()
     {
-        // Gets mouse position, raycasts to find snap points
-        Vector3 mousePos = FindMousePos();
+        Cursor.SetCursor(inGameCursor, hotspot, cursorMode);
     }
-    private void OnMouseUp()
+
+    /// <summary>
+    /// Called every frame; detects mouse button inputs
+    /// </summary>
+    private void Update()
     {
-        Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
-        print("cursor");
+        if (Input.GetMouseButtonDown(0))
+            Cursor.SetCursor(inGameCursorPressed, hotspot, cursorMode);
+
+        else if (Input.GetMouseButtonUp(0))
+                Cursor.SetCursor(inGameCursor, hotspot, cursorMode);
     }
 
-    private void OnMouseDown()
-    {
-        Cursor.SetCursor(ingameCursorPressed, hotspot, cursorMode);
-        print("cursordown");
-    }
-    private Vector3 FindMousePos()
-    {
-        Vector3 mousePos = new Vector3();
+    /* Moved these to update; OnMouse is only called when clicking an object's
+     * collider, putting it in update will let us detect mouse clicks whether
+     * you're clicking an object or not. (But! Same code still works great!) */
 
-        Plane plane = new Plane(Vector3.forward, 0);
+    //private void OnMouseUp()
+    //{
+    //    print("cursor");
+    //    Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
+    //}
 
-        Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (plane.Raycast(mouseRay, out float distance))
-            mousePos = mouseRay.GetPoint(distance);
-
-        return mousePos;
-    }
+    //private void OnMouseDown()
+    //{
+    //    print("cursor down");
+    //    Cursor.SetCursor(ingameCursorPressed, hotspot, cursorMode);
+    //}
 }

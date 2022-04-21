@@ -165,26 +165,6 @@ public class FragmentBehavior : MonoBehaviour
     private Rigidbody rb;
 
     /// <summary>
-    /// The cursor used when in game
-    /// </summary>
-    public Texture2D ingameCursor;
-
-    /// <summary>
-    /// The cursor used when holding down left click
-    /// </summary>
-    public Texture2D ingameCursorPressed;
-
-    /// <summary>
-    /// Forces cursor to render as the selected sprite
-    /// </summary>
-    public CursorMode cursorMode = CursorMode.Auto;
-
-    /// <summary>
-    /// The offset from the top left of the texture to use as the target point
-    /// </summary>
-    public Vector2 hotspot = Vector2.zero;
-
-    /// <summary>
     /// Called at start; initializes variables
     /// </summary> 
     void Start()
@@ -192,8 +172,6 @@ public class FragmentBehavior : MonoBehaviour
         InitializeVariables();
         AddRandomRotation();
         AddRandomForce();
-
-        Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
     }
 
     /// <summary>
@@ -274,8 +252,6 @@ public class FragmentBehavior : MonoBehaviour
 
             outlineIdle.SetActive(false);
             outlineSelected.SetActive(true);
-
-            Cursor.SetCursor(ingameCursorPressed, hotspot, cursorMode);
         }
     }
 
@@ -319,7 +295,6 @@ public class FragmentBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseUp()
     {
-        Cursor.SetCursor(ingameCursor, hotspot, cursorMode);
         gm.isDraggingPiece = false;
          outlineIdle.SetActive(true);
          outlineSelected.SetActive(false);
