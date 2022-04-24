@@ -29,6 +29,8 @@ public class SceneTransitionManager : MonoBehaviour
     /// </summary>
     private string currentScene;
 
+    private SoundManager soundManager;
+
     /// <summary>
     /// 
     /// </summary>
@@ -40,6 +42,7 @@ public class SceneTransitionManager : MonoBehaviour
     public void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     /// <summary>
@@ -104,6 +107,13 @@ public class SceneTransitionManager : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+
+        if((sceneName == "LevelSelect" && currentScene != "Intro") 
+            || sceneName == "MainMenu")
+        {
+            soundManager.Stop("Artifact Fixed");
+            soundManager.Play("Stellar Station");
+        }
     }
 
     /// <summary>

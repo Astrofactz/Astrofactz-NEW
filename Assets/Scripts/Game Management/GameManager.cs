@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -36,6 +37,13 @@ public class GameManager : MonoBehaviour
     public GameObject firework;
 
     public float timeBetweenSpawn = 1.0f;               // ???
+
+    private SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
 
     /// <summary>
     /// Tracks whether game has been won
@@ -109,6 +117,10 @@ public class GameManager : MonoBehaviour
         gameWinUI.SetActive(true);
 
         Invoke("Firework", 0);
+
+        soundManager.Play("Win Sound");
+        soundManager.Stop("Stellar Station");
+        soundManager.Play("Artifact Fixed");
     }
 
     /// <summary>
