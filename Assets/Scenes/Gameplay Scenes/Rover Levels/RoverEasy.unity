@@ -219,6 +219,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3280694140055656590, guid: 4ae11d869c986f9478749844d30aec73, type: 3}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: pedestal
+      value: 
+      objectReference: {fileID: 1088907088}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: GameWinUI
       value: 
       objectReference: {fileID: 1600843677}
@@ -247,9 +251,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1234164480}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: artifactBase
+      value: 
+      objectReference: {fileID: 1443840507}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: blueprintCanavs
       value: 
       objectReference: {fileID: 906824705}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: artifactAnimation
+      value: 
+      objectReference: {fileID: 167904014}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: optionsCloseButton
       value: 
@@ -357,11 +369,49 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97880470}
   m_Mesh: {fileID: -424008934100442803, guid: 57510d102e0a14a73b9e9b9377b93b23, type: 3}
+--- !u!1 &167904014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+  m_PrefabInstance: {fileID: 240188753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &180883402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 291659987546581125, guid: 8427257fff19a604a9b9cb90f7f86b97, type: 3}
   m_PrefabInstance: {fileID: 8176366888386479517}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &240188753
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2068707826}
+    m_Modifications:
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5.617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_Name
+      value: COMPLETE_RoverAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
 --- !u!1 &389124446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1670,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 302389595813277508, guid: 9033921bacda248038df3b0b9e5de9f9, type: 3}
   m_PrefabInstance: {fileID: 1017474557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1088907088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6734602204809741897, guid: e8cc5fa23c34046549cae8449b5be862, type: 3}
+  m_PrefabInstance: {fileID: 2068707825}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1091636756
 PrefabInstance:
@@ -3119,6 +3174,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437770044}
   m_Mesh: {fileID: 8148188476708289613, guid: 57510d102e0a14a73b9e9b9377b93b23, type: 3}
+--- !u!1 &1443840507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7639929615915057358, guid: f13adb74048e2475ba2323f751e23ee6, type: 3}
+  m_PrefabInstance: {fileID: 1395407621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1449645273
 GameObject:
   m_ObjectHideFlags: 0

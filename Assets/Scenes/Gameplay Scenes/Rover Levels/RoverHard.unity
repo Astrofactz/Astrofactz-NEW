@@ -478,6 +478,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216725793}
   m_Mesh: {fileID: -2050255876355999596, guid: b56dd549cc85b4ac3b846cf672c0e770, type: 3}
+--- !u!1 &225112939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6734602204809741897, guid: e8cc5fa23c34046549cae8449b5be862, type: 3}
+  m_PrefabInstance: {fileID: 1590239701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &238624269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -870,6 +875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108d9fe6a47d440fba5547f2c5999a05, type: 3}
+--- !u!1 &346146413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7639929615915057358, guid: f13adb74048e2475ba2323f751e23ee6, type: 3}
+  m_PrefabInstance: {fileID: 712123154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &374461437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2055,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7767631735421685314, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
   m_PrefabInstance: {fileID: 625436077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &652161608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+  m_PrefabInstance: {fileID: 1505971420}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &666225796
 GameObject:
@@ -3955,6 +3970,39 @@ Transform:
   m_Father: {fileID: 67833153}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1505971420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1590239702}
+    m_Modifications:
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5.617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392497, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_Name
+      value: COMPLETE_RoverAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768787680440392502, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d03c6e7ea00fd45ed92ae85514baba4a, type: 3}
 --- !u!1001 &1590239701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4948,6 +4996,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3280694140055656590, guid: 4ae11d869c986f9478749844d30aec73, type: 3}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: pedestal
+      value: 
+      objectReference: {fileID: 225112939}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: GameWinUI
       value: 
       objectReference: {fileID: 887862764}
@@ -4976,9 +5028,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 377841682}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: artifactBase
+      value: 
+      objectReference: {fileID: 346146413}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: blueprintCanavs
       value: 
       objectReference: {fileID: 377841683}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: artifactAnimation
+      value: 
+      objectReference: {fileID: 652161608}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: optionsCloseButton
       value: 

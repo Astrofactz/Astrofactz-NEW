@@ -28,19 +28,37 @@ public class GameManager : MonoBehaviour
     [Tooltip("Tutorial UI panel")]
     public GameObject tutorialUI;
 
-    [Header("Game Win Variables")]
+    [Header("Pop-Up Variables")]
+    [Tooltip("Count of all fragments in scene")]
+    public int fragmentCount;
 
+    [Tooltip("Counts to display popups on")]
+    public int[] popupIndex;
+
+    [Tooltip("Array of pop-up variants ")]
+    public GameObject[] popups;
+
+    [Header("Game Win Variables")]
     [Tooltip("Game win UI panel")]
     public GameObject gameWinUI;
 
     [Tooltip("Fireworks to spawn at game win")]
     public GameObject firework;
 
+    [Tooltip("Pedestal object in scene")]
+    public GameObject pedestal;
+
+    [Tooltip("Artifact base")]
+    public GameObject artifactBase;
+
+    [Tooltip("Artifact animation object")]
+    public GameObject artifactAnimation;
+
     public float timeBetweenSpawn = 1.0f;               // ???
 
     private SoundManager soundManager;
 
-    public BGMusicBehavior bgMusic;
+    private BGMusicBehavior bgMusic;
 
     private void Awake()
     {
@@ -129,26 +147,51 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ArtifactComplete()                                              // COROUTINE
     {
+        StartCoroutine(GameWin());
+    }
+
+    IEnumerator GameWin()
+    {
         gameWon = true;
 
-        // disable blueprint canvas
-        // rotate pedestal to face front
-        // spawn fireworks? here or later?
+        soundManager.Play("Win Sound");
 
-        // trigger complete artifact animation
+        Destroy(bgMusic.gameObject);
 
-        // trigger complete artifact curator pop-ups
-        // click to continue, enable continue panel in UI
+        soundManager.Play("Artifact Fixed");
 
         buttonsUI.SetActive(false);
-        gameWinUI.SetActive(true);
 
-        Invoke("Firework", 0);
+        gameWinUI.SetActive(true);          // update curator pop-ups, win UI
 
-        soundManager.Play("Win Sound");
-        //soundManager.Stop("Stellar Station");
-        Destroy(bgMusic.gameObject);
-        soundManager.Play("Artifact Fixed");
+        InvokeRepeating("Firework", 0.0f, 1.5f);
+
+        Quaternion targetRot = Quaternion.Euler(Vector3.zero);
+
+        float rotDiff = (pedestal.transform.rotation.eulerAngles - targetRot.eulerAngles).magnitude;
+
+        while ((rotDiff > 0.1f || rotDiff < -0.1f) && rotDiff != 360)
+        {
+            Quaternion target = Quaternion.RotateTowards(pedestal.transform.rotation, targetRot, 60.0f * Time.deltaTime);
+
+            pedestal.transform.rotation = target;
+
+            rotDiff = (pedestal.transform.rotation.eulerAngles - targetRot.eulerAngles).magnitude;
+
+            yield return null;
+        }
+
+        pedestal.transform.rotation = targetRot;
+
+        yield return new WaitForSeconds(0.5f);
+
+        artifactBase.SetActive(false);
+
+        artifactAnimation.SetActive(true);
+
+        yield return new WaitForSeconds(5.0f);
+
+        CancelInvoke("Firework");
     }
 
     /// <summary>

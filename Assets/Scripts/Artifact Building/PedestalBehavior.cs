@@ -72,7 +72,7 @@ public class PedestalBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseEnter()
     {
-        if (!gm.isDraggingPiece)
+        if (!gm.isDraggingPiece && !gm.gameWon)
         {
             outlineIdle.SetActive(false);
             outlineSelected.SetActive(true);
