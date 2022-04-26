@@ -124,24 +124,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks whether tutorial should be displayed when playing level
-    /// </summary>
-    private void CheckTutorial()
-    {
-        // if main menu scene
-            // set player prefs to true
-
-
-        // if gameplay scene
-            // check player prefs
-
-            // if false, do nothing
-            // if true, display tutorial
-
-            // set player prefs to false
-    }
-
-    /// <summary>
     /// When the artifact is completed, the winning UI will appear and fireworks
     /// will be invoked
     /// </summary>
