@@ -61,6 +61,20 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Invoke("FindBGM", 1.0f);
+
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            PlayerPrefs.SetInt("ShowTutorial", 1);
+        }
+
+        if(tutorialUI != null)
+        {
+            if(PlayerPrefs.GetInt("ShowTutorial") == 1)
+            {
+                tutorialUI.SetActive(true);
+                PlayerPrefs.SetInt("ShowTutorial", 0);
+            }
+        }
     }
 
     private void FindBGM()
