@@ -646,7 +646,7 @@ public class FragmentBehavior : MonoBehaviour
             // call snap pop-up
         }
 
-        if (artifactComplete)
+        if (artifactComplete && !gm.gameWon)
             gm.ArtifactComplete();
     }
 

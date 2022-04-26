@@ -10,17 +10,17 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
             s.srce.outputAudioMixerGroup = s.outputChannel;
         }
 
-        Play("Stellar Station");
+        //Play("Stellar Station");
     }
 
     //Plays the selected sound

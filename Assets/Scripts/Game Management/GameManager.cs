@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     private SoundManager soundManager;
 
+    public BGMusicBehavior bgMusic;
+
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
@@ -54,6 +56,17 @@ public class GameManager : MonoBehaviour
     /// Tracks whether player is currenly interacting with fragment/pedestal
     /// </summary>
     public bool isDraggingPiece { get; set; } = false;
+
+
+    private void Start()
+    {
+        Invoke("FindBGM", 1.0f);
+    }
+
+    private void FindBGM()
+    {
+        bgMusic = FindObjectOfType<BGMusicBehavior>();
+    }
 
     /// <summary>
     /// Called every frame; enables options menu when escape is pressed
@@ -119,7 +132,8 @@ public class GameManager : MonoBehaviour
         Invoke("Firework", 0);
 
         soundManager.Play("Win Sound");
-        soundManager.Stop("Stellar Station");
+        //soundManager.Stop("Stellar Station");
+        Destroy(bgMusic.gameObject);
         soundManager.Play("Artifact Fixed");
     }
 
