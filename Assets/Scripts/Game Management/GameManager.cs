@@ -7,9 +7,7 @@
                     game win condition.
 *******************************************************************************/
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -37,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Array of pop-up variants ")]
     public GameObject[] popups;
+
+    public float popupDuration;
 
     [Header("Game Win Variables")]
     [Tooltip("Game win UI panel")]
@@ -127,13 +127,22 @@ public class GameManager : MonoBehaviour
     /// When the artifact is completed, the winning UI will appear and fireworks
     /// will be invoked
     /// </summary>
-    public void ArtifactComplete()                                              // COROUTINE
+    public void ArtifactComplete()
     {
         StartCoroutine(GameWin());
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     IEnumerator GameWin()
     {
+        foreach (GameObject popup in popups)
+        {
+            popup.SetActive(false);
+        }
+
         gameWon = true;
 
         soundManager.Play("Win Sound");
@@ -154,7 +163,7 @@ public class GameManager : MonoBehaviour
 
         while ((rotDiff > 0.1f || rotDiff < -0.1f) && rotDiff != 360)
         {
-            Quaternion target = Quaternion.RotateTowards(pedestal.transform.rotation, targetRot, 60.0f * Time.deltaTime);
+            Quaternion target = Quaternion.RotateTowards(pedestal.transform.rotation, targetRot, 75.0f * Time.deltaTime);
 
             pedestal.transform.rotation = target;
 
@@ -184,8 +193,33 @@ public class GameManager : MonoBehaviour
         Instantiate(firework, new Vector3(0, 0, 10), Quaternion.identity);
     }
 
-    public void ProgressPopUp()
+    bool popupActive = false;
+
+    public void CheckProgress()
     {
-        // move pop-ups here????
+        fragmentCount--;
+
+        foreach (int index in popupIndex)
+        {
+            if(index == fragmentCount && !popupActive)
+            {
+                int random = Random.Range(0, popups.Length);
+
+                StartCoroutine(ProgressPopUp(popups[random]));
+            }
+        }
+    }
+
+    private IEnumerator ProgressPopUp(GameObject popup)
+    {
+        popupActive = true;
+
+        popup.SetActive(true);
+
+        yield return new WaitForSeconds(popupDuration);
+
+        popup.SetActive(false);
+
+        popupActive = false;
     }
 }

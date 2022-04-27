@@ -47,8 +47,15 @@ MonoBehaviour:
   optionsUI: {fileID: 0}
   buttonsUI: {fileID: 0}
   tutorialUI: {fileID: 0}
+  fragmentCount: 0
+  popupIndex: 
+  popups: []
+  popupDuration: 3.5
   gameWinUI: {fileID: 0}
   firework: {fileID: 0}
+  pedestal: {fileID: 0}
+  artifactBase: {fileID: 0}
+  artifactAnimation: {fileID: 0}
   timeBetweenSpawn: 1
 --- !u!114 &5392048518748691730
 MonoBehaviour:

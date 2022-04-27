@@ -239,7 +239,7 @@ Transform:
   - {fileID: 1947210636}
   - {fileID: 377841684}
   - {fileID: 887862765}
-  - {fileID: 553998763}
+  - {fileID: 541580367}
   - {fileID: 1428221552}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -722,15 +722,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -1184,15 +1184,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -1647,17 +1647,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 302389595813277508, guid: 9033921bacda248038df3b0b9e5de9f9, type: 3}
   m_PrefabInstance: {fileID: 499746141}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &553998759
+--- !u!1001 &541580366
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 67833153}
     m_Modifications:
-    - target: {fileID: 2837798900648577331, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8176366888711438720, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1744,37 +1740,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8176366888711438724, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
       propertyPath: m_Name
-      value: Correct Snap Popup
-      objectReference: {fileID: 0}
-    - target: {fileID: 8176366888711438724, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9088106129212954649, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: PopUp UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
---- !u!1 &553998760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8176366888711438724, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-  m_PrefabInstance: {fileID: 553998759}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &553998761 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2837798900648577331, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-  m_PrefabInstance: {fileID: 553998759}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &553998762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9088106129212954649, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-  m_PrefabInstance: {fileID: 553998759}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &553998763 stripped
+--- !u!224 &541580367 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8176366888711438720, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
-  m_PrefabInstance: {fileID: 553998759}
+  m_PrefabInstance: {fileID: 541580366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541580368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1566533994015879946, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
+  m_PrefabInstance: {fileID: 541580366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541580369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592255263765878472, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
+  m_PrefabInstance: {fileID: 541580366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541580370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8416829774127338203, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
+  m_PrefabInstance: {fileID: 541580366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541580371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4717484037391778035, guid: 8e10c9673dc2b76459b19dbd20400cf5, type: 3}
+  m_PrefabInstance: {fileID: 541580366}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &568278470
 PrefabInstance:
@@ -1948,15 +1941,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -2396,15 +2389,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -3064,15 +3057,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -3508,15 +3501,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -3634,15 +3627,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -4095,15 +4088,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 
@@ -5032,6 +5025,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 346146413}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: fragmentCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: blueprintCanavs
       value: 
       objectReference: {fileID: 377841683}
@@ -5040,9 +5037,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 652161608}
     - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popups.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: optionsCloseButton
       value: 
       objectReference: {fileID: 1617811429}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popups.Array.data[0]
+      value: 
+      objectReference: {fileID: 541580371}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popups.Array.data[1]
+      value: 
+      objectReference: {fileID: 541580370}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popups.Array.data[2]
+      value: 
+      objectReference: {fileID: 541580369}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popups.Array.data[3]
+      value: 
+      objectReference: {fileID: 541580368}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popupIndex.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popupIndex.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470176672519633458, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
+      propertyPath: popupIndex.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2470176672519633459, guid: 5e34f4d6eda524460ae1fa805fafc8be, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -5458,15 +5487,15 @@ PrefabInstance:
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: stella
       value: 
-      objectReference: {fileID: 553998762}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: alistar
       value: 
-      objectReference: {fileID: 553998761}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: snapGraphic
       value: 
-      objectReference: {fileID: 553998760}
+      objectReference: {fileID: 0}
     - target: {fileID: 5391339347966201348, guid: 41b15d9eda7b74bd6b820122b8cd0544, type: 3}
       propertyPath: ingameCursor
       value: 

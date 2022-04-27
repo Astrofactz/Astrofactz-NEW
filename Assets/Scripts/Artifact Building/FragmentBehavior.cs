@@ -567,8 +567,6 @@ public class FragmentBehavior : MonoBehaviour
         GameObject parentArtifact = correctSnapPoint.transform.parent.gameObject;
         transform.parent = parentArtifact.transform;
 
-        transform.position = correctSnapPoint.transform.position;
-
         bc.enabled = false;
 
         SpawnPS();
@@ -581,6 +579,10 @@ public class FragmentBehavior : MonoBehaviour
         DisableSnapPoint(correctSnapPoint);
 
         isPlaced = true;
+
+        transform.position = correctSnapPoint.transform.position;
+
+        gm.CheckProgress();
 
         CheckArtifactComplete();
     }
