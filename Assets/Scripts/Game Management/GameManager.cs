@@ -54,6 +54,14 @@ public class GameManager : MonoBehaviour
     [Tooltip("Artifact animation object")]
     public GameObject artifactAnimation;
 
+    [Tooltip("Stella and Allister win dialogue lines")]
+    public AudioClip stellaWin, allisterWin;
+
+    /// <summary>
+    /// Reference to AudioSource component
+    /// </summary>
+    private AudioSource audio;
+
     public float timeBetweenSpawn = 1.0f;               // ???
 
     private SoundManager soundManager;
@@ -63,6 +71,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
+
+        audio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -155,6 +165,10 @@ public class GameManager : MonoBehaviour
 
         gameWinUI.SetActive(true);          // update curator pop-ups, win UI
 
+        yield return new WaitForSeconds(0.5f);
+
+        audio.PlayOneShot(stellaWin);
+
         InvokeRepeating("Firework", 0.0f, 1.5f);
 
         Quaternion targetRot = Quaternion.Euler(Vector3.zero);
@@ -180,7 +194,11 @@ public class GameManager : MonoBehaviour
 
         artifactAnimation.SetActive(true);
 
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
+
+        audio.PlayOneShot(allisterWin);
+
+        yield return new WaitForSeconds(3.0f);
 
         CancelInvoke("Firework");
     }
