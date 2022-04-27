@@ -312,7 +312,7 @@ public class FragmentBehavior : MonoBehaviour
             }
 
             // If incorrect target
-            else if (currentSnapTarget != correctSnapPoint)
+            else if (currentSnapTarget != correctSnapPoint && !isPlaced)
             {
                 rb.constraints = RigidbodyConstraints.None;
                 rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -393,9 +393,12 @@ public class FragmentBehavior : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,
                                   mousePos, dragSpeed * Time.deltaTime);
 
+            float xBound = xBoundary - 0.5f;
+            float yBound = yBoundary - 0.5f;
+
             // Clamps fragment in level boundary while following mouse
-            float xClamp = Mathf.Clamp(transform.position.x, -xBoundary, xBoundary);
-            float yClamp = Mathf.Clamp(transform.position.y, -yBoundary, yBoundary);
+            float xClamp = Mathf.Clamp(transform.position.x, -xBound, xBound);
+            float yClamp = Mathf.Clamp(transform.position.y, -yBound, yBound);
 
             transform.position = new Vector3(xClamp, yClamp, transform.position.z);
 
