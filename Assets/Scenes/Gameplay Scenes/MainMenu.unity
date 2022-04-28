@@ -1146,7 +1146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1240163954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1832,7 +1832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7808999147643143261, guid: 3fae72de392824dd7bb3ae87565efb37, type: 3}
       propertyPath: sceneTime
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7808999147643143261, guid: 3fae72de392824dd7bb3ae87565efb37, type: 3}
       propertyPath: sceneToLoad
@@ -1844,7 +1844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7808999147643143262, guid: 3fae72de392824dd7bb3ae87565efb37, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fae72de392824dd7bb3ae87565efb37, type: 3}
